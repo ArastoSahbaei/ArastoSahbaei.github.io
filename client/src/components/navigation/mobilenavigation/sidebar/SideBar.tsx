@@ -1,9 +1,7 @@
 import React from 'react'
 import './SideBar.css'
 
-export const SideBar = (props: { drawerIsOpen: boolean, drawerHandler: (handler: boolean) => void }) => {
-	/* 	let drawerClasses = 'side-drawer'
-		if (props.drawerIsOpen) { drawerClasses = 'side-drawer open' } */
+export const SideBar = (props: { drawerIsOpen: boolean, drawerHandler: (handler: boolean) => void }): JSX.Element => {
 
 	return (
 		<nav className={props.drawerIsOpen ? 'side-drawer open' : 'side-drawer'}>

@@ -4,7 +4,7 @@ import { useWindowDimensions } from '../../hooks/useWindowDimensions'
 import { MobileNavigation } from './mobilenavigation/MobileNavigation'
 import { DesktopNavigation } from './desktopnavigation/DesktopNavigation'
 
-export const Navigation = () => {
+export const Navigation = (): JSX.Element => {
 	const { height, width } = useWindowDimensions()
 
 	const displayNavigationBarDependingOnWindowSizeWidth = () => {
