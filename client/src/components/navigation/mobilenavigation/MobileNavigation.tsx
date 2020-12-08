@@ -7,17 +7,11 @@ import { BackDrop } from '../../backdrop/BackDrop'
 export const MobileNavigation = () => {
 	const [openDrawer, setOpenDrawer] = useState<boolean>(false)
 
-	const displaySideBar = () => {
-		return <div>
-			<SideBar drawerIsOpen={openDrawer} drawerHandler={setOpenDrawer} />
-			<BackDrop drawerHandler={setOpenDrawer} />
-		</div>
-	}
-
 	return (
 		<div>
 			<HamburgerButton drawerHandler={setOpenDrawer} />
-			{openDrawer ? displaySideBar() : null}
+			<SideBar drawerIsOpen={openDrawer} drawerHandler={setOpenDrawer} />
+			{!openDrawer || <BackDrop drawerHandler={setOpenDrawer} />}
 		</div>
 	)
 }
