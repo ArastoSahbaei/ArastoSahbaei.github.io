@@ -6,7 +6,7 @@ const { DATABASE_URL, PORT } = process.env
 
 const connectToDatabase = async () => {
     try {
-        await mongoose.connect(DATABASE_URL, {})
+        await mongoose.connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
         console.log('SUCESSFULLY CONNECTED TO DATABASE..')
     } catch (error) {
         console.log('ERROR OCCURED WHILE TRYING TO CONNECT TO THE DATABASE..')
