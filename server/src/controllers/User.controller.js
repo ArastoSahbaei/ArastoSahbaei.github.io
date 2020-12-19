@@ -66,7 +66,7 @@ const updateValuesOfExistingUser = async (request, response) => {
 	}
 }
 
-const deleteUserWithId = async (request, response) => {
+const deleteUserWithID = async (request, response) => {
 	try {
 		const databaseResponse = await UserModel.findByIdAndDelete(request.params.userId)
 		response.status(StatusCode.OK).send({ message: `Sucessfully deleted the USER with username: ${databaseResponse.username} and ID: ${request.params.userId}` })
@@ -84,5 +84,5 @@ export default {
 	getUserWithID,
 	getUserWithQuery,
 	updateValuesOfExistingUser,
-	deleteUserWithId
+	deleteUserWithID
 }
