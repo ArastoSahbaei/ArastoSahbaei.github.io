@@ -9,4 +9,4 @@ const routes = application => {
 	application.delete('/user/:userId', UserController.deleteUserWithId)
 }
 
-export default routes
+export default { routes }
