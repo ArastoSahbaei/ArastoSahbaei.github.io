@@ -13,8 +13,8 @@ const getUserWithID = (ID: string) => {
 	return http.get(`/user/${ID}`)
 }
 
-const getUserWithQuery = (query: string) => {
-	return http.get(`/searchuser?username=${query}`)
+const getUserWithQuery = (usernameQuery: string) => {
+	return http.get(`/searchuser?username=${usernameQuery}`)
 }
 
 const updateValuesOfExistingUser = () => {
