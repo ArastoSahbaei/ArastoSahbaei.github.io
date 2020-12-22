@@ -1,8 +1,13 @@
 import http from '../API'
-import user from '../../interface/user'
+import user from '../../interface/Interface'
+import loginCredentials from '../../interface/Interface'
 
 const registerNewUser = (data: user) => {
 	return http.post('/user', data)
+}
+
+const login = (credentials: loginCredentials) => {
+	return http.post('/user/login', credentials)
 }
 
 const getAllUsers = () => {
@@ -28,6 +33,7 @@ const deleteUserWithID = () => {
 
 export default {
 	registerNewUser,
+	login,
 	getAllUsers,
 	getUserWithID,
 	getUserWithQuery,
