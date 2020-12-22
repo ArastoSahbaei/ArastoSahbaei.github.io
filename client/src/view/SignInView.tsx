@@ -27,8 +27,10 @@ export const SignInView: React.FC = (): JSX.Element => {
 		event.preventDefault()
 		try {
 			await APIService.registerNewUser(registerUser)
+			alert('Sucessfully created your account!')
 		} catch (error) {
 			console.log(error)
+			alert('Error occured while trying to create your account..')
 		}
 	}
 
