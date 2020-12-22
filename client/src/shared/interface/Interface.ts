@@ -3,8 +3,4 @@ export default interface user {
 	password: string
 }
 
-export default interface loginCredentials {
-	username: string,
-	password: string
-}
 

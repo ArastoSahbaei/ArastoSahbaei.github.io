@@ -3,7 +3,7 @@ import user from '../../interface/Interface'
 import loginCredentials from '../../interface/Interface'
 
 const registerNewUser = (data: user) => {
-	return http.post('/user', data)
+	return http.post('/user/register', data)
 }
 
 const login = (credentials: loginCredentials) => {
