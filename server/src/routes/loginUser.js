@@ -1,25 +1,22 @@
 import jwt from 'jsonwebtoken'
 import passport from 'passport'
 import UserModel from '../models/User.model.js'
+import StatusCode from '../../configurations/StatusCode.js'
 
 const login = app => {
-	app.post('/user/login', (req, res, next) => {
+	app.post('/user/login', (request, response, next) => {
 		passport.authenticate('login', (err, users, info) => {
-			if (err) { console.error(`error ${err}`) }
+			/* 	if (err) { console.error(`error ${err}`) } */
 			if (info !== undefined) {
-				console.error(info.message)
-				if (info.message === 'bad username') {
-					res.status(401).send(info.message)
-				} else {
-					res.status(403).send(info.message)
-				}
+				info.message === 'bad username'
+					? response.status(StatusCode.UNAUTHORIZED).send(info.message)
+					: response.status(StatusCode.FORBIDDEN).send(info.message)
 			} else {
-				req.logIn(users, () => {
-					UserModel.findOne({ username: req.body.username })
+				request.logIn(users, () => {
+					UserModel.findOne({ username: request.body.username })
 						.then(user => {
-							console.log('THIS IS THE USER:', user)
 							const token = jwt.sign({ id: user._id }, 'jwtSecret.secret', { expiresIn: 60 * 60 })
-							res.status(200).send({
+							response.status(200).send({
 								authenticated: true,
 								token,
 								message: 'user found & logged in',
@@ -29,7 +26,7 @@ const login = app => {
 						})
 				})
 			}
-		})(req, res, next)
+		})(request, response, next)
 	})
 }
 

@@ -45,40 +45,35 @@ const registerUserini = () => {
 }
 
 const login = () => {
-	passport.use(
-		'login',
-		new localStrategy(
-			{
+	passport.use('login', new localStrategy(
+		/* 	{
 				usernameField: 'username',
 				passwordField: 'password',
 				session: false,
-			},
-			(username, password, done) => {
-				try {
-					UserModel.findOne({ username: username })
-						.then(user => {
-							if (user === null) {
-								return done(null, false, { message: 'bad username' })
-							} else {
-								bcrypt.compare(password, user.password)
-									.then(response => {
-										console.log('RESPONSE: ' + response)
-										console.log('passwords do not match ' + password)
-										console.log('passwords do not match ' + user.password)
-										if (response !== true) {
-											return done(null, false, { message: 'passwords do not match' })
-										}
-										console.log('user found & authenticated:', user)
-										// note the return needed with passport local - remove this return for passport JWT
-										done(null, user)
-									})
-							}
-						})
-				} catch (err) {
-					done(err)
-				}
-			},
-		),
+			}, */
+		(username, password, done) => {
+			try {
+				UserModel.findOne({ username: username })
+					.then(user => {
+						if (!user) {
+							return done(null, false, { message: 'bad username' })
+						} else {
+							bcrypt.compare(password, user.password)
+								.then(response => {
+									if (response !== true) {
+										return done(null, false, { message: 'passwords do not match' })
+									}
+									console.log('user found & authenticated:', user)
+									// note the return needed with passport local - remove this return for passport JWT
+									done(null, user)
+								})
+						}
+					})
+			} catch (err) {
+				done(err)
+			}
+		},
+	),
 	)
 }
 
