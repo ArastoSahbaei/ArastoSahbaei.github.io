@@ -19,7 +19,6 @@ const login = app => {
 							response.status(200).send({
 								authenticated: true,
 								token,
-								message: 'user found & logged in',
 								username: user.username,
 								id: user._id
 							})
