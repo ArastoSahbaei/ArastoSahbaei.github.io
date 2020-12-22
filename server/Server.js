@@ -8,7 +8,6 @@ import passport from 'passport'
 import Configuration from './configurations/Configurations.js'
 import Middlewares from './src/middlewares/Middlewares.js'
 import UserRoutes from './src/routes/User.routes.js'
-import loginRoute from './src/routes/loginUser.js'
 import registerRoute from './src/routes/regiserUser.js'
 import passportConfig from './configurations/passport-config.js'
 
@@ -25,9 +24,6 @@ passportConfig.login()
 
 UserRoutes.routes(application)
 
-
-
-loginRoute.login(application)
 registerRoute.register(application)
 
 
