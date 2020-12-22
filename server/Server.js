@@ -8,7 +8,6 @@ import passport from 'passport'
 import Configuration from './configurations/Configurations.js'
 import Middlewares from './src/middlewares/Middlewares.js'
 import UserRoutes from './src/routes/User.routes.js'
-import registerRoute from './src/routes/regiserUser.js'
 import passportConfig from './configurations/passport-config.js'
 
 const application = express()
@@ -23,14 +22,8 @@ passportConfig.registerUserini()
 passportConfig.login()
 
 UserRoutes.routes(application)
-
-registerRoute.register(application)
-
-
-
 application.use(Middlewares.notFound)
 application.use(Middlewares.errorHandler)
-
 
 Configuration.connectToDatabase()
 Configuration.connectToPort(application)

@@ -27,18 +27,39 @@ const login = async (request, response, next) => {
 	})(request, response, next)
 }
 
-const registerNewUser = async (request, response) => {
-	const user = new UserModel({
-		username: request.body.username,
-		password: request.body.password
-	})
+const registerNewUser = async (request, response, next) => {
+	passport.authenticate('register', (err, user, info) => {
+		/* if (err) { console.error(err) } */
+		if (info !== undefined) {
+			response.status(StatusCode.FORBIDDEN).send(info.message)
+		} else {
+			request.logIn(user, error => {
+				const data = { username: request.body.username }
+				UserModel.findOne({ where: data.username })
+					.then(user => {
+						console.log('THIS IS LE USER:', user)
+						UserModel.update({
+							username: data.username,
+						}).then(() => {
+							response.status(StatusCode.CREATED).send(data)
+						})
+					})
+			})
+		}
+	})(request, response, next)
 
-	try {
-		const databaseResponse = await user.save()
-		response.status(StatusCode.CREATED).send(databaseResponse)
-	} catch (error) {
-		response.status(StatusCode.INTERNAL_SERVER_ERROR).send({ message: error.message })
-	}
+
+	/* 	const user = new UserModel({
+			username: request.body.username,
+			password: request.body.password
+		})
+	
+		try {
+			const databaseResponse = await user.save()
+			response.status(StatusCode.CREATED).send(databaseResponse)
+		} catch (error) {
+			response.status(StatusCode.INTERNAL_SERVER_ERROR).send({ message: error.message })
+		} */
 }
 
 const getAllUsers = async (request, response) => {

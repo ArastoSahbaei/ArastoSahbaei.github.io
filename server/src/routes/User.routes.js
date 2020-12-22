@@ -2,7 +2,7 @@ import UserController from '../controllers/User.controller.js'
 
 const routes = application => {
 	application.post('/user/login', UserController.login)
-	application.post('/user', UserController.registerNewUser)
+	application.post('/user/register', UserController.registerNewUser)
 	application.get('/user', UserController.getAllUsers)
 	application.get('/user/:userId', UserController.getUserWithID)
 	application.get('/searchuser', UserController.getUserWithQuery)
