@@ -20,9 +20,10 @@ const login = app => {
 							console.log('THIS IS THE USER:', user)
 							const token = jwt.sign({ id: user._id }, 'jwtSecret.secret', { expiresIn: 60 * 60 })
 							res.status(200).send({
-								auth: true,
+								authenticated: true,
 								token,
 								message: 'user found & logged in',
+								username: user.username,
 								id: user._id
 							})
 						})
