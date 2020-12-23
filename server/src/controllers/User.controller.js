@@ -3,6 +3,21 @@ import passport from 'passport'
 import UserModel from '../models/User.model.js'
 import StatusCode from '../../configurations/StatusCode.js'
 
+const authenticatedRoute = async (request, response) => {
+	jwt.verify(request.token, 'jwtSecret.secret', (error, authorizedData) => {
+		if (error) {
+			//If error send Forbidden (403)
+			response.status(StatusCode.FORBIDDEN).send({ message: `error: ${error}` })
+		} else {
+			//If token is successfully verified, we can send the autorized data 
+			response.json({
+				message: 'Successful log in',
+				authorizedData
+			})
+		}
+	})
+}
+
 const login = async (request, response, next) => {
 	passport.authenticate('login', (err, users, info) => {
 		/* 	if (err) { console.error(`error ${err}`) } */
@@ -126,6 +141,7 @@ const deleteUserWithID = async (request, response) => {
 }
 
 export default {
+	authenticatedRoute,
 	login,
 	registerNewUser,
 	getAllUsers,
