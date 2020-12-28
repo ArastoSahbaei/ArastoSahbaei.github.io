@@ -1,12 +1,31 @@
-import React, { Suspense } from 'react'
+import React, { Suspense, useEffect, useContext } from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import RoutingPath from './RoutingPath'
 import { HomeView } from '../view/HomeView'
 import { SignInView } from '../view/SignInView'
 import { BackDrop } from '../components/backdrop/BackDrop'
+import { UserContext } from '../shared/provider/UserProvider'
+import APIService from '../shared/api/service/APIService'
 
 export const Routes = (props: { children?: React.ReactChild }) => {
 	const { children } = props
+	const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
+
+	const parseJWT = async (token: any) => {
+		if (!token) { return }
+		const base64Url = token.split('.')[1]
+		const base64 = base64Url.replace('-', '+').replace('_', '/')
+		const JWT = JSON.parse(window.atob(base64))
+		/* TODO: There has to be a better way to recieve the username? 
+			You cannot just do a getUserWithID like this?
+		*/
+		const response = await APIService.getUserWithID(JWT.id)
+		setAuthenticatedUser({ authenticated: true, id: JWT.id, username: response.data.username })
+	}
+
+	useEffect(() => {
+		parseJWT(localStorage.getItem('token'))
+	}, [])
 
 	return (
 		<BrowserRouter>
