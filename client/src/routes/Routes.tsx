@@ -3,13 +3,14 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import RoutingPath from './RoutingPath'
 import { HomeView } from '../view/HomeView'
 import { SignInView } from '../view/SignInView'
+import { BackDrop } from '../components/backdrop/BackDrop'
 
 export const Routes = (props: { children?: React.ReactChild }) => {
 	const { children } = props
 
 	return (
 		<BrowserRouter>
-			<Suspense fallback={<h1>LOADING!!!!</h1>} />
+			<Suspense fallback={<BackDrop />} />
 			{children}
 			<Switch>
 				<Route exact path={RoutingPath.signInView} component={SignInView} />
