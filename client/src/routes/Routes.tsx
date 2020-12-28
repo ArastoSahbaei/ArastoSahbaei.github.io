@@ -29,6 +29,7 @@ export const Routes = (props: { children?: React.ReactChild }) => {
 			setAuthenticatedUser({ authenticated: true, id: JWT.id, username: response.data.username })
 		} else {
 			setAuthenticatedUser({ authenticated: false, id: undefined, username: undefined })
+			localStorage.removeItem('token')
 		}
 	}
 
