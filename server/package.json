@@ -13,7 +13,7 @@
 		"MongoDB",
 		"Mongoose"
 	],
-	"author": "Arasto Sahbaei",
+	"author": "Arasto Sahbaei (arasto.sahbaei@gmail.com)",
 	"license": "ISC",
 	"dependencies": {
 		"bcrypt": "^5.0.0",
