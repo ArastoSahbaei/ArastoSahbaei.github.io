@@ -2,7 +2,10 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 
 dotenv.config()
-const { DATABASE_URL, PORT } = process.env
+/* const { DATABASE_URL, PORT } = process.env */
+/* TODO: Change these later */
+const DATABASE_URL = 'mongodb://localhost/databasename'
+const PORT = 3001
 
 const connectToDatabase = async () => {
 	try {
