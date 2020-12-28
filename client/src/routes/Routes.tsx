@@ -11,9 +11,9 @@ export const Routes = (props: { children?: React.ReactChild }) => {
 	const { children } = props
 	const [, setAuthenticatedUser] = useContext(UserContext)
 
-	const isTokenValid = (token: number) => {
-		const cTs = Math.floor(Date.now() / 1000)
-		return (token >= cTs)
+	const isTokenValid = (tokenExp: number) => {
+		const currentTime = Math.floor(Date.now() / 1000)
+		return (tokenExp >= currentTime)
 	}
 
 	const parseJWT = async (token: any) => {
