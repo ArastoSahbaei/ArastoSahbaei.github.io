@@ -1,11 +1,14 @@
 import React, { Suspense, useEffect, useContext } from 'react'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import APIService from '../shared/api/service/APIService'
 import RoutingPath from './RoutingPath'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { UserContext } from '../shared/provider/UserProvider'
+import { BackDrop } from '../components/backdrop/BackDrop'
 import { HomeView } from '../view/HomeView'
 import { SignInView } from '../view/SignInView'
-import { BackDrop } from '../components/backdrop/BackDrop'
-import { UserContext } from '../shared/provider/UserProvider'
-import APIService from '../shared/api/service/APIService'
+import { UserSettingsView } from '../view/UserSettingsView'
+
+
 
 export const Routes = (props: { children?: React.ReactChild }) => {
 	const { children } = props
@@ -43,6 +46,7 @@ export const Routes = (props: { children?: React.ReactChild }) => {
 			{children}
 			<Switch>
 				<Route exact path={RoutingPath.signInView} component={SignInView} />
+				<Route exact path={RoutingPath.userSettingsView} component={UserSettingsView} />
 				<Route component={HomeView} />
 			</Switch>
 		</BrowserRouter>
