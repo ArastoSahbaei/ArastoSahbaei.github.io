@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import RoutingPath from './RoutingPath'
 import { HomeView } from '../view/HomeView'
@@ -9,6 +9,7 @@ export const Routes = (props: { children?: React.ReactChild }) => {
 
 	return (
 		<BrowserRouter>
+			<Suspense fallback={<h1>LOADING!!!!</h1>} />
 			{children}
 			<Switch>
 				<Route exact path={RoutingPath.signInView} component={SignInView} />
