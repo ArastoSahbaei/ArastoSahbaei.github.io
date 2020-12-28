@@ -2,6 +2,10 @@ import http from '../API'
 import user from '../../interface/Interface'
 import loginCredentials from '../../interface/Interface'
 
+const authenticatedRouteExample = () => {
+	return http.get('/rofl')
+}
+
 const registerNewUser = (data: user) => {
 	return http.post('/user/register', data)
 }
@@ -32,6 +36,7 @@ const deleteUserWithID = () => {
 
 
 export default {
+	authenticatedRouteExample,
 	registerNewUser,
 	login,
 	getAllUsers,

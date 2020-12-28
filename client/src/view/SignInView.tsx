@@ -16,6 +16,7 @@ export const SignInView: React.FC = (): JSX.Element => {
 		event.preventDefault()
 		try {
 			const response = await APIService.login(loginCredentials)
+			localStorage.setItem('token', response.data.token)
 			setAuthenticatedUser(response.data)
 			history.push(RoutingPath.homeView)
 		} catch (error) {
