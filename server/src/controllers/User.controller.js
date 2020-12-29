@@ -146,7 +146,7 @@ const deleteUserWithID = async (request, response) => {
 	}
 }
 
-const test = (request, response) => {
+const resetPassword = (request, response) => {
 	if (request.body.email === '') {
 		response.status(400).send('email required')
 	}
@@ -211,5 +211,5 @@ export default {
 	getUserWithQuery,
 	updateValuesOfExistingUser,
 	deleteUserWithID,
-	test
+	resetPassword
 }
