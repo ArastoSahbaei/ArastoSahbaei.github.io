@@ -8,7 +8,7 @@ const routes = application => {
 	application.get('/user', UserController.getAllUsers)
 	application.get('/user/:userId', UserController.getUserWithID)
 	application.get('/searchuser', UserController.getUserWithQuery)
-	application.put('/user/:userId', UserController.updateValuesOfExistingUser)
+	application.put('/user/:userId', UserController.updateUser)
 	application.delete('/user/:userId', UserController.deleteUserWithID)
 	application.post('/forgotpassword', UserController.forgotPassword)
 	application.put('/updatepassword', UserController.updatePassword)

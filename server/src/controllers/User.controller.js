@@ -119,7 +119,7 @@ const getUserWithQuery = async (request, response) => {
 	}
 }
 
-const updateValuesOfExistingUser = async (request, response) => {
+const updateUser = async (request, response) => {
 	try {
 		if (!request.body) { return response.status(StatusCode.BAD_REQUEST).send({ message: 'Empty values were sent' }) }
 		const databaseResponse = await UserModel.findByIdAndUpdate(request.params.userId, {
@@ -184,12 +184,12 @@ const updatePassword = (request, response) => {
 
 const forgotPassword = async (request, response) => {
 	if (request.body.email === '') {
-		response.status(400).send('email required')
+		response.status(StatusCode.BAD_REQUEST).send('email required')
 	}
 	console.error(request.body.email)
 	const databaseResponse = await UserModel.findOne({ email: request.body.email })
 	if (databaseResponse === null) {
-		response.status(403).send('email not in db')
+		response.status(StatusCode.FORBIDDEN).send('email not in db')
 	} else {
 		const token = crypto.randomBytes(20).toString('hex')
 		await UserModel.findByIdAndUpdate(databaseResponse._id, {
@@ -228,7 +228,7 @@ const forgotPassword = async (request, response) => {
 				console.error('there was an error: ', error)
 			} else {
 				console.log('here is the response: ', response)
-				response.status(200).send(response)
+				response.status(StatusCode.OK).send(response)
 			}
 		})
 	}
@@ -237,20 +237,24 @@ const forgotPassword = async (request, response) => {
 
 
 const resetPassword = async (request, response) => {
-	const databaseResponse = await UserModel.findOne({ resetPasswordToken: request.query.resetPasswordToken })
-	if (Date.now() >= databaseResponse.resetPasswordExpires) {
-		console.error('password reset link is invalid or has expired')
-		response.status(403).send('password reset link is invalid or has expired')
-	}
-	if (databaseResponse == null) {
-		console.log(databaseResponse)
-		console.error('password reset link is invalid or has expired')
-		response.status(403).send('password reset link is invalid or has expired')
-	} else {
-		//TODO: Authenticate and allow password change.
-		response.status(200).send({
-			username: databaseResponse.username,
-			message: 'password reset link a-ok'
+	try {
+		const databaseResponse = await UserModel.findOne({ resetPasswordToken: request.query.resetPasswordToken })
+		if (Date.now() >= databaseResponse.resetPasswordExpires) {
+			response.status(StatusCode.FORBIDDEN).send('password reset link is invalid or has expired')
+		}
+		if (databaseResponse == null) {
+			response.status(StatusCode.FORBIDDEN).send('password reset link is invalid or has expired')
+		} else {
+			//TODO: Authenticate and allow password change.
+			response.status(StatusCode.OK).send({
+				username: databaseResponse.username,
+				message: 'password reset link a-ok'
+			})
+		}
+	} catch (error) {
+		response.status(StatusCode.INTERNAL_SERVER_ERROR).send({
+			message: 'Error occured while trying to reset password',
+			error: error.message
 		})
 	}
 }
@@ -264,7 +268,7 @@ export default {
 	getAllUsers,
 	getUserWithID,
 	getUserWithQuery,
-	updateValuesOfExistingUser,
+	updateUser,
 	deleteUserWithID,
 	updatePassword,
 	forgotPassword,
