@@ -10,7 +10,9 @@ const routes = application => {
 	application.get('/searchuser', UserController.getUserWithQuery)
 	application.put('/user/:userId', UserController.updateValuesOfExistingUser)
 	application.delete('/user/:userId', UserController.deleteUserWithID)
-	application.post('/reset', UserController.resetPassword)
+	application.post('/forgotpassword', UserController.forgotPassword)
+	application.put('/updatepassword', UserController.updatePassword)
+	application.get('/reset', UserController.resetPassword)
 }
 
 export default { routes }

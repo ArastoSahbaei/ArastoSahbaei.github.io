@@ -11,7 +11,9 @@ const userSchema = mongoose.Schema({
 	email: {
 		type: String,
 	},
-	password: String
+	password: String,
+	resetPasswordToken: String,
+	resetPasswordExpires: Date,
 }, { timestamps: true, strict: true })
 
 

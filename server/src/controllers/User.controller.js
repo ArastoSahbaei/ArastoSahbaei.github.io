@@ -3,6 +3,7 @@ import passport from 'passport'
 import UserModel from '../models/User.model.js'
 import StatusCode from '../../configurations/StatusCode.js'
 import crypto from 'crypto'
+import bcrypt from 'bcrypt'
 import nodemailer from 'nodemailer'
 
 const authenticatedRoute = async (request, response) => {
@@ -146,61 +147,140 @@ const deleteUserWithID = async (request, response) => {
 	}
 }
 
-const resetPassword = (request, response) => {
+const updatePassword = (request, response) => {
+	const BCRYPT_SALT_ROUNDS = 12
+	passport.authenticate('jwt', { session: false }, (error, user, info) => {
+		if (error) { console.error(error) }
+		if (info !== undefined) {
+			console.error(info.message)
+			response.status(403).send(info.message)
+		} else {
+			UserModel.findOne({
+				username: request.body.username,
+			}).then((userInfo) => {
+				if (userInfo != null) {
+					console.log('user found in db')
+					bcrypt
+						.hash(request.body.password, BCRYPT_SALT_ROUNDS)
+						.then((hashedPassword) => {
+							userInfo.update({
+								password: hashedPassword,
+							})
+						})
+						.then(() => {
+							console.log('password updated')
+							response
+								.status(200)
+								.send({ auth: true, message: 'password updated' })
+						})
+				} else {
+					console.error('no user exists in db to update')
+					response.status(404).json('no user exists in db to update')
+				}
+			})
+		}
+	})(request, response, next)
+}
+
+const forgotPassword = async (request, response) => {
 	if (request.body.email === '') {
 		response.status(400).send('email required')
 	}
 	console.error(request.body.email)
-	UserModel.findOne({
-		email: request.body.email
-	}).then((user) => {
-		if (user === null) {
-			console.error('email not in database')
-			response.status(403).send('email not in db')
-		} else {
-			const token = crypto.randomBytes(20).toString('hex')
-			user.update({
-				resetPasswordToken: token,
-				resetPasswordExpires: Date.now() + 3600000,
-			})
+	const databaseResponse = await UserModel.findOne({ email: request.body.email })
+	console.log("LOOOOOOOOOOOOOOOOOOOOL", databaseResponse)
+	if (databaseResponse === null) {
+		response.status(403).send('email not in db')
+	} else {
+		const token = crypto.randomBytes(20).toString('hex')
+		await UserModel.findByIdAndUpdate(databaseResponse._id, {
+			resetPasswordToken: token,
+			resetPasswordExpires: Date.now() + 3600000,
+		})
 
-			const transporter = nodemailer.createTransport({
-				host: 'smtp.gmail.com',
-				port: 465,
-				secure: true,
-				auth: {
-					type: 'OAuth2',
-					user: 'developmentwitharre@gmail.com',
-					clientId: '180730641849-0ivdiknhfcu9pmq89kejivmpr3h02tf5.apps.googleusercontent.com',
-					clientSecret: 'm89T-wOPvO_8vIABpOKOh4fx',
-					refreshToken: '1//042tb0cmHO1sdCgYIARAAGAQSNwF-L9IryiL37nTmc3lqlXHwLZzSHyXO1ZFZ346roUC1L8TbRD37FJgU1Y3GSgQaIagnQDrMgBM'
-				},
-			})
+		const transporter = nodemailer.createTransport({
+			host: 'smtp.gmail.com',
+			port: 465,
+			secure: true,
+			auth: {
+				type: 'OAuth2',
+				user: 'developmentwitharre@gmail.com',
+				clientId: '180730641849-0ivdiknhfcu9pmq89kejivmpr3h02tf5.apps.googleusercontent.com',
+				clientSecret: 'm89T-wOPvO_8vIABpOKOh4fx',
+				refreshToken: '1//042tb0cmHO1sdCgYIARAAGAQSNwF-L9IryiL37nTmc3lqlXHwLZzSHyXO1ZFZ346roUC1L8TbRD37FJgU1Y3GSgQaIagnQDrMgBM'
+			},
+		})
 
-			const mailOptions = {
-				from: 'developmentwitharre@gmail.com',
-				to: `${user.email}`,
-				subject: 'Link To Reset Password',
-				text:
-					'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n'
-					+ 'Please click on the following link, or paste this into your browser to complete the process within one hour of receiving it:\n\n'
-					+ `http://localhost:3031/reset/${token}\n\n`
-					+ 'If you did not request this, please ignore this email and your password will remain unchanged.\n',
-			}
-
-			console.log('sending mail')
-
-			transporter.sendMail(mailOptions, (error, response) => {
-				if (error) {
-					console.error('there was an error: ', error)
-				} else {
-					console.log('here is the response: ', response)
-					response.status(200).send(response)
-				}
-			})
+		const mailOptions = {
+			from: 'developmentwitharre@gmail.com',
+			to: `${databaseResponse.email}`,
+			subject: 'Link To Reset Password',
+			text:
+				'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n'
+				+ 'Please click on the following link, or paste this into your browser to complete the process within one hour of receiving it:\n\n'
+				+ `http://localhost:3001/reset?resetpasswordtoken=${token}\n\n`
+				+ 'If you did not request this, please ignore this email and your password will remain unchanged.\n',
 		}
-	})
+
+		console.log('sending mail')
+
+		transporter.sendMail(mailOptions, (error, response) => {
+			if (error) {
+				console.error('there was an error: ', error)
+			} else {
+				console.log('here is the response: ', response)
+				response.status(200).send(response)
+			}
+		})
+	}
+
 }
+
+
+const resetPassword = async (request, response) => {
+	const databaseResponse = await UserModel.findOne({ resetPasswordToken: request.query.resetPasswordToken })
+	console.log(Date.now() >= databaseResponse.resetPasswordExpires)
+	//TODO: Check if 1hour has passed since the email was sent
+	if (Date.now() >= databaseResponse.resetPasswordExpires) {
+		console.error('password reset link is invalid or has expired')
+		response.status(403).send('password reset link is invalid or has expired')
+	}
+	if (databaseResponse == null) {
+		console.log(databaseResponse)
+		console.error('password reset link is invalid or has expired')
+		response.status(403).send('password reset link is invalid or has expired')
+	} else {
+		response.status(200).send({
+			username: databaseResponse.username,
+			message: 'password reset link a-ok'
+		})
+	}
+
+	/* 
+		UserModel.findOne({
+			where: {
+				resetPasswordToken: request.query.resetPasswordToken,
+				resetPasswordExpires: {
+					x: Date.now(),
+				},
+			},
+		}).then((user) => {
+			console.log(user)
+			console.log(user)
+			if (user == null) {
+				console.log(user)
+				console.error('password reset link is invalid or has expired')
+				response.status(403).send('password reset link is invalid or has expired')
+			} else {
+				response.status(200).send({
+					username: user.username,
+					message: 'password reset link a-ok',
+				})
+			}
+		}) */
+}
+
+
 
 export default {
 	authenticatedRoute,
@@ -211,5 +291,7 @@ export default {
 	getUserWithQuery,
 	updateValuesOfExistingUser,
 	deleteUserWithID,
+	updatePassword,
+	forgotPassword,
 	resetPassword
 }
