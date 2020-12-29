@@ -2,7 +2,7 @@ import UserController from '../controllers/User.controller.js'
 import Middlewares from '../middlewares/Middlewares.js'
 
 const routes = application => {
-	application.get('/rofl', Middlewares.checkToken, UserController.authenticatedRoute)
+	application.get('/authtest', Middlewares.checkToken, UserController.testingAuthenticatedRoute)
 	application.post('/user/login', UserController.login)
 	application.post('/user/register', UserController.registerNewUser)
 	application.get('/user', UserController.getAllUsers)

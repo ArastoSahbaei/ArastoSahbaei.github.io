@@ -6,7 +6,7 @@ import crypto from 'crypto'
 import bcrypt from 'bcrypt'
 import nodemailer from 'nodemailer'
 
-const authenticatedRoute = async (request, response) => {
+const testingAuthenticatedRoute = async (request, response) => {
 	jwt.verify(request.token, 'jwtSecret.secret', (error, authorizedData) => {
 		if (error) {
 			//If error send Forbidden (403)
@@ -188,7 +188,6 @@ const forgotPassword = async (request, response) => {
 	}
 	console.error(request.body.email)
 	const databaseResponse = await UserModel.findOne({ email: request.body.email })
-	console.log("LOOOOOOOOOOOOOOOOOOOOL", databaseResponse)
 	if (databaseResponse === null) {
 		response.status(403).send('email not in db')
 	} else {
@@ -239,8 +238,6 @@ const forgotPassword = async (request, response) => {
 
 const resetPassword = async (request, response) => {
 	const databaseResponse = await UserModel.findOne({ resetPasswordToken: request.query.resetPasswordToken })
-	console.log(Date.now() >= databaseResponse.resetPasswordExpires)
-	//TODO: Check if 1hour has passed since the email was sent
 	if (Date.now() >= databaseResponse.resetPasswordExpires) {
 		console.error('password reset link is invalid or has expired')
 		response.status(403).send('password reset link is invalid or has expired')
@@ -250,40 +247,18 @@ const resetPassword = async (request, response) => {
 		console.error('password reset link is invalid or has expired')
 		response.status(403).send('password reset link is invalid or has expired')
 	} else {
+		//TODO: Authenticate and allow password change.
 		response.status(200).send({
 			username: databaseResponse.username,
 			message: 'password reset link a-ok'
 		})
 	}
-
-	/* 
-		UserModel.findOne({
-			where: {
-				resetPasswordToken: request.query.resetPasswordToken,
-				resetPasswordExpires: {
-					x: Date.now(),
-				},
-			},
-		}).then((user) => {
-			console.log(user)
-			console.log(user)
-			if (user == null) {
-				console.log(user)
-				console.error('password reset link is invalid or has expired')
-				response.status(403).send('password reset link is invalid or has expired')
-			} else {
-				response.status(200).send({
-					username: user.username,
-					message: 'password reset link a-ok',
-				})
-			}
-		}) */
 }
 
 
 
 export default {
-	authenticatedRoute,
+	testingAuthenticatedRoute,
 	login,
 	registerNewUser,
 	getAllUsers,
