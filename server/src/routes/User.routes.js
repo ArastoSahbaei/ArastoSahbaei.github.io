@@ -10,6 +10,7 @@ const routes = application => {
 	application.get('/searchuser', UserController.getUserWithQuery)
 	application.put('/user/:userId', UserController.updateValuesOfExistingUser)
 	application.delete('/user/:userId', UserController.deleteUserWithID)
+	application.post('/omg', UserController.test)
 }
 
 export default { routes }

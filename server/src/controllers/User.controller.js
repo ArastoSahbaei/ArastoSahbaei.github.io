@@ -2,6 +2,8 @@ import jwt from 'jsonwebtoken'
 import passport from 'passport'
 import UserModel from '../models/User.model.js'
 import StatusCode from '../../configurations/StatusCode.js'
+import crypto from 'crypto'
+import nodemailer from 'nodemailer'
 
 const authenticatedRoute = async (request, response) => {
 	jwt.verify(request.token, 'jwtSecret.secret', (error, authorizedData) => {
@@ -49,12 +51,16 @@ const registerNewUser = async (request, response, next) => {
 			response.status(StatusCode.FORBIDDEN).send(info.message)
 		} else {
 			request.logIn(user, error => {
-				const data = { username: request.body.username }
+				const data = {
+					username: request.body.username,
+					email: request.body.email
+				}
 				UserModel.findOne({ where: data.username })
 					.then(user => {
 						console.log('THIS IS LE USER:', user)
 						UserModel.update({
 							username: data.username,
+							email: data.email
 						}).then(() => {
 							response.status(StatusCode.CREATED).send(data)
 						})
@@ -140,6 +146,62 @@ const deleteUserWithID = async (request, response) => {
 	}
 }
 
+const test = (request, response) => {
+	if (request.body.email === '') {
+		response.status(400).send('email required')
+	}
+	console.error(request.body.email)
+	UserModel.findOne({
+		email: request.body.email
+	}).then((user) => {
+		if (user === null) {
+			console.error('email not in database')
+			response.status(403).send('email not in db')
+		} else {
+			const token = crypto.randomBytes(20).toString('hex')
+			user.update({
+				resetPasswordToken: token,
+				resetPasswordExpires: Date.now() + 3600000,
+			})
+
+			const transporter = nodemailer.createTransport({
+				host: 'smtp.gmail.com',
+				port: 465,
+				secure: true,
+				auth: {
+					type: 'OAuth2',
+					user: 'developmentwitharre@gmail.com',
+					clientId: '180730641849-0ivdiknhfcu9pmq89kejivmpr3h02tf5.apps.googleusercontent.com',
+					clientSecret: 'm89T-wOPvO_8vIABpOKOh4fx',
+					refreshToken: '1//042tb0cmHO1sdCgYIARAAGAQSNwF-L9IryiL37nTmc3lqlXHwLZzSHyXO1ZFZ346roUC1L8TbRD37FJgU1Y3GSgQaIagnQDrMgBM'
+				},
+			})
+
+			const mailOptions = {
+				from: 'developmentwitharre@gmail.com',
+				to: `${user.email}`,
+				subject: 'Link To Reset Password',
+				text:
+					'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n'
+					+ 'Please click on the following link, or paste this into your browser to complete the process within one hour of receiving it:\n\n'
+					+ `http://localhost:3031/reset/${token}\n\n`
+					+ 'If you did not request this, please ignore this email and your password will remain unchanged.\n',
+			}
+
+			console.log('sending mail')
+
+			transporter.sendMail(mailOptions, (error, response) => {
+				if (error) {
+					console.error('there was an error: ', error)
+				} else {
+					console.log('here is the response: ', response)
+					response.status(200).send(response)
+				}
+			})
+		}
+	})
+}
+
 export default {
 	authenticatedRoute,
 	login,
@@ -148,5 +210,6 @@ export default {
 	getUserWithID,
 	getUserWithQuery,
 	updateValuesOfExistingUser,
-	deleteUserWithID
+	deleteUserWithID,
+	test
 }
