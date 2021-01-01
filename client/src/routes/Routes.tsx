@@ -19,7 +19,8 @@ export const Routes = (props: { children?: React.ReactChild }) => {
 		return (tokenExp >= currentTime)
 	}
 
-	const parseJWT = async (token: any) => {
+	const parseJWT = async () => {
+		const token = localStorage.getItem('token')
 		if (!token) { return }
 		const base64Url = token.split('.')[1]
 		const base64 = base64Url.replace('-', '+').replace('_', '/')
@@ -37,7 +38,7 @@ export const Routes = (props: { children?: React.ReactChild }) => {
 	}
 
 	useEffect(() => {
-		parseJWT(localStorage.getItem('token'))
+		parseJWT()
 	}, [])
 
 	return (
