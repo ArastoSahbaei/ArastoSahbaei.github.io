@@ -1,5 +1,15 @@
-.navigationWrapper {
+.desktopNavigationWrapper {
 	display: grid;
 	grid-template-columns: repeat(10, 1fr);
 	background-color: #202020;
+}
+
+.navigationProfile {
+	grid-column: 8/11;
+	align-self: center;
+	justify-self: center;
+}
+
+.navigationLogotype {
+	grid-column: 1/3;
 }
