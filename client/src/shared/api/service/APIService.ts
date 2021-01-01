@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import http from '../API'
 import user from '../../interface/Interface'
 import loginCredentials from '../../interface/Interface'
