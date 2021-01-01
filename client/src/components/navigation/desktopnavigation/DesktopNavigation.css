@@ -1,0 +1,13 @@
+.signInButton {
+	grid-column: 8/11;
+	align-self: center;
+	justify-self: center;
+	cursor: pointer;
+}
+
+.navigationLogotype {
+	grid-column: 1/2;
+	cursor: pointer;
+	align-self: center;
+	justify-self: center;
+}

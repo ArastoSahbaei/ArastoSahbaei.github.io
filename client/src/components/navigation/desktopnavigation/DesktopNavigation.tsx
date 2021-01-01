@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import Logotype from '../../../shared/images/logotypeTemplate.svg'
 import { UserContext } from '../../../shared/provider/UserProvider'
 import { Profile } from '../../profile/Profile'
+import './DesktopNavigation.css'
 
 export const DesktopNavigation: React.FC = (): JSX.Element => {
 	const [authenticatedUser,] = useContext(UserContext)
