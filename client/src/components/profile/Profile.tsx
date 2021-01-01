@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import RoutingPath from '../../routes/RoutingPath'
 import { UserContext } from '../../shared/provider/UserProvider'
+import { DropdownProfile } from './dropdownprofile/DropdownProfile'
 import './Profile.css'
 
 export const Profile = (): JSX.Element => {
@@ -15,14 +16,7 @@ export const Profile = (): JSX.Element => {
 				alt=''
 				style={{ width: 50 }} />
 			<span>{authenticatedUser.username}</span>
-			<div className="profileDropdown">
-				<span>Arasto Sahbaei</span> <br />
-				<span>arasto.sahbaei@gmail.com</span>
-				<hr />
-				<span>Profile</span>
-				<span>Settings</span>
-				<span>Logout</span>
-			</div>
+			<DropdownProfile />
 		</div>
 	)
 }
