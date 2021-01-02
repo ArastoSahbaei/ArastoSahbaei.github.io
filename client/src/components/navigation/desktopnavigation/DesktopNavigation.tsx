@@ -17,6 +17,12 @@ export const DesktopNavigation: React.FC = (): JSX.Element => {
 			: <span className='signInButton' onClick={() => history.push(RoutingPath.signInView)}> Sign in </span>
 	}
 
+	const displayCreateRecipeIconIfUserIsAuthenticated = () => {
+		return authenticatedUser.authenticated
+			? <span className='createRecipeNav' onClick={() => history.push(RoutingPath.createRecipeView)}>create recipe</span>
+			: null
+	}
+
 	return (
 		<div className='desktopNavigationWrapper'>
 			<img className='navigationLogotype'
@@ -25,7 +31,7 @@ export const DesktopNavigation: React.FC = (): JSX.Element => {
 				alt=''
 				style={{ width: 100 }} />
 			{displaySignInButtonOrUsernameDependingOnAuthentication()}
-			<span className='createRecipeNav' onClick={() => history.push(RoutingPath.createRecipeView)}>create recipe</span>
+			{displayCreateRecipeIconIfUserIsAuthenticated()}
 			<div className='searchForRecipe'>
 				<SearchRecipe />
 			</div>
