@@ -7,8 +7,8 @@ import { BackDrop } from '../components/backdrop/BackDrop'
 import { HomeView } from '../view/HomeView'
 import { SignInView } from '../view/SignInView'
 import { UserSettingsView } from '../view/UserSettingsView'
-
-
+import { UserProfileView } from '../view/UserProfileView'
+import { CreateRecipeView } from '../view/CreateRecipeView'
 
 export const Routes = (props: { children?: React.ReactChild }) => {
 	const { children } = props
@@ -48,6 +48,8 @@ export const Routes = (props: { children?: React.ReactChild }) => {
 			<Switch>
 				<Route exact path={RoutingPath.signInView} component={SignInView} />
 				<Route exact path={RoutingPath.userSettingsView} component={UserSettingsView} />
+				<Route exact path={RoutingPath.userProfileView} component={UserProfileView} />
+				<Route exact path={RoutingPath.createRecipeView} component={CreateRecipeView} />
 				<Route component={HomeView} />
 			</Switch>
 		</BrowserRouter>
