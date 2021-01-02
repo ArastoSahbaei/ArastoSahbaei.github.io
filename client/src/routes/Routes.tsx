@@ -9,6 +9,7 @@ import { SignInView } from '../view/SignInView'
 import { UserSettingsView } from '../view/UserSettingsView'
 import { UserProfileView } from '../view/UserProfileView'
 import { CreateRecipeView } from '../view/CreateRecipeView'
+import { RecipeView } from '../view/RecipeView'
 
 export const Routes = (props: { children?: React.ReactChild }) => {
 	const { children } = props
@@ -50,6 +51,7 @@ export const Routes = (props: { children?: React.ReactChild }) => {
 				<Route exact path={RoutingPath.userSettingsView} component={UserSettingsView} />
 				<Route exact path={RoutingPath.userProfileView} component={UserProfileView} />
 				<Route exact path={RoutingPath.createRecipeView} component={CreateRecipeView} />
+				<Route exact path={RoutingPath.recipeView} component={RecipeView} />
 				<Route component={HomeView} />
 			</Switch>
 		</BrowserRouter>
