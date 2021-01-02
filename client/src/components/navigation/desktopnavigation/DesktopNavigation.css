@@ -7,7 +7,7 @@
 }
 
 .navigationLogotype {
-	grid-column: 3/4;
+	grid-column: 2/4;
 	grid-row: 1/1;
 	cursor: pointer;
 	align-self: center;

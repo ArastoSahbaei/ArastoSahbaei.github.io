@@ -25,7 +25,7 @@ export const DesktopNavigation: React.FC = (): JSX.Element => {
 				alt=''
 				style={{ width: 100 }} />
 			{displaySignInButtonOrUsernameDependingOnAuthentication()}
-			<span className='createRecipeNav'>create recipe</span>
+			<span className='createRecipeNav' onClick={() => history.push(RoutingPath.createRecipeView)}>create recipe</span>
 			<div className='searchForRecipe'>
 				<SearchRecipe />
 			</div>
