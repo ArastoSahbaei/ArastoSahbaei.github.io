@@ -1,10 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './DropdownProfile.css'
 import { useHistory } from 'react-router-dom'
 import RoutingPath from '../../../routes/RoutingPath'
+import { UserContext } from '../../../shared/provider/UserProvider'
 
 export const DropdownProfile = () => {
 	const history = useHistory()
+	const [, setAuthenticatedUser] = useContext(UserContext)
+
+	const logout = () => {
+		setAuthenticatedUser({ authenticated: false, id: undefined, username: undefined })
+		localStorage.removeItem('token')
+		history.push(RoutingPath.homeView)
+	}
 
 	return (
 		<div className="profileDropdown">
@@ -15,7 +23,7 @@ export const DropdownProfile = () => {
 			<span>My Recipes</span>
 			<span>Saved Recipes</span>
 			<span onClick={() => history.push(RoutingPath.userSettingsView)}>Settings</span>
-			<span>Logout</span>
+			<span onClick={() => logout()}>Logout</span>
 		</div>
 	)
 }
