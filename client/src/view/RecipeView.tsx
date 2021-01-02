@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 
-export const RecipeView = () => {
+export const RecipeView: React.FC = () => {
 	const history = useHistory()
 	const params = useParams<any>()
 	const [data, setData] = useState<any>()

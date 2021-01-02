@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const UserSettingsView = (): JSX.Element => {
+export const UserSettingsView: React.FC = (): JSX.Element => {
 	return (
 		<div>
 			<h1>This is the userSettingsView</h1>

@@ -13,7 +13,11 @@ import { RecipeView } from '../view/RecipeView'
 
 export const Routes = (props: { children?: React.ReactChild }) => {
 	const { children } = props
-	const [, setAuthenticatedUser] = useContext(UserContext)
+	const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
+
+	const blockRouteIfNotAuthenticated = (navigateToViewifAuthenticated: any) => {
+		return !authenticatedUser.authenticated ? SignInView : navigateToViewifAuthenticated
+	}
 
 	const isTokenValid = (tokenExp: number) => {
 		const currentTime = Math.floor(Date.now() / 1000)
@@ -50,7 +54,7 @@ export const Routes = (props: { children?: React.ReactChild }) => {
 				<Route exact path={RoutingPath.signInView} component={SignInView} />
 				<Route exact path={RoutingPath.userSettingsView} component={UserSettingsView} />
 				<Route exact path={RoutingPath.userProfileView} component={UserProfileView} />
-				<Route exact path={RoutingPath.createRecipeView} component={CreateRecipeView} />
+				<Route exact path={RoutingPath.createRecipeView} component={blockRouteIfNotAuthenticated(CreateRecipeView)} />
 				<Route exact path={RoutingPath.recipeView} component={RecipeView} />
 				<Route component={HomeView} />
 			</Switch>
