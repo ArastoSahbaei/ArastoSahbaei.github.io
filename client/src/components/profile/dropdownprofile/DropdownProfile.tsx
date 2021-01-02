@@ -24,6 +24,11 @@ export const DropdownProfile = () => {
 			<span>Saved Recipes</span>
 			<span onClick={() => history.push(RoutingPath.userSettingsView)}>Settings</span>
 			<span onClick={() => logout()}>Logout</span>
+			<hr />
+			<span>Dark mode</span>
+			<span>Language</span>
+			<span>GDPR</span>
+			<span>Report a bug</span>
 		</div>
 	)
 }

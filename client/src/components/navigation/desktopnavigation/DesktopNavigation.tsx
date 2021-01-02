@@ -5,6 +5,7 @@ import Logotype from '../../../shared/images/logotypeTemplate.svg'
 import { UserContext } from '../../../shared/provider/UserProvider'
 import { Profile } from '../../profile/Profile'
 import './DesktopNavigation.css'
+import { SearchRecipe } from '../../searchrecipe/SearchRecipe'
 
 export const DesktopNavigation: React.FC = (): JSX.Element => {
 	const [authenticatedUser,] = useContext(UserContext)
@@ -24,6 +25,9 @@ export const DesktopNavigation: React.FC = (): JSX.Element => {
 				alt=''
 				style={{ width: 100 }} />
 			{displaySignInButtonOrUsernameDependingOnAuthentication()}
+			<div className='searchForRecipe'>
+				<SearchRecipe />
+			</div>
 		</div>
 	)
 }
