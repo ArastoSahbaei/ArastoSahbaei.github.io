@@ -1,11 +1,12 @@
 .desktopNavigationWrapper {
 	display: grid;
-	grid-template-columns: repeat(10, 1fr);
+	grid-template-columns: repeat(20, 1fr);
 	background-color: #202020;
 }
 
 .navigationProfile {
-	grid-column: 8/11;
+	grid-column: 17/20;
+	grid-row: 1/1;
 	align-self: center;
 	justify-self: center;
 }
