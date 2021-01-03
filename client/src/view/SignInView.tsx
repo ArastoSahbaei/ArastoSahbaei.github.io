@@ -11,6 +11,7 @@ export const SignInView: React.FC = (): JSX.Element => {
 	const [, setAuthenticatedUser] = useContext(UserContext)
 	const [registerUser, setRegisterUser] = useState<registerNewUser>({ username: '', password: '' })
 	const [loginCredentials, setLoginCredentials] = useState<loginCredentials>({ username: '', password: '' })
+	const [forgotPasswordEmail, setForgotPasswordEmail] = useState({ email: '' })
 
 	const signIn = async (event: React.MouseEvent<HTMLElement>) => {
 		event.preventDefault()
@@ -35,6 +36,16 @@ export const SignInView: React.FC = (): JSX.Element => {
 		}
 	}
 
+	const sendRecoveryEmail = async () => {
+		try {
+			await APIService.forgotPassword(forgotPasswordEmail)
+			alert(`We've sent a recovery link to: ${forgotPasswordEmail.email}`)
+		} catch (error) {
+			console.log(error)
+			alert('Error occured')
+		}
+	}
+
 	return (
 		<div>
 			<h1>Login</h1>
@@ -43,6 +54,10 @@ export const SignInView: React.FC = (): JSX.Element => {
 				<input placeholder="password" onChange={(event) => setLoginCredentials({ ...loginCredentials, password: event.target.value })} />
 				<button onClick={(event) => signIn(event)}>Sign in</button>
 			</form>
+
+			<h1>Forgot your password?</h1>
+			<input placeholder="Enter your email" onChange={(event) => setForgotPasswordEmail({ email: event.target.value })} />
+			<button onClick={() => sendRecoveryEmail()}>Send recovery link</button>
 
 			<hr />
 

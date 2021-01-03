@@ -34,6 +34,10 @@ const deleteUserWithID = () => {
 	return http.delete('/user/:userId')
 }
 
+const forgotPassword = (email: any) => {
+	return http.post('/forgotpassword', email)
+}
+
 
 export default {
 	authenticatedRouteExample,
@@ -43,5 +47,6 @@ export default {
 	getUserWithID,
 	getUserWithQuery,
 	updateValuesOfExistingUser,
-	deleteUserWithID
+	deleteUserWithID,
+	forgotPassword
 }
