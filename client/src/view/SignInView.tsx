@@ -3,15 +3,14 @@ import APIService from '../shared/api/service/APIService'
 import { useHistory } from 'react-router-dom'
 import RoutingPath from '../routes/RoutingPath'
 import { UserContext } from '../shared/provider/UserProvider'
-import registerNewUser from '../shared/interface/registerNewUser'
-import loginCredentials from '../shared/interface/loginCredentials'
+import { email, registerNewUser, loginCredentials } from '../shared/interface/Interface'
 
 export const SignInView: React.FC = (): JSX.Element => {
 	const history = useHistory()
 	const [, setAuthenticatedUser] = useContext(UserContext)
 	const [registerUser, setRegisterUser] = useState<registerNewUser>({ username: '', password: '' })
 	const [loginCredentials, setLoginCredentials] = useState<loginCredentials>({ username: '', password: '' })
-	const [forgotPasswordEmail, setForgotPasswordEmail] = useState({ email: '' })
+	const [forgotPasswordEmail, setForgotPasswordEmail] = useState<email>({ email: '' })
 
 	const signIn = async (event: React.MouseEvent<HTMLElement>) => {
 		event.preventDefault()

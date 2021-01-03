@@ -1,6 +1,5 @@
 import http from '../API'
-import user from '../../interface/Interface'
-import loginCredentials from '../../interface/Interface'
+import { loginCredentials, user, email } from '../../interface/Interface'
 
 const authenticatedRouteExample = () => {
 	return http.get('/rofl')
@@ -34,10 +33,9 @@ const deleteUserWithID = () => {
 	return http.delete('/user/:userId')
 }
 
-const forgotPassword = (email: any) => {
+const forgotPassword = (email: email) => {
 	return http.post('/forgotpassword', email)
 }
-
 
 export default {
 	authenticatedRouteExample,

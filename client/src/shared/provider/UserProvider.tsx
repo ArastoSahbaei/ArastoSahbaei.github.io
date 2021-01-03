@@ -1,5 +1,5 @@
 import React, { useState, createContext } from 'react'
-import authenticatedUser from '../interface/authenticatedUser'
+import { authenticatedUser } from '../interface/Interface'
 
 export const UserContext = createContext<any>(null)
 const defaultValues = { username: undefined, token: undefined, authenticated: false }
