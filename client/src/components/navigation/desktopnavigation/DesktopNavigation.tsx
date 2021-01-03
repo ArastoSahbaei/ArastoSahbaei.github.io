@@ -6,6 +6,7 @@ import { UserContext } from '../../../shared/provider/UserProvider'
 import { Profile } from '../../profile/Profile'
 import './DesktopNavigation.css'
 import { SearchRecipe } from '../../searchrecipe/SearchRecipe'
+import CateringIMG from '../../../shared/images/catering.svg'
 
 export const DesktopNavigation: React.FC = (): JSX.Element => {
 	const [authenticatedUser,] = useContext(UserContext)
@@ -18,9 +19,13 @@ export const DesktopNavigation: React.FC = (): JSX.Element => {
 	}
 
 	const displayCreateRecipeIconIfUserIsAuthenticated = () => {
-		return authenticatedUser.authenticated
-			? <span className='createRecipeNav' onClick={() => history.push(RoutingPath.createRecipeView)}>create recipe</span>
-			: null
+		if (authenticatedUser.authenticated) {
+			return <img
+				src={CateringIMG}
+				alt={''}
+				className='createRecipeNav'
+				onClick={() => history.push(RoutingPath.createRecipeView)} />
+		}
 	}
 
 	return (

@@ -9,7 +9,7 @@ const PORT = 3001
 
 const connectToDatabase = async () => {
 	try {
-		await mongoose.connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+		await mongoose.connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 		console.log('SUCESSFULLY CONNECTED TO DATABASE..')
 	} catch (error) {
 		console.log('ERROR OCCURED WHILE TRYING TO CONNECT TO THE DATABASE..')
