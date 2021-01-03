@@ -48,7 +48,7 @@ const sendEmail = async (databaseResponse, token) => {
 			+ 'If you did not request this, please ignore this email and your password will remain unchanged.\n',
 	}
 
-	console.log('sending mail')
+	console.log(`SENDING EMAIL TO: ${databaseResponse.email}`)
 
 	transporter.sendMail(mailOptions, (error, response) => {
 		if (error) {
