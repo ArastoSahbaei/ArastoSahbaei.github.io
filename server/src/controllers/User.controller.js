@@ -5,6 +5,10 @@ import StatusCode from '../../configurations/StatusCode.js'
 import crypto from 'crypto'
 import bcrypt from 'bcrypt'
 import nodemailer from 'nodemailer'
+import dotenv from 'dotenv'
+import Configurations from '../../configurations/Configurations.js'
+dotenv.config()
+const { EMAIL, CLIENT_ID, CLIENT_SECRET, REFRESH_TOKEN } = process.env
 
 const testingAuthenticatedRoute = async (request, response) => {
 	jwt.verify(request.token, 'jwtSecret.secret', (error, authorizedData) => {
@@ -196,45 +200,9 @@ const forgotPassword = async (request, response) => {
 			resetPasswordToken: token,
 			resetPasswordExpires: Date.now() + 3600000,
 		})
-
-		const transporter = nodemailer.createTransport({
-			host: 'smtp.gmail.com',
-			port: 465,
-			secure: true,
-			auth: {
-				type: 'OAuth2',
-				user: 'developmentwitharre@gmail.com',
-				clientId: '180730641849-0ivdiknhfcu9pmq89kejivmpr3h02tf5.apps.googleusercontent.com',
-				clientSecret: 'm89T-wOPvO_8vIABpOKOh4fx',
-				refreshToken: '1//042tb0cmHO1sdCgYIARAAGAQSNwF-L9IryiL37nTmc3lqlXHwLZzSHyXO1ZFZ346roUC1L8TbRD37FJgU1Y3GSgQaIagnQDrMgBM'
-			},
-		})
-
-		const mailOptions = {
-			from: 'developmentwitharre@gmail.com',
-			to: `${databaseResponse.email}`,
-			subject: 'Link To Reset Password',
-			text:
-				'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n'
-				+ 'Please click on the following link, or paste this into your browser to complete the process within one hour of receiving it:\n\n'
-				+ `http://localhost:3001/reset?resetpasswordtoken=${token}\n\n`
-				+ 'If you did not request this, please ignore this email and your password will remain unchanged.\n',
-		}
-
-		console.log('sending mail')
-
-		transporter.sendMail(mailOptions, (error, response) => {
-			if (error) {
-				console.error('there was an error: ', error)
-			} else {
-				console.log('here is the response: ', response)
-				response.status(StatusCode.OK).send(response)
-			}
-		})
+		Configurations.sendEmail(databaseResponse, token)
 	}
-
 }
-
 
 const resetPassword = async (request, response) => {
 	try {
