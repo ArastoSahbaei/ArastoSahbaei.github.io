@@ -10,6 +10,7 @@ import { UserSettingsView } from '../view/UserSettingsView'
 import { UserProfileView } from '../view/UserProfileView'
 import { CreateRecipeView } from '../view/CreateRecipeView'
 import { RecipeView } from '../view/RecipeView'
+import { ResetPasswordView } from '../view/ResetPasswordView'
 
 export const Routes = (props: { children?: React.ReactChild }) => {
 	const { children } = props
@@ -56,6 +57,7 @@ export const Routes = (props: { children?: React.ReactChild }) => {
 				<Route exact path={RoutingPath.userProfileView} component={UserProfileView} />
 				<Route exact path={RoutingPath.createRecipeView} component={blockRouteIfNotAuthenticated(CreateRecipeView)} />
 				<Route exact path={RoutingPath.recipeView} component={RecipeView} />
+				<Route exact path={RoutingPath.forgotPasswordView} component={ResetPasswordView} />
 				<Route component={HomeView} />
 			</Switch>
 		</BrowserRouter>
