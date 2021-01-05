@@ -21,3 +21,8 @@ export interface authenticatedUser {
 	token: string | undefined,
 	authenticated: boolean
 }
+
+export interface newPasswordWithEmailToken {
+	password: string,
+	resetPasswordToken: string
+}

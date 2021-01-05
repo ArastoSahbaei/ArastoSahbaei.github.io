@@ -1,5 +1,5 @@
 import http from '../API'
-import { loginCredentials, user, email } from '../../interface/Interface'
+import { loginCredentials, user, email, newPasswordWithEmailToken } from '../../interface/Interface'
 
 const authenticatedRouteExample = () => {
 	return http.get('/rofl')
@@ -37,6 +37,10 @@ const forgotPassword = (email: email) => {
 	return http.post('/forgotpassword', email)
 }
 
+const resetPassword = (newPasswordAndToken: newPasswordWithEmailToken) => {
+	return http.put('/resetpassword', newPasswordAndToken)
+}
+
 export default {
 	authenticatedRouteExample,
 	registerNewUser,
@@ -46,5 +50,6 @@ export default {
 	getUserWithQuery,
 	updateValuesOfExistingUser,
 	deleteUserWithID,
-	forgotPassword
+	forgotPassword,
+	resetPassword
 }

@@ -206,7 +206,7 @@ const forgotPassword = async (request, response) => {
 
 const resetPassword = async (request, response) => {
 	try {
-		const databaseResponse = await UserModel.findOne({ resetPasswordToken: request.query.resetPasswordToken })
+		const databaseResponse = await UserModel.findOne({ resetPasswordToken: request.body.resetPasswordToken })
 		if (Date.now() >= databaseResponse.resetPasswordExpires) {
 			response.status(StatusCode.FORBIDDEN).send('password reset link is invalid or has expired')
 		}
@@ -214,9 +214,17 @@ const resetPassword = async (request, response) => {
 			response.status(StatusCode.FORBIDDEN).send('password reset link is invalid or has expired')
 		} else {
 			//TODO: Authenticate and allow password change.
+
+			const BCRYPT_SALT_ROUNDS = 12
+			const hashedPassword = await bcrypt.hash(request.body.password, BCRYPT_SALT_ROUNDS)
+			await databaseResponse.update({
+				password: hashedPassword,
+				resetPasswordToken: `Password was reset at: ${Date.now()}`
+			})
 			response.status(StatusCode.OK).send({
 				username: databaseResponse.username,
-				message: 'password reset link a-ok'
+				password: hashedPassword,
+				message: 'Sucessfully updated password'
 			})
 		}
 	} catch (error) {

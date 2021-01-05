@@ -12,7 +12,7 @@ const routes = application => {
 	application.delete('/user/:userId', UserController.deleteUserWithID)
 	application.post('/forgotpassword', UserController.forgotPassword)
 	application.put('/updatepassword', UserController.updatePassword)
-	application.get('/reset', UserController.resetPassword)
+	application.put('/resetpassword', UserController.resetPassword)
 }
 
 export default { routes }
