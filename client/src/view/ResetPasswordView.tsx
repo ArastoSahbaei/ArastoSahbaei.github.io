@@ -4,7 +4,7 @@ import RoutingPath from '../routes/RoutingPath'
 import APIService from '../shared/api/service/APIService'
 import { UserContext } from '../shared/provider/UserProvider'
 
-export const ResetPasswordView = () => {
+export const ResetPasswordView: React.FC = (): JSX.Element => {
 	const history = useHistory()
 	const [newPassword, setNewPassword] = useState<string>('')
 	const [data, setData] = useState<any>({})
