@@ -13,8 +13,8 @@ export const ResetPasswordView: React.FC = (): JSX.Element => {
 
 
 	const requestNewPassword = async () => {
-		const x = { password: newPassword, resetPasswordToken: getTokenFromURL }
-		const response = await APIService.resetPassword(x)
+		const newPasswordWithEmailToken = { password: newPassword, resetPasswordToken: getTokenFromURL }
+		const response = await APIService.resetPassword(newPasswordWithEmailToken)
 		setData(response)
 	}
 
@@ -28,7 +28,13 @@ export const ResetPasswordView: React.FC = (): JSX.Element => {
 		}
 	}
 
+	const validateToken = () => {
+		//TODO: Validate the token from the URL. If it is valid then remain on this view and offer a password change.
+		//TODO: If the token is not valid then history.push('this reset link is no bueno')
+	}
+
 	useEffect(() => {
+		validateToken()
 		loginUserIfPasswordGotReset()
 	}, [data])
 
