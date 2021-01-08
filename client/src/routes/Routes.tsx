@@ -16,8 +16,8 @@ export const Routes = (props: { children?: React.ReactChild }) => {
 	const { children } = props
 	const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
 
-	const loginRequired = (navigateToViewifAuthenticated: any) => {
-		return !authenticatedUser.authenticated ? SignInView : navigateToViewifAuthenticated
+	const authenticationRequired = (navigateToViewifAuthenticated: any) => {
+		return authenticatedUser ? navigateToViewifAuthenticated : SignInView
 	}
 
 	const blockRouteIfAuthenticated = (navigateToViewIfAuthenticated: any) => {
@@ -57,9 +57,9 @@ export const Routes = (props: { children?: React.ReactChild }) => {
 			{children}
 			<Switch>
 				<Route exact path={RoutingPath.signInView} component={blockRouteIfAuthenticated(SignInView)} />
-				<Route exact path={RoutingPath.userSettingsView} component={UserSettingsView} />
-				<Route exact path={RoutingPath.userProfileView} component={UserProfileView} />
-				<Route exact path={RoutingPath.createRecipeView} component={loginRequired(CreateRecipeView)} />
+				<Route exact path={RoutingPath.userSettingsView} component={authenticationRequired(UserSettingsView)} />
+				<Route exact path={RoutingPath.userProfileView} component={authenticationRequired(UserProfileView)} />
+				<Route exact path={RoutingPath.createRecipeView} component={authenticationRequired(CreateRecipeView)} />
 				<Route exact path={RoutingPath.recipeView} component={RecipeView} />
 				<Route exact path={RoutingPath.forgotPasswordView} component={ResetPasswordView} />
 				<Route component={HomeView} />
