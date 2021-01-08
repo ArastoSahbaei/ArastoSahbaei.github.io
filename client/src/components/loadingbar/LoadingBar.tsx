@@ -4,7 +4,7 @@ import './LoadingBar.css'
 export const LoadingBar = () => {
 	return (
 		<div>
-			<h1>Searching...</h1>
+			<h1 className='searching'>Searching...</h1>
 		</div>
 	)
 }

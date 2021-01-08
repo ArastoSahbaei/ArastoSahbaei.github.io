@@ -19,14 +19,32 @@ export const SearchRecipe = () => {
 	}
 
 	const userIsSearching = async () => {
-		if (debouncedSearchTerm) {
-			setIsSearching(true)
-			const response = await APIService.getUserWithQuery(debouncedSearchTerm)
-			setServerResponse(response.data)
+		try {
+			if (debouncedSearchTerm) {
+				setIsSearching(true)
+				const response = await APIService.getUserWithQuery(debouncedSearchTerm)
+				setServerResponse(response.data)
+				setIsSearching(false)
+			} else {
+				setServerResponse([])
+			}
+		} catch (error) {
 			setIsSearching(false)
-		} else {
-			setServerResponse([])
 		}
+
+	}
+
+	const displaySearchResults = () => {
+		return <div className="dropdown-content">
+			{serverResponse.map(results => (
+				<div className="dropdown-value" key={results._id} onClick={() => directToRecipeView(results)}>
+					<img src={'foodImg'} alt={''} style={{ width: 50, height: 50 }} />
+					<h3>{results?.title}</h3>
+					<p>Arasto Sahbaei</p>
+					<hr />
+				</div>
+			))}
+		</div>
 	}
 
 	useEffect(() => {
@@ -38,17 +56,7 @@ export const SearchRecipe = () => {
 			<div className="searchRecipeContent">
 				<input className="searchInput" placeholder="Search Recipe" onChange={e => setSearchTerm(e.target.value)} />
 				{isSearching && <LoadingBar />}
-				<div className="dropdown-content">
-					{serverResponse.map(results => (
-						<div className="dropdown-value" key={results._id} onClick={() => directToRecipeView(results)}>
-							<img src={'foodImg'} alt={''} style={{ width: 50, height: 50 }} />
-							<h3>{results?.title}</h3>
-							<p>Arasto Sahbaei</p>
-							<hr />
-						</div>
-					))}
-				</div>
-				{/* <p>See all results for "{searchTerm}"</p> */}
+				{displaySearchResults()}
 			</div>
 		</div>
 	)
