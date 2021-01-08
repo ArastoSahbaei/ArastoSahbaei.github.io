@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDebounce } from '../../hooks/useDebounce'
 import APIService from '../../shared/api/service/APIService'
+import { LoadingBar } from '../loadingbar/LoadingBar'
 import './SearchRecipe.css'
 
 export const SearchRecipe = () => {
@@ -36,7 +37,7 @@ export const SearchRecipe = () => {
 		<div className="searchRecipeContainer">
 			<div className="searchRecipeContent">
 				<input className="searchInput" placeholder="Search Recipe" onChange={e => setSearchTerm(e.target.value)} />
-				{isSearching && <span>Searching ...</span>}
+				{isSearching && <LoadingBar />}
 				<div className="dropdown-content">
 					{serverResponse.map(results => (
 						<div className="dropdown-value" key={results._id} onClick={() => directToRecipeView(results)}>
