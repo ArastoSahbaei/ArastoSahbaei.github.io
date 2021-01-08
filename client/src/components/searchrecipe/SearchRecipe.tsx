@@ -42,7 +42,7 @@ export const SearchRecipe = () => {
 					{serverResponse.map(results => (
 						<div className="dropdown-value" key={results._id} onClick={() => directToRecipeView(results)}>
 							<img src={'foodImg'} alt={''} style={{ width: 50, height: 50 }} />
-							<h3 >{results?.title}</h3>
+							<h3>{results?.title}</h3>
 							<p>Arasto Sahbaei</p>
 							<hr />
 						</div>
