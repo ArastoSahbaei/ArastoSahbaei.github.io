@@ -24,7 +24,7 @@ const testingAuthenticatedRoute = async (request, response) => {
 }
 
 const login = async (request, response, next) => {
-	passport.authenticate('login', (err, users, info) => {
+	passport.authenticate('login', (error, users, info) => {
 		/* 	if (err) { console.error(`error ${err}`) } */
 		if (info !== undefined) {
 			info.message === 'bad username'
@@ -48,42 +48,14 @@ const login = async (request, response, next) => {
 }
 
 const registerNewUser = async (request, response, next) => {
-	passport.authenticate('register', (err, user, info) => {
-		/* if (err) { console.error(err) } */
-		if (info !== undefined) {
-			response.status(StatusCode.FORBIDDEN).send(info.message)
+	passport.authenticate('register', (error, createdUser, info) => {
+		if (error) {
+			response.status(StatusCode.DUBLICATE_RESOURCE).send({ message: error.message + info + 'LOL?' })
+			console.log(error)
 		} else {
-			request.logIn(user, error => {
-				const data = {
-					username: request.body.username,
-					email: request.body.email
-				}
-				UserModel.findOne({ where: data.username })
-					.then(user => {
-						console.log('THIS IS LE USER:', user)
-						UserModel.update({
-							username: data.username,
-							email: data.email
-						}).then(() => {
-							response.status(StatusCode.CREATED).send(data)
-						})
-					})
-			})
+			response.status(StatusCode.CREATED).send(createdUser)
 		}
 	})(request, response, next)
-
-
-	/* 	const user = new UserModel({
-			username: request.body.username,
-			password: request.body.password
-		})
-	
-		try {
-			const databaseResponse = await user.save()
-			response.status(StatusCode.CREATED).send(databaseResponse)
-		} catch (error) {
-			response.status(StatusCode.INTERNAL_SERVER_ERROR).send({ message: error.message })
-		} */
 }
 
 const getAllUsers = async (request, response) => {

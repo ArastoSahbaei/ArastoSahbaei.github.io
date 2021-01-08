@@ -9,49 +9,31 @@ const JWTstrategy = passportLocal.Strategy
 const { ExtractJwt } = passportJWT
 const BCRYPT_SALT_ROUNDS = 12
 
-const registerUserini = () => {
-	passport.use(
-		'register',
-		new localStrategy(
-			{
-				usernameField: 'username',
-				passwordField: 'password',
-				session: false,
-			},
-			(username, password, done) => {
-				console.log('ATTEMPTING PASSPORT:', username)
-				try {
-					UserModel.findOne({ where: { username: username } })
-						.then(user => {
-							if (user != null) {
-								return done(null, false, { message: 'username already taken' })
-							} else {
-								bcrypt.hash(password, BCRYPT_SALT_ROUNDS).then(hashedPassword => {
-									UserModel.create({ username: username, password: hashedPassword })
-										.then(user => {
-											console.log('user created')
-											// note the return needed with passport local - remove this return for passport JWT to work
-											done(null, user)
-										})
-								})
-							}
-						})
-				} catch (err) {
-					done(err)
+const registerUserini = async () => {
+	passport.use('register',
+		new localStrategy(async (username, password, done) => {
+			try {
+				const getUserInformation = await UserModel.findOne({ where: { username: username } })
+				console.log("getUserInformation:" + getUserInformation)
+				if (getUserInformation != null) {
+					return done(null, false, { message: 'username already taken' })
+				} else {
+					const hashedPassword = await bcrypt.hash(password, BCRYPT_SALT_ROUNDS)
+					const createdUser = await UserModel.create({ username: username, password: hashedPassword })
+					console.log('USER CREATED: ' + createdUser)
+					done(null, createdUser)
 				}
-			},
+			} catch (error) {
+				done(error)
+			}
+		},
 		),
 	)
 }
 
 const login = () => {
-	passport.use('login', new localStrategy(
-		/* 	{
-				usernameField: 'username',
-				passwordField: 'password',
-				session: false,
-			}, */
-		(username, password, done) => {
+	passport.use('login',
+		new localStrategy((username, password, done) => {
 			try {
 				UserModel.findOne({ username: username })
 					.then(user => {
@@ -73,7 +55,7 @@ const login = () => {
 				done(err)
 			}
 		},
-	),
+		),
 	)
 }
 

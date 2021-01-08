@@ -31,7 +31,7 @@ export const SignInView: React.FC = (): JSX.Element => {
 			alert('Sucessfully created your account!')
 		} catch (error) {
 			console.log(error)
-			alert('Error occured while trying to create your account..')
+			alert(error)
 		}
 	}
 

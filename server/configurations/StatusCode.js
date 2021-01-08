@@ -12,6 +12,7 @@ const UNAUTHORIZED = 401
 const FORBIDDEN = 403
 const NOT_FOUND = 404
 const METHOD_NOT_ALLOWED = 405
+const DUBLICATE_RESOURCE = 409
 
 //5xx server error – the server failed to fulfil an apparently valid request
 const INTERNAL_SERVER_ERROR = 500
@@ -24,5 +25,6 @@ export default {
 	FORBIDDEN,
 	NOT_FOUND,
 	METHOD_NOT_ALLOWED,
+	DUBLICATE_RESOURCE,
 	INTERNAL_SERVER_ERROR
 }
