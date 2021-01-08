@@ -17,11 +17,11 @@ export const Routes = (props: { children?: React.ReactChild }) => {
 	const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
 
 	const authenticationRequired = (navigateToViewifAuthenticated: any) => {
-		return authenticatedUser ? navigateToViewifAuthenticated : SignInView
+		return authenticatedUser.authenticated ? navigateToViewifAuthenticated : SignInView
 	}
 
 	const blockRouteIfAuthenticated = (navigateToViewIfAuthenticated: any) => {
-		return authenticatedUser ? HomeView : navigateToViewIfAuthenticated
+		return authenticatedUser.authenticated ? HomeView : navigateToViewIfAuthenticated
 	}
 
 	const isTokenValid = (tokenExp: number) => {
