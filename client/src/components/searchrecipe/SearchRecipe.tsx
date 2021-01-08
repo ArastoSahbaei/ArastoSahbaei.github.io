@@ -34,6 +34,15 @@ export const SearchRecipe = () => {
 
 	}
 
+	const searchFilter = () => {
+		return <select name="cars" id="cars">
+			<option value="all">All</option>
+			<option value="recipes">Recipes</option>
+			<option value="users">Users</option>
+			<option value="advanced">Advanced Search</option>
+		</select>
+	}
+
 	const displaySearchResults = () => {
 		return <div className="dropdown-content">
 			{serverResponse.map(results => (
@@ -54,6 +63,7 @@ export const SearchRecipe = () => {
 	return (
 		<div className="searchRecipeContainer">
 			<div className="searchRecipeContent">
+				{searchFilter()}
 				<input className="searchInput" placeholder="Search Recipe" onChange={e => setSearchTerm(e.target.value)} />
 				{isSearching && <LoadingBar />}
 				{displaySearchResults()}
