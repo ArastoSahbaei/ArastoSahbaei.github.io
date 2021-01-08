@@ -26,7 +26,8 @@ export const DropdownProfile = () => {
 			<span onClick={() => logout()}>Logout</span>
 			<hr />
 			<span>Dark mode</span>
-			<span>Language</span>
+			<span>Language: EN</span>
+			<span>Location: Unknown</span>
 			<span>GDPR</span>
 			<span>Report a bug</span>
 		</div>
