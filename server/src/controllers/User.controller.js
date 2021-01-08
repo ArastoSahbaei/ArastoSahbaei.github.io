@@ -4,11 +4,9 @@ import UserModel from '../models/User.model.js'
 import StatusCode from '../../configurations/StatusCode.js'
 import crypto from 'crypto'
 import bcrypt from 'bcrypt'
-import nodemailer from 'nodemailer'
 import dotenv from 'dotenv'
 import Configurations from '../../configurations/Configurations.js'
 dotenv.config()
-const { EMAIL, CLIENT_ID, CLIENT_SECRET, REFRESH_TOKEN } = process.env
 
 const testingAuthenticatedRoute = async (request, response) => {
 	jwt.verify(request.token, 'jwtSecret.secret', (error, authorizedData) => {
