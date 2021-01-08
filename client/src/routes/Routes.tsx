@@ -21,7 +21,7 @@ export const Routes = (props: { children?: React.ReactChild }) => {
 	}
 
 	const blockRouteIfAuthenticated = (navigateToViewIfAuthenticated: any) => {
-		return authenticatedUser.authenticated ? navigateToViewIfAuthenticated : <HomeView />
+		return authenticatedUser ? HomeView : navigateToViewIfAuthenticated
 	}
 
 	const isTokenValid = (tokenExp: number) => {
@@ -56,7 +56,7 @@ export const Routes = (props: { children?: React.ReactChild }) => {
 			<Suspense fallback={<BackDrop />} />
 			{children}
 			<Switch>
-				<Route exact path={RoutingPath.signInView} component={SignInView} />
+				<Route exact path={RoutingPath.signInView} component={blockRouteIfAuthenticated(SignInView)} />
 				<Route exact path={RoutingPath.userSettingsView} component={UserSettingsView} />
 				<Route exact path={RoutingPath.userProfileView} component={UserProfileView} />
 				<Route exact path={RoutingPath.createRecipeView} component={loginRequired(CreateRecipeView)} />
