@@ -3,6 +3,7 @@ import RecipeController from '../controllers/Recipe.controller.js'
 
 const routes = application => {
 	application.post('/recipe', RecipeController.createNewRecipe)
+	application.get('/recipe', RecipeController.getAllRecipes)
 }
 
 export default { routes }

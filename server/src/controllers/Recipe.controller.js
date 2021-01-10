@@ -1,5 +1,6 @@
 import RecipeModel from '../models/Recipe.model.js'
 import UserModel from '../models/User.model.js'
+import StatusCode from '../../configurations/StatusCode.js'
 
 const createNewRecipe = async (request, response) => {
 	if (!request.body.title) {
@@ -28,6 +29,16 @@ const createNewRecipe = async (request, response) => {
 
 }
 
+const getAllRecipes = async (request, response) => {
+	try {
+		const databaseResponse = await UserModel.find()
+		response.status(StatusCode.OK).send(databaseResponse)
+	} catch (error) {
+		response.status(StatusCode.INTERNAL_SERVER_ERROR).send({ message: error.message })
+	}
+}
+
 export default {
-	createNewRecipe
+	createNewRecipe,
+	getAllRecipes
 }
