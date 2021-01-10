@@ -8,7 +8,7 @@ const createNewRecipe = async (request, response) => {
 	}
 
 	const recipe = new RecipeModel({
-		title: request.body.title || 'untitled recipe',
+		title: request.body.title,
 		duration: request.body.duration,
 		ingrediens: request.body.ingrediens,
 		description: request.body.description,
@@ -17,22 +17,19 @@ const createNewRecipe = async (request, response) => {
 	})
 
 	try {
-		//TODO: Change body.test and send userID in params
-		
 		const user = await UserModel.findById({ _id: request.query.userid })
-		console.log(user)
 		user.createdRecipes.push(recipe)
 		const createdRecipe = await user.save()
 		response.status(201).send(createdRecipe)
 	} catch (error) {
 		response.status(500).send({ message: error.message })
 	}
-
 }
 
 const getAllRecipes = async (request, response) => {
+	//TODO: Returns empty array?
 	try {
-		const databaseResponse = await UserModel.find()
+		const databaseResponse = await RecipeModel.find()
 		response.status(StatusCode.OK).send(databaseResponse)
 	} catch (error) {
 		response.status(StatusCode.INTERNAL_SERVER_ERROR).send({ message: error.message })
@@ -41,5 +38,5 @@ const getAllRecipes = async (request, response) => {
 
 export default {
 	createNewRecipe,
-	getAllRecipes
+	getAllRecipes,
 }
