@@ -3,9 +3,7 @@ import UserModel from '../models/User.model.js'
 import StatusCode from '../../configurations/StatusCode.js'
 
 const createNewRecipe = async (request, response) => {
-	if (!request.body.title) {
-		return response.status(400).send({ message: 'recipe must be included' })
-	}
+	if (!request.body.title) { return response.status(StatusCode.BAD_REQUEST).send({ message: 'recipe must be included' }) }
 
 	const recipe = new RecipeModel({
 		title: request.body.title,
@@ -20,9 +18,9 @@ const createNewRecipe = async (request, response) => {
 		const user = await UserModel.findById({ _id: request.query.userid })
 		user.createdRecipes.push(recipe)
 		const createdRecipe = await user.save()
-		response.status(201).send(createdRecipe)
+		response.status(StatusCode.CREATED).send(createdRecipe)
 	} catch (error) {
-		response.status(500).send({ message: error.message })
+		response.status(StatusCode.INTERNAL_SERVER_ERROR).send({ message: error.message })
 	}
 }
 
