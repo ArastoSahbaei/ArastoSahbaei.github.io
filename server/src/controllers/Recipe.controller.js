@@ -18,7 +18,8 @@ const createNewRecipe = async (request, response) => {
 
 	try {
 		//TODO: Change body.test and send userID in params
-		const user = await UserModel.findById({ _id: request.body.test })
+		
+		const user = await UserModel.findById({ _id: request.query.userid })
 		console.log(user)
 		user.createdRecipes.push(recipe)
 		const createdRecipe = await user.save()
