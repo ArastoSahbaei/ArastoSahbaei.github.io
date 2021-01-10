@@ -1,4 +1,5 @@
 import RecipeModel from '../models/Recipe.model.js'
+import UserModel from '../models/User.model.js'
 
 const createNewRecipe = async (request, response) => {
 	if (!request.body.title) {
@@ -15,8 +16,12 @@ const createNewRecipe = async (request, response) => {
 	})
 
 	try {
-		const createdRecipe = await recipe.save()
-		response.send(createdRecipe)
+		//TODO: Change body.test and send userID in params
+		const user = await UserModel.findById({ _id: request.body.test })
+		console.log(user)
+		user.createdRecipes.push(recipe)
+		const createdRecipe = await user.save()
+		response.status(201).send(createdRecipe)
 	} catch (error) {
 		response.status(500).send({ message: error.message })
 	}

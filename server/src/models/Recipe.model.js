@@ -11,7 +11,8 @@ const recipeSchema = Schema({
 	views: Number,
 	createdByUser: [{
 		type: Schema.Types.ObjectId,
-		ref: 'user'
+		ref: 'user',
+		required: true
 	}]
 }, {
 	timestamps: true

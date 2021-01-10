@@ -12,7 +12,7 @@ const userSchema = mongoose.Schema({
 	},
 	createdRecipes: [{
 		type: Schema.Types.ObjectId,
-		ref: 'recipe'
+		ref: 'recipe',
 	}],
 	email: {
 		type: String,
