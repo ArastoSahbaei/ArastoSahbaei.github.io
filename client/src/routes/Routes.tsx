@@ -9,6 +9,7 @@ import { SignInView } from '../view/SignInView'
 import { UserSettingsView } from '../view/UserSettingsView'
 import { UserProfileView } from '../view/UserProfileView'
 import { ResetPasswordView } from '../view/ResetPasswordView'
+import LocalStorage from '../shared/cache/LocalStorage'
 
 export const Routes = (props: { children?: React.ReactChild }) => {
 	const { children } = props
@@ -28,7 +29,7 @@ export const Routes = (props: { children?: React.ReactChild }) => {
 	}
 
 	const parseJWT = async () => {
-		const token = localStorage.getItem('token')
+		const token = localStorage.getItem(LocalStorage.authenticationToken)
 		if (!token) { return }
 		const base64Url = token.split('.')[1]
 		const base64 = base64Url.replace('-', '+').replace('_', '/')
@@ -40,7 +41,7 @@ export const Routes = (props: { children?: React.ReactChild }) => {
 			setAuthenticatedUser({ authenticated: true, id: JWT.id, username: response.data.username })
 		} else {
 			setAuthenticatedUser({ authenticated: false, id: undefined, username: undefined })
-			localStorage.removeItem('token')
+			localStorage.removeItem(LocalStorage.authenticationToken)
 		}
 	}
 

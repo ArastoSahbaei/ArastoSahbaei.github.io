@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import RoutingPath from '../routes/RoutingPath'
 import { UserContext } from '../shared/provider/UserProvider'
 import { email, registerNewUser, loginCredentials } from '../shared/interface/Interface'
+import LocalStorage from '../shared/cache/LocalStorage'
 
 export const SignInView: React.FC = (): JSX.Element => {
 	const history = useHistory()
@@ -16,7 +17,7 @@ export const SignInView: React.FC = (): JSX.Element => {
 		event.preventDefault()
 		try {
 			const response = await APIService.login(loginCredentials)
-			localStorage.setItem('token', response.data.token)
+			localStorage.setItem(LocalStorage.authenticationToken, response.data.token)
 			setAuthenticatedUser(response.data)
 			history.push(RoutingPath.homeView)
 		} catch (error) {

@@ -1,4 +1,5 @@
 import Axios from 'axios'
+import LocalStorage from '../cache/LocalStorage'
 
 const API = Axios.create({
 	baseURL: 'http://localhost:3001',
@@ -6,7 +7,7 @@ const API = Axios.create({
 })
 
 API.interceptors.request.use(function (config) {
-	const token = localStorage.getItem('token')
+	const token = localStorage.getItem(LocalStorage.authenticationToken)
 	config.headers.Authorization = token ? `Bearer ${token}` : ''
 	return config
 })
