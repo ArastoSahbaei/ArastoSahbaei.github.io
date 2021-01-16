@@ -8,7 +8,6 @@ import { HomeView } from '../view/HomeView'
 import { SignInView } from '../view/SignInView'
 import { UserSettingsView } from '../view/UserSettingsView'
 import { UserProfileView } from '../view/UserProfileView'
-import { CreateRecipeView } from '../view/CreateRecipeView'
 import { RecipeView } from '../view/RecipeView'
 import { ResetPasswordView } from '../view/ResetPasswordView'
 
@@ -58,7 +57,6 @@ export const Routes = (props: { children?: React.ReactChild }) => {
 				<Route exact path={RoutingPath.signInView} component={blockRouteIfAuthenticated(SignInView)} />
 				<Route exact path={RoutingPath.userSettingsView} component={authenticationRequired(UserSettingsView)} />
 				<Route exact path={RoutingPath.userProfileView} component={authenticationRequired(UserProfileView)} />
-				<Route exact path={RoutingPath.createRecipeView} component={authenticationRequired(CreateRecipeView)} />
 				<Route exact path={RoutingPath.recipeView} component={RecipeView} />
 				<Route exact path={RoutingPath.forgotPasswordView} component={ResetPasswordView} />
 				<Route component={HomeView} />

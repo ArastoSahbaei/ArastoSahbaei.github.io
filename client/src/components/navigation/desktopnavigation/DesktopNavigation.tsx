@@ -6,7 +6,6 @@ import { UserContext } from '../../../shared/provider/UserProvider'
 import { Profile } from '../../profile/Profile'
 import './DesktopNavigation.css'
 import { SearchRecipe } from '../../searchrecipe/SearchRecipe'
-import CateringIMG from '../../../shared/images/catering.svg'
 
 export const DesktopNavigation: React.FC = (): JSX.Element => {
 	const [authenticatedUser,] = useContext(UserContext)
@@ -18,16 +17,6 @@ export const DesktopNavigation: React.FC = (): JSX.Element => {
 			: <span className='signInButton' onClick={() => history.push(RoutingPath.signInView)}> Sign in </span>
 	}
 
-	const displayCreateRecipeIconIfUserIsAuthenticated = () => {
-		if (authenticatedUser.authenticated) {
-			return <img
-				src={CateringIMG}
-				alt={''}
-				className='createRecipeNav'
-				onClick={() => history.push(RoutingPath.createRecipeView)} />
-		}
-	}
-
 	return (
 		<div className='desktopNavigationWrapper'>
 			<img className='navigationLogotype'
@@ -36,7 +25,6 @@ export const DesktopNavigation: React.FC = (): JSX.Element => {
 				alt=''
 				style={{ width: 100 }} />
 			{displaySignInButtonOrUsernameDependingOnAuthentication()}
-			{displayCreateRecipeIconIfUserIsAuthenticated()}
 			<div className='searchForRecipe'>
 				<SearchRecipe />
 			</div>

@@ -3,7 +3,6 @@ const homeView = '/'
 const userSettingsView = '/user/settings'
 const userProfileView = '/user/profile'
 const recipeView = '/recipe/:id'
-const createRecipeView = '/recipe'
 const forgotPasswordView = '/reset/:token'
 
 export default {
@@ -12,6 +11,5 @@ export default {
 	userSettingsView,
 	userProfileView,
 	recipeView,
-	createRecipeView,
 	forgotPasswordView
 }
