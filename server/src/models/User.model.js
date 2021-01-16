@@ -1,8 +1,7 @@
 import mongoose from 'mongoose'
 const { Schema } = mongoose
 
-
-const userSchema = mongoose.Schema({
+const userSchema = Schema({
 	username: {
 		type: String,
 		unique: true,
@@ -10,10 +9,7 @@ const userSchema = mongoose.Schema({
 		required: true,
 		lowercase: true,
 	},
-	createdRecipes: [{
-		type: Schema.Types.ObjectId,
-		ref: 'recipe',
-	}],
+
 	email: {
 		type: String,
 		unique: true,
@@ -27,10 +23,22 @@ const userSchema = mongoose.Schema({
 	password: { type: String, require: true },
 	resetPasswordToken: String,
 	resetPasswordExpires: Date,
-	first_name: String,
-	last_name: String,
-	bio: String,
-	image: String,
+	name: {
+		firstName: String,
+		lastName: String
+	},
+	addresses: [{
+		street: String,
+		city: String,
+		country: String,
+		zipCode: String
+	}],
+	phone: String,
+	creditCard: {
+		method: String,
+		number: String
+	}
+
 
 }, { timestamps: true, strict: true })
 

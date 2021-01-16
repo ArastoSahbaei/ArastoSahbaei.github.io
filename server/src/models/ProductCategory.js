@@ -1,0 +1,3 @@
+/*
+CategoryName: String(enum?)
+*/

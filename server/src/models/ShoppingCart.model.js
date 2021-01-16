@@ -1,0 +1,8 @@
+/*
+
+cartId
+productId
+quantity
+dateAdded
+
+*/
