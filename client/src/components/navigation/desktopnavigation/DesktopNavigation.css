@@ -12,21 +12,5 @@
 	cursor: pointer;
 	align-self: center;
 	justify-self: center;
-}
-
-.searchForRecipe {
-	grid-column: 6/14;
-	grid-row: 1/1;
-	align-self: center;
-	justify-self: center;
-}
-
-.createRecipeNav {
-	grid-column: 17/17;
-	grid-row: 1/1;
-	align-self: center;
-	justify-self: center;
-	cursor: pointer;
-	width: 42px;
-	height: 42px;
+	width: 60%
 }

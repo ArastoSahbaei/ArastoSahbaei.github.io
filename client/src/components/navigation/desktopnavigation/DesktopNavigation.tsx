@@ -5,11 +5,10 @@ import Logotype from '../../../shared/images/logotypeTemplate.svg'
 import { UserContext } from '../../../shared/provider/UserProvider'
 import { Profile } from '../../profile/Profile'
 import './DesktopNavigation.css'
-import { SearchRecipe } from '../../searchrecipe/SearchRecipe'
 
 export const DesktopNavigation: React.FC = (): JSX.Element => {
-	const [authenticatedUser,] = useContext(UserContext)
 	const history = useHistory()
+	const [authenticatedUser,] = useContext(UserContext)
 
 	const displaySignInButtonOrUsernameDependingOnAuthentication = () => {
 		return authenticatedUser.authenticated
@@ -22,12 +21,8 @@ export const DesktopNavigation: React.FC = (): JSX.Element => {
 			<img className='navigationLogotype'
 				onClick={() => history.push(RoutingPath.homeView)}
 				src={Logotype}
-				alt=''
-				style={{ width: 100 }} />
+				alt='' />
 			{displaySignInButtonOrUsernameDependingOnAuthentication()}
-			<div className='searchForRecipe'>
-				<SearchRecipe />
-			</div>
 		</div>
 	)
 }

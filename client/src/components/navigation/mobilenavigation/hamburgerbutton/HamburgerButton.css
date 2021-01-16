@@ -9,14 +9,14 @@
 	cursor: pointer;
 	padding: 0;
 	box-sizing: border-box;
-  }
-  
-  .toggle-button:focus {
+}
+
+.toggle-button:focus {
 	outline: none;
-  }
-  
-  .toggle-button__line {
+}
+
+.toggle-button__line {
 	width: 30px;
 	height: 2px;
-	background: white;
-  }
+	background: #202020;
+}

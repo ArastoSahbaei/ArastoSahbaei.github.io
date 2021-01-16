@@ -5,7 +5,7 @@ export const SideBar = (props: { drawerIsOpen: boolean, drawerHandler: (handler:
 
 	return (
 		<nav className={props.drawerIsOpen ? 'side-drawer open' : 'side-drawer'}>
-			<h1 onClick={() => props.drawerHandler(false)}>LOL</h1>
+			<h1 onClick={() => props.drawerHandler(false)}>Exit</h1>
 			<ul>
 				<li>
 					<a href="/">Products</a>
