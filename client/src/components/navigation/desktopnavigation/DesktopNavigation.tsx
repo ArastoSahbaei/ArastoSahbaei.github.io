@@ -22,7 +22,13 @@ export const DesktopNavigation: React.FC = (): JSX.Element => {
 				onClick={() => history.push(RoutingPath.homeView)}
 				src={Logotype}
 				alt='' />
+			<span className="1">Produkter1</span>
+			<span className="2">Produkter2</span>
+			<span className="3">Accessoarer</span>
+			<span className="4">Nyheter</span>
+			<span className="5">Guide</span>
 			{displaySignInButtonOrUsernameDependingOnAuthentication()}
+			<span>CartLogo</span>
 		</div>
 	)
 }
