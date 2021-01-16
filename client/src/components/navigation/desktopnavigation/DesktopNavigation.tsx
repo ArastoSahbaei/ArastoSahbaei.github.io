@@ -5,6 +5,7 @@ import Logotype from '../../../shared/images/logotypeTemplate.svg'
 import { UserContext } from '../../../shared/provider/UserProvider'
 import { Profile } from '../../profile/Profile'
 import './DesktopNavigation.css'
+import { CartToggler } from '../../cart/CartToggler'
 
 export const DesktopNavigation: React.FC = (): JSX.Element => {
 	const history = useHistory()
@@ -29,6 +30,7 @@ export const DesktopNavigation: React.FC = (): JSX.Element => {
 			<span className="5">Guide</span>
 			{displaySignInButtonOrUsernameDependingOnAuthentication()}
 			<span>CartLogo</span>
+			<CartToggler />
 		</div>
 	)
 }
