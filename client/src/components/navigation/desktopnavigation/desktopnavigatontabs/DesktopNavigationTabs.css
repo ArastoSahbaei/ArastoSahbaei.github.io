@@ -9,11 +9,13 @@
 	cursor: pointer;
 	padding: 7%;
 	transition: 0.2s;
-	font-weight: 1000;
 	color: white;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 600;
+
 }
 
 .liTabsWrapper:hover {
-	color: #00c281;
-	transition: 0.2s;
+	transition: 0.3s;
+	font-size: 1.1rem;
 }

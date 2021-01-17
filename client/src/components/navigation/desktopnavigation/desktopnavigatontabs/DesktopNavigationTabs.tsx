@@ -4,7 +4,7 @@ import './DesktopNavigationTabs.css'
 export const DesktopNavigationTabs = () => {
 	return (
 		<ul className="ulTabsWrapper">
-			<li className="liTabsWrapper">Produkter1</li>
+			<li className="liTabsWrapper">CBD</li>
 			<li className="liTabsWrapper">Accessoarer</li>
 			<li className="liTabsWrapper">Varumärken</li>
 			<li className="liTabsWrapper">Nyheter</li>
