@@ -1,7 +1,7 @@
 .desktopNavigationWrapper {
 	display: grid;
 	grid-template-columns: repeat(20, 1fr);
-	background-color: #202020;
+	background-color: #b5d5d1;
 }
 
 .navigationProfile {

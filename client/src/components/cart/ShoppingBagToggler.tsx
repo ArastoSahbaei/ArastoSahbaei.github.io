@@ -1,7 +1,7 @@
 import React from 'react'
-import './CartToggler.css'
+import './ShoppingBagToggler.css'
 
-export const CartToggler = (props: { isShoppingBagOpen: boolean, setIsShoppingBagOpen: (handler: boolean) => void }) => {
+export const ShoppingBagToggler = (props: { isShoppingBagOpen: boolean, setIsShoppingBagOpen: (handler: boolean) => void }) => {
 	const { isShoppingBagOpen, setIsShoppingBagOpen } = props
 
 	return (
