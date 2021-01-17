@@ -8,6 +8,7 @@ import './DesktopNavigation.css'
 import { ShoppingBagToggler } from '../../cart/ShoppingBagToggler'
 import { ShoppingBag } from '../../shoppingbag/ShoppingBag'
 import { BackDrop } from '../../backdrop/BackDrop'
+import { DesktopNavigationTabs } from './desktopnavigatontabs/DesktopNavigationTabs'
 
 export const DesktopNavigation: React.FC = (): JSX.Element => {
 	const history = useHistory()
@@ -26,11 +27,9 @@ export const DesktopNavigation: React.FC = (): JSX.Element => {
 				onClick={() => history.push(RoutingPath.homeView)}
 				src={Logotype}
 				alt='' />
-			<span className="1">Produkter1</span>
-			<span className="2">Produkter2</span>
-			<span className="3">Accessoarer</span>
-			<span className="4">Nyheter</span>
-			<span className="5">Guide</span>
+			<div className='desktopNavigationTabs'>
+				<DesktopNavigationTabs />
+			</div>
 			{displaySignInButtonOrUsernameDependingOnAuthentication()}
 			<div className='navigationShoppingCart'>
 				<ShoppingBag setIsShoppingBagOpen={setIsShoppingBagOpen} />

@@ -1,0 +1,19 @@
+.ulTabsWrapper {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.liTabsWrapper {
+	display: inline;
+	cursor: pointer;
+	padding: 7%;
+	transition: 0.2s;
+	font-weight: 1000;
+	color: white;
+}
+
+.liTabsWrapper:hover {
+	color: #00c281;
+	transition: 0.2s;
+}
