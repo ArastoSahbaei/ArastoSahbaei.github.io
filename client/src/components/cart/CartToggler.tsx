@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './CartToggler.css'
 
-export const CartToggler = () => {
-	const [drawerIsOpen, setDrawerIsOpen] = useState(true)
+export const CartToggler = (props: { isShoppingBagOpen: boolean, setIsShoppingBagOpen: (handler: boolean) => void }) => {
+	const { isShoppingBagOpen, setIsShoppingBagOpen } = props
+
 	return (
-		<nav className={drawerIsOpen ? 'cart-drawer open' : 'cart-drawer'}>
-			<h1 onClick={() => setDrawerIsOpen(false)}>Exit</h1>
+		<nav className={isShoppingBagOpen ? 'cart-drawer open' : 'cart-drawer'}>
+			<h1 onClick={() => setIsShoppingBagOpen(false)}>Exit</h1>
 			{/* //TODO: Display items here */}
 			<ul>
 				<li>
