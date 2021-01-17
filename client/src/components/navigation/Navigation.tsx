@@ -12,8 +12,8 @@ export const Navigation = (): JSX.Element => {
 	}
 
 	return (
-		<div className="navigationWrapper">
+		<>
 			{displayNavigationBarDependingOnWindowSizeWidth()}
-		</div>
+		</>
 	)
 }

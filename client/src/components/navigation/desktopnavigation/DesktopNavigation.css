@@ -1,5 +1,25 @@
+.desktopNavigationWrapper {
+	display: grid;
+	grid-template-columns: repeat(20, 1fr);
+	background-color: #b5d5d1;
+}
+
+.navigationProfile {
+	grid-column: 17/18;
+	grid-row: 1/1;
+	align-self: center;
+	justify-self: center;
+}
+
+.navigationShoppingCart {
+	grid-column: 18/19;
+	grid-row: 1/1;
+	align-self: center;
+	justify-self: center;
+}
+
 .signInButton {
-	grid-column: 17/20;
+	grid-column: 17/18;
 	grid-row: 1/1;
 	align-self: center;
 	justify-self: center;
