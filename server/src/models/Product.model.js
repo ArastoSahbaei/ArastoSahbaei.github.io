@@ -1,8 +1,11 @@
+import mongoose from 'mongoose'
+const { Schema } = mongoose
 
-/*
-title,
-description,
-price,
-quantity,
-price: number
-*/
+const productSchema = Schema({
+	title: String,
+	price: Number,
+	quantity: Number
+}, { timestamps: true })
+
+const ProductModel = mongoose.model('product', productSchema)
+export default ProductModel
