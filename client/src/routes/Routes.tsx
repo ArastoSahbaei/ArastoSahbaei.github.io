@@ -10,6 +10,11 @@ import { UserSettingsView } from '../view/UserSettingsView'
 import { UserProfileView } from '../view/UserProfileView'
 import { ResetPasswordView } from '../view/ResetPasswordView'
 import LocalStorage from '../shared/cache/LocalStorage'
+import { ProductsView } from '../view/navigationtabviews/ProductsView'
+import { AccessoiresView } from '../view/navigationtabviews/AccessoiresView'
+import { BrandsView } from '../view/navigationtabviews/BrandsView'
+import { ExpertiseView } from '../view/navigationtabviews/ExpertiseView'
+import { NewsView } from '../view/navigationtabviews/NewsView'
 
 export const Routes = (props: { children?: React.ReactChild }) => {
 	const { children } = props
@@ -58,6 +63,15 @@ export const Routes = (props: { children?: React.ReactChild }) => {
 				<Route exact path={RoutingPath.userSettingsView} component={authenticationRequired(UserSettingsView)} />
 				<Route exact path={RoutingPath.userProfileView} component={authenticationRequired(UserProfileView)} />
 				<Route exact path={RoutingPath.forgotPasswordView} component={ResetPasswordView} />
+
+				{/* Routes in the navigationbar */}
+				<Route exact path={RoutingPath.productsView} component={ProductsView} />
+				<Route exact path={RoutingPath.accessoriesView} component={AccessoiresView} />
+				<Route exact path={RoutingPath.brandsView} component={BrandsView} />
+				<Route exact path={RoutingPath.expertiseView} component={ExpertiseView} />
+				<Route exact path={RoutingPath.newsView} component={NewsView} />
+
+				{/* Default Tab */}
 				<Route component={HomeView} />
 			</Switch>
 		</BrowserRouter>
