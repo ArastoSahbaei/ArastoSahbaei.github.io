@@ -9,7 +9,6 @@ const userSchema = Schema({
 		required: true,
 		lowercase: true,
 	},
-
 	email: {
 		type: String,
 		unique: true,

@@ -8,6 +8,7 @@ import passport from 'passport'
 import Configuration from './configurations/Configurations.js'
 import Middlewares from './src/middlewares/Middlewares.js'
 import UserRoutes from './src/routes/User.routes.js'
+import ProductRoutes from './src/routes/Product.routes.js'
 import passportConfig from './configurations/passport-config.js'
 
 const application = express()
@@ -22,6 +23,7 @@ passportConfig.registerUserini()
 passportConfig.login()
 
 UserRoutes.routes(application)
+ProductRoutes.routes(application)
 application.use(Middlewares.notFound)
 application.use(Middlewares.errorHandler)
 
