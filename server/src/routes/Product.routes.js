@@ -1,6 +1,5 @@
 import ProductController from '../controllers/Product.controller.js'
 
-
 const routes = application => {
 	application.post('/product', ProductController.createProduct)
 	application.get('/product', ProductController.getAllProducts)

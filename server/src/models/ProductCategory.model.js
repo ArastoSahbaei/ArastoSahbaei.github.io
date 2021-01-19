@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 const { Schema } = mongoose
 
-const productCategory = Schema({
+const productCategorySchema = Schema({
 	productCategoryName: String,
 	product: [{
 		type: Schema.Types.ObjectId,
@@ -10,5 +10,5 @@ const productCategory = Schema({
 
 }, { timestamps: true })
 
-const ProductCategory = mongoose.model('productcategory', productCategory)
-export default ProductCategory
+const ProductCategoryModel = mongoose.model('productcategory', productCategorySchema)
+export default ProductCategoryModel

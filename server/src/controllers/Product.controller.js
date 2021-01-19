@@ -1,4 +1,5 @@
 import ProductModel from '../models/Product.model.js'
+import ProductCategoryModel from '../models/ProductCategory.model.js'
 import StatusCode from '../../configurations/StatusCode.js'
 
 const createProduct = async (request, response) => {
@@ -6,11 +7,13 @@ const createProduct = async (request, response) => {
 		title: request.body.title,
 		price: request.body.price,
 		quantity: request.body.quantity,
-		category: request.body.category,
+		/* category: request.body.category, */
 	})
 
 	try {
-		const databaseResponse = await product.save()
+		const productCategory = await ProductCategoryModel.findById({ _id: request.query.productcategory })
+		productCategory.product.push(product)
+		const databaseResponse = await productCategory.save()
 		response.status(StatusCode.CREATED).send(databaseResponse)
 	} catch (error) {
 		response.status(StatusCode.INTERNAL_SERVER_ERROR).send({ message: error.message })
