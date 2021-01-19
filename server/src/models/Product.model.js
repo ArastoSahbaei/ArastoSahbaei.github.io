@@ -15,7 +15,11 @@ const productSchema = Schema({
 		type: Number,
 		require: true
 	},
-	category: String //Seperate this because it will be easier to create
+	productCategoryName: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'productcategory',
+		required: true
+	}
 }, { timestamps: true })
 
 const ProductModel = mongoose.model('product', productSchema)
