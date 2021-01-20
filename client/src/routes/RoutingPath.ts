@@ -8,6 +8,7 @@ const brandsView = '/brands'
 const expertiseView = '/expertise'
 const newsView = '/news'
 const productsView = '/product'
+const admin = '/admin'
 
 export default {
 	signInView,
@@ -19,5 +20,6 @@ export default {
 	brandsView,
 	expertiseView,
 	newsView,
-	productsView
+	productsView,
+	admin
 }

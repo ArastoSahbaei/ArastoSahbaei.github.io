@@ -26,3 +26,6 @@ export interface newPasswordWithEmailToken {
 	password: string,
 	resetPasswordToken: string
 }
+export interface productCategoryName {
+	productCategoryName: string
+}

@@ -15,6 +15,7 @@ import { AccessoiresView } from '../view/navigationtabviews/AccessoiresView'
 import { BrandsView } from '../view/navigationtabviews/BrandsView'
 import { ExpertiseView } from '../view/navigationtabviews/ExpertiseView'
 import { NewsView } from '../view/navigationtabviews/NewsView'
+import { AdminView } from '../view/admin/AdminView'
 
 export const Routes = (props: { children?: React.ReactChild }) => {
 	const { children } = props
@@ -64,12 +65,15 @@ export const Routes = (props: { children?: React.ReactChild }) => {
 				<Route exact path={RoutingPath.userProfileView} component={authenticationRequired(UserProfileView)} />
 				<Route exact path={RoutingPath.forgotPasswordView} component={ResetPasswordView} />
 
-				{/* Routes in the navigationbar */}
+				{/* Navigationbar tabs view */}
 				<Route exact path={RoutingPath.productsView} component={ProductsView} />
 				<Route exact path={RoutingPath.accessoriesView} component={AccessoiresView} />
 				<Route exact path={RoutingPath.brandsView} component={BrandsView} />
 				<Route exact path={RoutingPath.expertiseView} component={ExpertiseView} />
 				<Route exact path={RoutingPath.newsView} component={NewsView} />
+
+				{/* AdminView */}
+				<Route exact path={RoutingPath.admin} component={AdminView} />
 
 				{/* Default Tab */}
 				<Route component={HomeView} />

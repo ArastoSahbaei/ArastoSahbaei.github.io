@@ -1,5 +1,5 @@
 import http from '../API'
-import { loginCredentials, user, email, newPasswordWithEmailToken } from '../../interface/Interface'
+import { loginCredentials, user, email, newPasswordWithEmailToken, productCategoryName } from '../../interface/Interface'
 
 const authenticatedRouteExample = () => {
 	return http.get('/rofl')
@@ -41,6 +41,16 @@ const resetPassword = (newPasswordAndToken: newPasswordWithEmailToken) => {
 	return http.put('/resetpassword', newPasswordAndToken)
 }
 
+// Admin privilege required to use the functions below
+
+const createProduct = (productCategoryId: string) => {
+	return http.post(`/product?productcategory=${productCategoryId}`)
+}
+
+const createProductCategory = (productCategoryName: productCategoryName) => {
+	return http.post('/productcategory', productCategoryName)
+}
+
 export default {
 	authenticatedRouteExample,
 	registerNewUser,
@@ -51,5 +61,7 @@ export default {
 	updateValuesOfExistingUser,
 	deleteUserWithID,
 	forgotPassword,
-	resetPassword
+	resetPassword,
+	createProductCategory,
+	createProduct
 }
