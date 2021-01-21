@@ -29,3 +29,9 @@ export interface newPasswordWithEmailToken {
 export interface productCategoryName {
 	productCategoryName: string
 }
+
+export interface createNewProduct {
+	title?: string
+	price?: number
+	quantity?: number
+}
