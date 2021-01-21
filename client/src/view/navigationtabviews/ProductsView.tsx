@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import APIService from "../../shared/api/service/APIService"
+import APIService from '../../shared/api/service/APIService'
 
 export const ProductsView = () => {
 	const [products, setProducts] = useState<any>([])
