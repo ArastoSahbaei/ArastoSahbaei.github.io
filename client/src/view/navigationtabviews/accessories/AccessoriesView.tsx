@@ -1,6 +1,4 @@
-import React from 'react'
-
-export const AccessoiresView = () => {
+export const AccessoriesView = () => {
 	return (
 		<div>
 			<h1>Här listas Accessoarer</h1>
