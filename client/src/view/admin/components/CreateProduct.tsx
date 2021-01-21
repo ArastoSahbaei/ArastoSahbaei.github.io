@@ -28,15 +28,14 @@ export const CreateProduct = () => {
 	}, [])
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>, target: keyof createNewProduct) => {
-		const newValue: number = parseInt(event.target.value)
-		setProduct({ ...product, [target]: newValue })
+		setProduct({ ...product, [target]: event.target.value })
 	}
 
 	return (
 		<div>
 			<h1>Create a new product:</h1>
 			{selectCategory()} <br />
-			title: <input placeholder='title' onChange={event => setProduct({ ...product, title: event.target.value })} /> <br />
+			title: <input placeholder='title' onChange={event => handleChange(event, 'title')} /> <br />
 			price: <input placeholder='price' onChange={event => handleChange(event, 'price')} /> <br />
 			quantity: <input placeholder='quantity' onChange={event => handleChange(event, 'quantity')} /> <br />
 			<button onClick={() => APIService.createProduct(selectedCategoryId, product)}>Create Product</button>
