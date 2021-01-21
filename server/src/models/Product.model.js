@@ -15,6 +15,9 @@ const productSchema = Schema({
 		type: Number,
 		require: true
 	},
+	totalSold: {
+		type: Number
+	},
 	productCategoryName: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'productcategory',
