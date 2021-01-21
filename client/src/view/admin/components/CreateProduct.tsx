@@ -27,9 +27,9 @@ export const CreateProduct = () => {
 		fetchProductCategoriesData()
 	}, [])
 
-	const handleChange = (event: React.ChangeEvent<HTMLInputElement>, x: keyof createNewProduct) => {
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>, target: keyof createNewProduct) => {
 		const newValue: number = parseInt(event.target.value)
-		setProduct({ ...product, [x]: newValue })
+		setProduct({ ...product, [target]: newValue })
 	}
 
 	return (
