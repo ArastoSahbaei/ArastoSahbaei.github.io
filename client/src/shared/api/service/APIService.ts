@@ -1,5 +1,5 @@
 import http from '../API'
-import { loginCredentials, user, email, newPasswordWithEmailToken, productCategoryName, createNewProduct } from '../../interface/Interface'
+import { loginCredentials, user, email, newPasswordWithEmailToken, productCategoryNameId, createNewProduct } from '../../interface/Interface'
 
 const authenticatedRouteExample = () => {
 	return http.get('/rofl')
@@ -47,7 +47,7 @@ const createProduct = (productCategoryId: string, productData: createNewProduct)
 	return http.post(`/product?productcategory=${productCategoryId}`, productData)
 }
 
-const createProductCategory = (productCategoryName: productCategoryName) => {
+const createProductCategory = (productCategoryName: productCategoryNameId) => {
 	return http.post('/productcategory', productCategoryName)
 }
 

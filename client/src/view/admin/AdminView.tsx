@@ -5,7 +5,7 @@ export const AdminView = () => {
 	return (
 		<>
 			<CreateProductCategory /> <hr />
-			<CreateProduct />
+			<CreateProduct /> <hr />
 		</>
 	)
 }

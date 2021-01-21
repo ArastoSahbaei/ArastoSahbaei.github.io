@@ -26,12 +26,13 @@ export interface newPasswordWithEmailToken {
 	password: string,
 	resetPasswordToken: string
 }
-export interface productCategoryName {
-	productCategoryName: string
+export interface productCategoryNameId {
+	productCategoryName: string,
+	_id?: string
 }
 
 export interface createNewProduct {
-	title?: string
-	price?: number
-	quantity?: number
+	title: string
+	price: number
+	quantity: number
 }
