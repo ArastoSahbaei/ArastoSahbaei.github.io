@@ -51,6 +51,10 @@ const createProductCategory = (productCategoryName: productCategoryNameId) => {
 	return http.post('/productcategory', productCategoryName)
 }
 
+const getAllProducts = () => {
+	return http.get('/product')
+}
+
 const getAllProductCategories = () => {
 	return http.get('/productcategory')
 }
@@ -68,5 +72,6 @@ export default {
 	resetPassword,
 	createProductCategory,
 	createProduct,
-	getAllProductCategories
+	getAllProductCategories,
+	getAllProducts
 }
