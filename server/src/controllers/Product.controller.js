@@ -3,16 +3,18 @@ import ProductCategoryModel from '../models/ProductCategory.model.js'
 import StatusCode from '../../configurations/StatusCode.js'
 
 const createProduct = async (request, response) => {
+
 	const product = new ProductModel({
 		title: request.body.title,
 		price: request.body.price,
 		quantity: request.body.quantity,
-		/* category: request.body.category, */
+		productCategoryName: request.query.productcategory,
 	})
 
 	try {
 		const productCategory = await ProductCategoryModel.findById({ _id: request.query.productcategory })
 		productCategory.product.push(product)
+		await product.save()
 		const databaseResponse = await productCategory.save()
 		response.status(StatusCode.CREATED).send(databaseResponse)
 	} catch (error) {
