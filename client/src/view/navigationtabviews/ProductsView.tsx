@@ -20,6 +20,7 @@ export const ProductsView = () => {
 				<p>{x?.title}</p>
 				<p>Brand Name</p>
 				<p>{x?.price} kr</p>
+				<button>Lägg till i varukorg</button>
 			</div>)
 	}
 
