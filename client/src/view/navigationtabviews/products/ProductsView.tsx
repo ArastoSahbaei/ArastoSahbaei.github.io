@@ -27,7 +27,6 @@ export const ProductsView = () => {
 	return (
 		<div>
 			{displayData()}
-			<button onClick={() => console.log(products)}>xx</button>
 		</div>
 	)
 }
