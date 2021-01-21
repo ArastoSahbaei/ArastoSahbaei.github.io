@@ -18,6 +18,7 @@ export const CreateProduct = () => {
 	}
 
 	const selectCategory = () => {
+		/* TODO:  The first value should also load in the ID. It's now undefined by default on first load */
 		return <select onChange={(event) => getCategoryIDfromSelectedOption(event.target.value)} >
 			{productCategories.map((x: productCategoryNameId) => <option key={x?._id}>{x?.productCategoryName}</option>)}
 		</select>
