@@ -4,7 +4,7 @@ import { createNewProduct, productCategoryNameId } from '../../../shared/interfa
 
 export const CreateProduct = () => {
 	const [productCategories, setProductCategories] = useState<[productCategoryNameId]>([{ productCategoryName: '', _id: '' }])
-	const [product, setProduct] = useState<createNewProduct>({ title: 'cream', price: 1337, quantity: 1337 })
+	const [product, setProduct] = useState<createNewProduct>({ title: 'cream', price: 1337, quantity: 1337, productBrand: '', productCategory: '' })
 	const [selectedCategoryId, setSelectedCategoryId] = useState<any>('')
 
 	const fetchProductCategoriesData = async () => {
@@ -39,7 +39,7 @@ export const CreateProduct = () => {
 			title: <input placeholder='title' onChange={event => handleChange(event, 'title')} /> <br />
 			price: <input placeholder='price' onChange={event => handleChange(event, 'price')} /> <br />
 			quantity: <input placeholder='quantity' onChange={event => handleChange(event, 'quantity')} /> <br />
-			<button onClick={() => APIService.createProduct(selectedCategoryId, product)}>Create Product</button>
+			<button onClick={() => APIService.createProduct(product)}>Create Product</button>
 		</div>
 	)
 }

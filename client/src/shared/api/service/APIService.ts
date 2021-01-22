@@ -43,8 +43,8 @@ const resetPassword = (newPasswordAndToken: newPasswordWithEmailToken) => {
 
 // Admin privilege required to use the functions below
 
-const createProduct = (productCategoryId: string, productData: createNewProduct) => {
-	return http.post(`/product?productcategory=${productCategoryId}`, productData)
+const createProduct = (productData: createNewProduct) => {
+	return http.post('/product', productData)
 }
 
 const createProductCategory = (productCategoryName: productCategoryNameId) => {

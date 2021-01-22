@@ -9,12 +9,12 @@ const createProduct = async (request, response) => {
 		title: request.body.title,
 		price: request.body.price,
 		quantity: request.body.quantity,
-		productCategoryName: request.query.productcategory,
+		productCategoryName: request.body.productCategory,
 		productBrandName: request.body.productBrand
 	})
 
 	try {
-		const productCategory = await ProductCategoryModel.findById({ _id: request.query.productcategory })
+		const productCategory = await ProductCategoryModel.findById({ _id: request.body.productCategory })
 		const productBrand = await ProductBrandModel.findById({ _id: request.body.productBrand })
 		productCategory.product.push(product)
 		productBrand.product.push(product)
