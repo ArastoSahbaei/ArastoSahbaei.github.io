@@ -4,8 +4,8 @@ import { createNewProduct, productCategoryNameId, productBrandInterface } from '
 
 export const CreateProduct = () => {
 	const [productCategories, setProductCategories] = useState<[productCategoryNameId]>([{ productCategoryName: '', _id: '' }])
-	const [productBrands, setProductBrands] = useState<[productBrandInterface]>([{ productBrand: '', _id: '' }])
-	const [product, setProduct] = useState<createNewProduct>({ title: '', price: 0, quantity: 0, productBrand: '600aaeed8da3b235685fc924', productCategory: '' })
+	const [productBrands, setProductBrands] = useState<[any]>([{ productBrand: '', _id: '' }])
+	const [product, setProduct] = useState<createNewProduct>({ title: '', price: 0, quantity: 0, productBrand: '', productCategory: '' })
 
 	const fetchProductCategoriesData = async () => {
 		const { data } = await APIService.getAllProductCategories()
@@ -17,10 +17,10 @@ export const CreateProduct = () => {
 		setProductBrands(data)
 	}
 
-	/* 	const handleSelectedBrandChange = (event: any, target: keyof createNewProduct) => {
-			const find = (productBrands.find(({ productBrand }) => productBrand === event.target.value))
-			setProduct({ ...product, [target]: find?._id })
-		} */
+	const handleSelectedBrandChange = (event: any, target: keyof createNewProduct) => {
+		const find = (productBrands.find(({ productBrandName }) => productBrandName === event.target.value))
+		setProduct({ ...product, [target]: find?._id })
+	}
 
 	const handleSelectedCategoryChange = (event: any, target: keyof createNewProduct) => {
 		const find = (productCategories.find(({ productCategoryName }) => productCategoryName === event.target.value))
@@ -33,11 +33,11 @@ export const CreateProduct = () => {
 		</select>
 	}
 
-	/* 	const selectBrand = () => {
-			return <select onChange={(event) => handleSelectedBrandChange(event, 'productBrand')} >
-				{productBrands.map((x: productBrandInterface) => <option key={x?._id}>{x?.productBrandName}</option>)}
-			</select>
-		} */
+	const selectBrand = () => {
+		return <select onChange={(event) => handleSelectedBrandChange(event, 'productBrand')} >
+			{productBrands.map((x: any) => <option key={x?._id}>{x?.productBrandName}</option>)}
+		</select>
+	}
 
 	useEffect(() => {
 		fetchProductCategoriesData()
@@ -52,7 +52,7 @@ export const CreateProduct = () => {
 		<div>
 			<h1>Create a new product:</h1>
 			productCategory: {selectCategory()} <br />
-			{/* 	productBrand: {selectBrand()} <br /> */}
+				productBrand: {selectBrand()} <br />
 			title: <input placeholder='title' onChange={event => handleChange(event, 'title')} /> <br />
 			price: <input placeholder='price' onChange={event => handleChange(event, 'price')} /> <br />
 			quantity: <input placeholder='quantity' onChange={event => handleChange(event, 'quantity')} /> <br />
