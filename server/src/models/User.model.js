@@ -37,7 +37,12 @@ const userSchema = Schema({
 	creditCard: {
 		method: String,
 		number: String
-	}
+	},
+	shoppingCart: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'shoppingcart',
+		required: true
+	}],
 
 
 }, { timestamps: true, strict: true })
