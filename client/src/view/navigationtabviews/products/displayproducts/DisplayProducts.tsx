@@ -16,7 +16,7 @@ export const DisplayProducts = () => {
 
 	const displayData = () => {
 		return products.map((x: any) =>
-			<div key={x?._id}>
+			<div className='displayProductWrapper' key={x?._id}>
 				<img src={'https://picsum.photos/200/200'} alt='' />
 				<p>{x?.title}</p>
 				<p>Brand Name</p>

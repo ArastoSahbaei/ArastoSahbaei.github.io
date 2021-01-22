@@ -6,6 +6,7 @@ import crypto from 'crypto'
 import bcrypt from 'bcrypt'
 import dotenv from 'dotenv'
 import Configurations from '../../configurations/Configurations.js'
+import ShoppingCartModel from '../models/ShoppingCart.model.js'
 dotenv.config()
 
 const testingAuthenticatedRoute = async (request, response) => {
@@ -22,6 +23,26 @@ const testingAuthenticatedRoute = async (request, response) => {
 		}
 	})
 }
+
+const updateCart = async (request, response) => {
+	const shoppingCart = new ShoppingCartModel({
+		test: request.body.test,
+		user: request.body.user,
+		products: request.body.products
+	})
+
+	try {
+		const user = await UserModel.findById({ _id: request.body.user })
+		user.shoppingCart.push(shoppingCart)
+		await user.save()
+		const databaseResponse = await shoppingCart.save()
+		response.status(StatusCode.CREATED).send(databaseResponse)
+	} catch (error) {
+		response.status(StatusCode.INTERNAL_SERVER_ERROR).send({ message: error.message })
+	}
+}
+
+
 
 const login = async (request, response, next) => {
 	passport.authenticate('login', (error, users, info) => {
@@ -218,5 +239,6 @@ export default {
 	deleteUserWithID,
 	updatePassword,
 	forgotPassword,
-	resetPassword
+	resetPassword,
+	updateCart
 }
