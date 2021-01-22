@@ -1,10 +1,11 @@
 import './DisplayProducts.css'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import APIService from '../../../../shared/api/service/APIService'
+import { CartContext } from '../../../../shared/provider/ToggleCartProvider'
 
 export const DisplayProducts = () => {
 	const [products, setProducts] = useState<any>([])
-	const [cart, setCart] = useState()
+	const [isShoppingBagOpen, setIsShoppingBagOpen] = useContext(CartContext)
 
 	const fetchData = async () => {
 		const { data } = await APIService.getAllProducts()
@@ -15,8 +16,14 @@ export const DisplayProducts = () => {
 		fetchData()
 	}, [])
 
-	const addToCart = () => {
-		APIService.updateCart({ user: '600b274338e8e34e10cebf23', products: ['600b272738e8e34e10cebf20', '600aaf0f8da3b235685fc925', '600aaf0f8da3b235685fc925'] })
+	const addToCart = async () => {
+		const response = await APIService.updateCart({
+			user: '600b274338e8e34e10cebf23',
+			products: ['600b272738e8e34e10cebf20', '600aaf0f8da3b235685fc925', '600aaf0f8da3b235685fc925']
+		})
+		console.log(response)
+		//TODO: Open Cart
+		setIsShoppingBagOpen(true)
 	}
 
 	const displayData = () => {
