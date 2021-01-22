@@ -19,6 +19,7 @@ const createProduct = async (request, response) => {
 		productCategory.product.push(product)
 		productBrand.product.push(product)
 		await productCategory.save()
+		await productBrand.save()
 		const savedProduct = await product.save()
 		response.status(StatusCode.CREATED).send(savedProduct)
 	} catch (error) {
