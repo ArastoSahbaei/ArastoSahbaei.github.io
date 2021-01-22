@@ -1,5 +1,6 @@
 import ProductModel from '../models/Product.model.js'
 import ProductCategoryModel from '../models/ProductCategory.model.js'
+import ProductBrandModel from '../models/ProductBrand.model.js'
 import StatusCode from '../../configurations/StatusCode.js'
 
 const createProduct = async (request, response) => {
@@ -9,11 +10,14 @@ const createProduct = async (request, response) => {
 		price: request.body.price,
 		quantity: request.body.quantity,
 		productCategoryName: request.query.productcategory,
+		productBrandName: request.body.productBrand
 	})
 
 	try {
 		const productCategory = await ProductCategoryModel.findById({ _id: request.query.productcategory })
+		const productBrand = await ProductBrandModel.findById({ _id: request.body.productBrand })
 		productCategory.product.push(product)
+		productBrand.product.push(product)
 		await productCategory.save()
 		const savedProduct = await product.save()
 		response.status(StatusCode.CREATED).send(savedProduct)

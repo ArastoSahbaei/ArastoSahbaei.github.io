@@ -7,7 +7,6 @@ const productCategorySchema = Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'product',
 	}]
-
 }, { timestamps: true })
 
 const ProductCategoryModel = mongoose.model('productcategory', productCategorySchema)
