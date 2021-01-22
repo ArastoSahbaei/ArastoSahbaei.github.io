@@ -22,6 +22,11 @@ const productSchema = Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'productcategory',
 		required: true
+	},
+	productBrandName: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'productbrand',
+		required: true
 	}
 }, { timestamps: true })
 
