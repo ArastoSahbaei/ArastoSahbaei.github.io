@@ -16,6 +16,7 @@ import { BrandsView } from '../view/navigationtabviews/brands/BrandsView'
 import { ExpertiseView } from '../view/navigationtabviews/expertise/ExpertiseView'
 import { NewsView } from '../view/navigationtabviews/news/NewsView'
 import { AdminView } from '../view/admin/AdminView'
+import { CheckoutView } from '../view/CheckoutView'
 
 export const Routes = (props: { children?: React.ReactChild }) => {
 	const { children } = props
@@ -64,6 +65,7 @@ export const Routes = (props: { children?: React.ReactChild }) => {
 				<Route exact path={RoutingPath.userSettingsView} component={authenticationRequired(UserSettingsView)} />
 				<Route exact path={RoutingPath.userProfileView} component={authenticationRequired(UserProfileView)} />
 				<Route exact path={RoutingPath.forgotPasswordView} component={ResetPasswordView} />
+				<Route exact path={RoutingPath.checkoutView} component={CheckoutView} />
 
 				{/* Navigationbar tabs view */}
 				<Route exact path={RoutingPath.productsView} component={ProductsView} />

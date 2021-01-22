@@ -1,7 +1,9 @@
-import React from 'react'
 import './ShoppingBagToggler.css'
+import { useHistory } from 'react-router-dom'
+import RoutingPath from '../../routes/RoutingPath'
 
 export const ShoppingBagToggler = (props: { isShoppingBagOpen: boolean, setIsShoppingBagOpen: (handler: boolean) => void }) => {
+	const history = useHistory()
 	const { isShoppingBagOpen, setIsShoppingBagOpen } = props
 
 	return (
@@ -16,6 +18,7 @@ export const ShoppingBagToggler = (props: { isShoppingBagOpen: boolean, setIsSho
 					<a href="/">CartItem2</a>
 				</li>
 			</ul>
+			<button onClick={() => history.push(RoutingPath.checkoutView)}>Go to checkout</button>
 		</nav>
 	)
 }
