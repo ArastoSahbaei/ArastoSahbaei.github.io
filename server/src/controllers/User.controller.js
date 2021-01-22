@@ -57,6 +57,7 @@ const login = async (request, response, next) => {
 					.then(user => {
 						const token = jwt.sign({ id: user._id }, 'jwtSecret.secret', { expiresIn: 60 * 60 })
 						response.status(200).send({
+							shoppingCart: user.shoppingCart,
 							authenticated: true,
 							token,
 							username: user.username,
