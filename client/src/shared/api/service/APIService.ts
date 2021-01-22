@@ -63,6 +63,10 @@ const createProductBrand = (productBrandData: createNewProductBrand) => {
 	return http.post('/productbrand', productBrandData)
 }
 
+const getAllProductBrands = () => {
+	return http.get('/productbrand')
+}
+
 export default {
 	authenticatedRouteExample,
 	registerNewUser,
@@ -78,5 +82,6 @@ export default {
 	createProduct,
 	getAllProductCategories,
 	getAllProducts,
-	createProductBrand
+	createProductBrand,
+	getAllProductBrands
 }

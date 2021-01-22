@@ -44,3 +44,10 @@ export interface createNewProductBrand {
 	brandDescription?: string,
 	brandCountry?: string
 }
+
+export interface productBrandInterface {
+	productBrand: string,
+	_id?: string
+	brandDescription?: string,
+	brandCountry?: string
+}
