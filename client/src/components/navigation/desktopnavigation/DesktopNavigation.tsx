@@ -16,7 +16,6 @@ export const DesktopNavigation: React.FC = (): JSX.Element => {
 	const [authenticatedUser,] = useContext(UserContext)
 	const [isShoppingBagOpen, setIsShoppingBagOpen] = useContext(CartContext)
 
-
 	const displaySignInButtonOrUsernameDependingOnAuthentication = () => {
 		return authenticatedUser.authenticated
 			? <div className='navigationProfile'> <Profile /> </div>
