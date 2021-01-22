@@ -51,3 +51,8 @@ export interface productBrandInterface {
 	brandDescription?: string,
 	brandCountry?: string
 }
+
+export interface updateCartInterface {
+	user: string,
+	products: Array<string>
+}

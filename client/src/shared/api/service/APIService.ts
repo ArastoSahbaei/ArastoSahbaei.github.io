@@ -1,5 +1,5 @@
 import http from '../API'
-import { loginCredentials, user, email, newPasswordWithEmailToken, productCategoryNameId, createNewProduct, createNewProductBrand } from '../../interface/Interface'
+import { loginCredentials, user, email, newPasswordWithEmailToken, productCategoryNameId, createNewProduct, createNewProductBrand, updateCartInterface } from '../../interface/Interface'
 
 const authenticatedRouteExample = () => {
 	return http.get('/rofl')
@@ -67,6 +67,10 @@ const getAllProductBrands = () => {
 	return http.get('/productbrand')
 }
 
+const updateCart = (data: updateCartInterface) => {
+	return http.post('/shoppingcart', data)
+}
+
 export default {
 	authenticatedRouteExample,
 	registerNewUser,
@@ -83,5 +87,6 @@ export default {
 	getAllProductCategories,
 	getAllProducts,
 	createProductBrand,
-	getAllProductBrands
+	getAllProductBrands,
+	updateCart
 }
