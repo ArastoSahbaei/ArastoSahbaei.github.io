@@ -5,7 +5,7 @@ import { CartContext } from '../../../../shared/provider/ToggleCartProvider'
 
 export const DisplayProducts = () => {
 	const [products, setProducts] = useState<any>([])
-	const [isShoppingBagOpen, setIsShoppingBagOpen] = useContext(CartContext)
+	const [, setIsShoppingBagOpen] = useContext(CartContext)
 
 	const fetchData = async () => {
 		const { data } = await APIService.getAllProducts()
