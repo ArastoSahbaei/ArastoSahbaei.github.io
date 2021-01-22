@@ -18,9 +18,9 @@ const createProduct = async (request, response) => {
 		const productBrand = await ProductBrandModel.findById({ _id: request.body.productBrand })
 		productCategory.product.push(product)
 		productBrand.product.push(product)
+		const savedProduct = await product.save()
 		await productCategory.save()
 		await productBrand.save()
-		const savedProduct = await product.save()
 		response.status(StatusCode.CREATED).send(savedProduct)
 	} catch (error) {
 		response.status(StatusCode.INTERNAL_SERVER_ERROR).send({ message: error.message })
