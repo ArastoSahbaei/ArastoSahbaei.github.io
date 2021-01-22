@@ -38,3 +38,9 @@ export interface createNewProduct {
 	productCategory: string,
 	productBrand: string
 }
+
+export interface createNewProductBrand {
+	productBrandName: string,
+	brandDescription?: string,
+	brandCountry?: string
+}
