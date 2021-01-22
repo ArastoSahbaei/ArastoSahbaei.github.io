@@ -6,6 +6,11 @@ export const ShoppingBagToggler = (props: { isShoppingBagOpen: boolean, setIsSho
 	const history = useHistory()
 	const { isShoppingBagOpen, setIsShoppingBagOpen } = props
 
+	const checkout = () => {
+		history.push(RoutingPath.checkoutView)
+		setIsShoppingBagOpen(false)
+	}
+
 	return (
 		<nav className={isShoppingBagOpen ? 'cart-drawer open' : 'cart-drawer'}>
 			<h1 onClick={() => setIsShoppingBagOpen(false)}>Exit</h1>
@@ -18,7 +23,7 @@ export const ShoppingBagToggler = (props: { isShoppingBagOpen: boolean, setIsSho
 					<a href="/">CartItem2</a>
 				</li>
 			</ul>
-			<button onClick={() => history.push(RoutingPath.checkoutView)}>Go to checkout</button>
+			<button onClick={() => checkout()}>Go to checkout</button>
 		</nav>
 	)
 }

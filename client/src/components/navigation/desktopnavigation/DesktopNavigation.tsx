@@ -8,12 +8,14 @@ import './DesktopNavigation.css'
 import { ShoppingBagToggler } from '../../cart/ShoppingBagToggler'
 import { ShoppingBag } from '../../shoppingbag/ShoppingBag'
 import { BackDrop } from '../../backdrop/BackDrop'
+import { CartContext } from '../../../shared/provider/ToggleCartProvider'
 import { DesktopNavigationTabs } from './desktopnavigatontabs/DesktopNavigationTabs'
 
 export const DesktopNavigation: React.FC = (): JSX.Element => {
 	const history = useHistory()
 	const [authenticatedUser,] = useContext(UserContext)
-	const [isShoppingBagOpen, setIsShoppingBagOpen] = useState<boolean>(false)
+	const [isShoppingBagOpen, setIsShoppingBagOpen] = useContext(CartContext)
+
 
 	const displaySignInButtonOrUsernameDependingOnAuthentication = () => {
 		return authenticatedUser.authenticated
