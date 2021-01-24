@@ -19,13 +19,17 @@ export const DisplayProducts = () => {
 	}, [])
 
 	const addToCart = async () => {
-		const { data } = await APIService.updateCart({
-			user: '600b333fd95d861630c8e29a',
-			products: ['600b272738e8e34e10cebf20', '600aaf0f8da3b235685fc925', '600aaf0f8da3b235685fc925']
-		})
-		console.log(data)
-		setIsShoppingBagOpen(true)
-		setAuthenticatedUser({ ...authenticatedUser, shoppingCart: data.shoppingCart })
+		try {
+			const { data } = await APIService.updateCart({
+				user: '600b333fd95d861630c8e29a',
+				products: ['600b272738e8e34e10cebf20', '600aaf0f8da3b235685fc925', '600aaf0f8da3b235685fc925']
+			})
+			console.log(data)
+			setIsShoppingBagOpen(true)
+			setAuthenticatedUser({ ...authenticatedUser, shoppingCart: data.shoppingCart })
+		} catch (error) {
+			console.log(error)
+		}
 	}
 
 	const displayData = () => {
