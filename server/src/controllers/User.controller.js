@@ -34,15 +34,13 @@ const updateCart = async (request, response) => {
 	try {
 		const user = await UserModel.findById({ _id: request.body.user })
 		user.shoppingCart.push(shoppingCart)
-		await user.save()
-		const databaseResponse = await shoppingCart.save()
+		await shoppingCart.save()
+		const databaseResponse = await user.save()
 		response.status(StatusCode.CREATED).send(databaseResponse)
 	} catch (error) {
 		response.status(StatusCode.INTERNAL_SERVER_ERROR).send({ message: error.message })
 	}
 }
-
-
 
 const login = async (request, response, next) => {
 	passport.authenticate('login', (error, users, info) => {
