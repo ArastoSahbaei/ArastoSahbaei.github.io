@@ -14,8 +14,6 @@ export const ShoppingBagToggler = (props: { isShoppingBagOpen: boolean, setIsSho
 		setIsShoppingBagOpen(false)
 	}
 
-	/* {productCategories.map((x: productCategoryNameId) => <option key={x?._id}>{x?.productCategoryName}</option>)} */
-
 	return (
 		<div className={isShoppingBagOpen ? 'cart-drawer open' : 'cart-drawer'}>
 			<h1 onClick={() => setIsShoppingBagOpen(false)}>Exit</h1>
