@@ -38,11 +38,11 @@ const userSchema = Schema({
 		method: String,
 		number: String
 	},
-	shoppingCart: [{
+	shoppingCart: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'shoppingcart',
 		required: true
-	}],
+	},
 
 
 }, { timestamps: true, strict: true })

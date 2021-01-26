@@ -79,7 +79,7 @@ const registerNewUser = async (request, response, next) => {
 
 const getAllUsers = async (request, response) => {
 	try {
-		const databaseResponse = await UserModel.find()
+		const databaseResponse = await UserModel.find().populate('shoppingCart')
 		response.status(StatusCode.OK).send(databaseResponse)
 	} catch (error) {
 		response.status(StatusCode.INTERNAL_SERVER_ERROR).send({ message: error.message })
