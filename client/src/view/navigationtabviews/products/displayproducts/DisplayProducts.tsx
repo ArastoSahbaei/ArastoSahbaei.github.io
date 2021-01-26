@@ -27,6 +27,7 @@ export const DisplayProducts = () => {
 				products: ['600b272738e8e34e10cebf20', '600aaf0f8da3b235685fc925', '600aaf0f8da3b235685fc925']
 			})
 			console.log(data)
+			setCart(data.shoppingCart)
 			setIsShoppingBagOpen(true)
 			setAuthenticatedUser({ ...authenticatedUser, shoppingCart: data.shoppingCart })
 		} catch (error) {
