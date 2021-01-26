@@ -1,13 +1,15 @@
 import './DisplayProducts.css'
 import { useEffect, useState, useContext } from 'react'
 import APIService from '../../../../shared/api/service/APIService'
-import { CartContext } from '../../../../shared/provider/ToggleCartProvider'
+import { CartContext } from '../../../../shared/provider/CartProvider'
 import { UserContext } from '../../../../shared/provider/UserProvider'
+import { ToggleCartContext } from '../../../../shared/provider/ToggleCartProvider'
 
 export const DisplayProducts = () => {
 	const [products, setProducts] = useState<any>([])
-	const [, setIsShoppingBagOpen] = useContext(CartContext)
+	const [, setIsShoppingBagOpen] = useContext(ToggleCartContext)
 	const [authenticatedUser, setAuthenticatedUser] = useContext<any>(UserContext)
+	const [cart, setCart] = useContext<any>(CartContext)
 
 	const fetchData = async () => {
 		const { data } = await APIService.getAllProducts()
@@ -46,6 +48,7 @@ export const DisplayProducts = () => {
 	return (
 		<div>
 			{displayData()}
+			<button onClick={() => setIsShoppingBagOpen(true)}></button>
 		</div>
 	)
 }

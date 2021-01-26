@@ -18,7 +18,7 @@ export const ShoppingBagToggler = (props: { isShoppingBagOpen: boolean, setIsSho
 		<div className={isShoppingBagOpen ? 'cart-drawer open' : 'cart-drawer'}>
 			<h1 onClick={() => setIsShoppingBagOpen(false)}>Exit</h1>
 			<ul>
-				{cart.map((product: any) => <li key={product}> {product} </li>)}
+				{cart?.map((product: any) => <li key={product}> {product} </li>)}
 			</ul>
 			<button onClick={() => checkout()}>Go to checkout</button>
 		</div>
