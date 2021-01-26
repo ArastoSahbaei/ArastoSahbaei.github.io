@@ -88,7 +88,7 @@ const getAllUsers = async (request, response) => {
 
 const getUserWithID = async (request, response) => {
 	try {
-		const databaseResponse = await UserModel.findById(request.params.userId)
+		const databaseResponse = await UserModel.findById(request.params.userId).populate('shoppingCart')
 		response.status(StatusCode.OK).send(databaseResponse)
 	} catch (error) {
 		response.status(StatusCode.INTERNAL_SERVER_ERROR).send({
