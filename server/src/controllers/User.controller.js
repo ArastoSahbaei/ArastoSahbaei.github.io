@@ -32,7 +32,7 @@ const updateCart = async (request, response) => {
 
 	try {
 		const user = await UserModel.findById({ _id: request.body.user })
-		user.shoppingCart.push(['shoppingCart'])
+		user.shoppingCart.push(shoppingCart)
 		await shoppingCart.save()
 		const databaseResponse = await user.save()
 		response.status(StatusCode.CREATED).send(databaseResponse)
