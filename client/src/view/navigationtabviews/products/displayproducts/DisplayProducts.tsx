@@ -48,7 +48,6 @@ export const DisplayProducts = () => {
 	return (
 		<div>
 			{displayData()}
-			<button onClick={() => setIsShoppingBagOpen(true)}></button>
 		</div>
 	)
 }
