@@ -27,6 +27,7 @@ export const DisplayProducts = () => {
 				products: ['600b272738e8e34e10cebf20', '600aaf0f8da3b235685fc925', '600aaf0f8da3b235685fc925']
 			})
 			console.log(data)
+			//TODO: The line below created a new shopping cart. Should display products in only 1 cart.
 			setCart(data.shoppingCart)
 			setIsShoppingBagOpen(true)
 			setAuthenticatedUser({ ...authenticatedUser, shoppingCart: data.shoppingCart })
