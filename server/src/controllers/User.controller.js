@@ -26,7 +26,6 @@ const testingAuthenticatedRoute = async (request, response) => {
 
 const updateCart = async (request, response) => {
 	const shoppingCart = new ShoppingCartModel({
-		test: request.body.test,
 		user: request.body.user,
 		products: request.body.products
 	})

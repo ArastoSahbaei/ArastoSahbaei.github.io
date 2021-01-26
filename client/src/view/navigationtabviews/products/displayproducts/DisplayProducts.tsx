@@ -7,7 +7,7 @@ import { UserContext } from '../../../../shared/provider/UserProvider'
 export const DisplayProducts = () => {
 	const [products, setProducts] = useState<any>([])
 	const [, setIsShoppingBagOpen] = useContext(CartContext)
-	const [authenticatedUser, setAuthenticatedUser] = useState<any>(UserContext)
+	const [authenticatedUser, setAuthenticatedUser] = useContext<any>(UserContext)
 
 	const fetchData = async () => {
 		const { data } = await APIService.getAllProducts()
@@ -21,7 +21,7 @@ export const DisplayProducts = () => {
 	const addToCart = async () => {
 		try {
 			const { data } = await APIService.updateCart({
-				user: '600b333fd95d861630c8e29a',
+				user: authenticatedUser.id,
 				products: ['600b272738e8e34e10cebf20', '600aaf0f8da3b235685fc925', '600aaf0f8da3b235685fc925']
 			})
 			console.log(data)
