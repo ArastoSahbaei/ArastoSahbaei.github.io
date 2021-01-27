@@ -4,7 +4,7 @@ export const CartContext = createContext<any>(null)
 
 export const CartProvider = (props: { children?: React.ReactChild }) => {
 	const { children } = props
-	const [cart, setCart] = useState<any>(['PRODUCT 1', 'PRODUCT 2', 'PRODUCT 3'])
+	const [cart, setCart] = useState<any>([])
 
 	return (
 		<CartContext.Provider value={[cart, setCart]}>
