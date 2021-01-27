@@ -68,7 +68,7 @@ const getAllProductBrands = () => {
 }
 
 const updateCart = (data: updateCartInterface) => {
-	return http.post('/shoppingcart/add', data)
+	return http.put('/shoppingcart/add', data)
 }
 
 export default {
