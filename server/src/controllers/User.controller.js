@@ -31,6 +31,7 @@ const updateCart = async (request, response) => {
 	})
 
 	try {
+		//TODO: find by id and update (prova detta?)
 		const user = await UserModel.findById({ _id: request.body.user })
 		user.shoppingCart.push(shoppingCart)
 		await shoppingCart.save()
