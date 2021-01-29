@@ -2,13 +2,11 @@ import './ShoppingBagToggler.css'
 import { useHistory } from 'react-router-dom'
 import RoutingPath from '../../routes/RoutingPath'
 import { useContext } from 'react'
-import { CartContext } from '../../shared/provider/CartProvider'
 import { UserContext } from '../../shared/provider/UserProvider'
 
 export const ShoppingBagToggler = (props: { isShoppingBagOpen: boolean, setIsShoppingBagOpen: (handler: boolean) => void }) => {
 	const history = useHistory()
 	const { isShoppingBagOpen, setIsShoppingBagOpen } = props
-	const [cart, setCart] = useContext(CartContext)
 	const [authenticatedUser, setAuthenticatedUser] = useContext<any>(UserContext)
 
 
