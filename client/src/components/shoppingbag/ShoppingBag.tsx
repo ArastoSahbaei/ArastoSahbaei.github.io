@@ -1,10 +1,12 @@
-import React from 'react'
 import shoppingbag from '../../shared/images/shoppingbag.svg'
+import { useContext } from 'react'
 import './ShoppingBag.css'
+import { UserContext } from '../../shared/provider/UserProvider'
 
 
 export const ShoppingBag = (props: { setIsShoppingBagOpen: (handler: boolean) => void }) => {
 	const { setIsShoppingBagOpen } = props
+	const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
 
 	return (
 		<>
@@ -13,6 +15,7 @@ export const ShoppingBag = (props: { setIsShoppingBagOpen: (handler: boolean) =>
 				src={shoppingbag}
 				alt=''
 			/>
+			<span onClick={() => console.log(authenticatedUser)}>{authenticatedUser?.shoppingCart[0]?.products?.length}</span>
 		</>
 	)
 }
