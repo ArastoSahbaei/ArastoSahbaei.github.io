@@ -45,7 +45,12 @@ export const Routes = (props: { children?: React.ReactChild }) => {
 		if (isTokenValid(JWT.exp)) {
 			// TODO: There has to be a better way to recieve the username? You cannot just do a getUserWithID like this?
 			const response = await APIService.getUserWithID(JWT.id)
-			setAuthenticatedUser({ authenticated: true, id: JWT.id, username: response.data.username })
+			setAuthenticatedUser({
+				authenticated: true,
+				id: JWT.id,
+				username: response.data.username,
+				shoppingCart: response.data.shoppingCart
+			})
 		} else {
 			setAuthenticatedUser({ authenticated: false, id: undefined, username: undefined })
 			localStorage.removeItem(LocalStorage.authenticationToken)

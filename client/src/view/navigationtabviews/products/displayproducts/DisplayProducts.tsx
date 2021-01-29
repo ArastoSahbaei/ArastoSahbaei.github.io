@@ -20,17 +20,18 @@ export const DisplayProducts = () => {
 		fetchData()
 	}, [])
 
-	const addToCart = async () => {
+	const addToCart = async (productId: string) => {
 		try {
+			console.log(authenticatedUser?.shoppingCart[0]?.products)
+			const array = ['6013e00f344d55140c25b33a', '6013e00f344d55140c25b33a', '6013e00f344d55140c25b33a', '6013e00f344d55140c25b33a']
 			const { data } = await APIService.updateCart({
-				user: authenticatedUser.id,
-				products: ['600b272738e8e34e10cebf20', '600aaf0f8da3b235685fc925', '600aaf0f8da3b235685fc925']
+				cartId: '6013dffd344d55140c25b334',
+				products: array
 			})
-			console.log(data)
-			//TODO: The line below created a new shopping cart. Should display products in only 1 cart.
-			setCart(data.shoppingCart)
 			setIsShoppingBagOpen(true)
-			setAuthenticatedUser({ ...authenticatedUser, shoppingCart: data.shoppingCart })
+			console.log(JSON.stringify(data))
+			setAuthenticatedUser({ ...authenticatedUser, shoppingCart: [{ ...authenticatedUser.shoppingCart[0], products: ['newItem', 'LOL'] }] })
+
 		} catch (error) {
 			console.log(error)
 		}
@@ -43,7 +44,7 @@ export const DisplayProducts = () => {
 				<p>{x?.title}</p>
 				<p>Brand Name</p>
 				<p>{x?.price} kr</p>
-				<button onClick={() => addToCart()}>Lägg till i varukorg</button>
+				<button onClick={() => addToCart(x?._id)}>Lägg till i varukorg</button>
 			</div>)
 	}
 

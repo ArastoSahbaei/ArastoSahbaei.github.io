@@ -19,7 +19,8 @@ export interface registerNewUser {
 export interface authenticatedUser {
 	username: string | undefined,
 	token: string | undefined,
-	authenticated: boolean
+	authenticated: boolean,
+	cartId: string
 }
 
 export interface newPasswordWithEmailToken {
@@ -53,6 +54,6 @@ export interface productBrandInterface {
 }
 
 export interface updateCartInterface {
-	user: string,
+	cartId: string,
 	products: Array<string>
 }
