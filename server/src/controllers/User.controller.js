@@ -25,18 +25,11 @@ const testingAuthenticatedRoute = async (request, response) => {
 }
 
 const updateCart = async (request, response) => {
-	const shoppingCart = new ShoppingCartModel({
-		user: request.body.user,
-		products: request.body.products
-	})
-
 	try {
-		//TODO: find by id and update (prova detta?)
-		const user = await UserModel.findById({ _id: request.body.user })
-		user.shoppingCart.push(shoppingCart)
-		await shoppingCart.save()
-		const databaseResponse = await user.save()
-		response.status(StatusCode.CREATED).send(databaseResponse)
+		const databaseResponse = await ShoppingCartModel.findByIdAndUpdate(request.body.cartId,
+			{ products: request.body.products },
+			{ new: true })
+		response.status(StatusCode.OK).send(databaseResponse)
 	} catch (error) {
 		response.status(StatusCode.INTERNAL_SERVER_ERROR).send({ message: error.message })
 	}
@@ -54,6 +47,7 @@ const login = async (request, response, next) => {
 				UserModel.findOne({ username: request.body.username })
 					.then(user => {
 						const token = jwt.sign({ id: user._id }, 'jwtSecret.secret', { expiresIn: 60 * 60 })
+						console.log(user)
 						response.status(200).send({
 							shoppingCart: user.shoppingCart,
 							authenticated: true,
@@ -68,12 +62,26 @@ const login = async (request, response, next) => {
 }
 
 const registerNewUser = async (request, response, next) => {
-	passport.authenticate('register', (error, createdUser, info) => {
+	passport.authenticate('register', async (error, createdUser, info) => {
 		if (error) {
 			response.status(StatusCode.DUBLICATE_RESOURCE).send({ message: error.message + info + 'LOL?' })
 			console.log(error)
 		} else {
-			response.status(StatusCode.CREATED).send(createdUser)
+			const BCRYPT_SALT_ROUNDS = 12
+			const hashedPassword = await bcrypt.hash(request.body.password, BCRYPT_SALT_ROUNDS)
+			const user = await UserModel.create({
+				username: request.body.username,
+				password: hashedPassword,
+				name: request.body.name,
+			})
+			const shoppingCart = await new ShoppingCartModel({
+				user: user._id,
+				products: request.body.products
+			})
+			await shoppingCart.save()
+			await user.shoppingCart.push(shoppingCart)
+			await user.save()
+			response.status(StatusCode.CREATED).send(user)
 		}
 	})(request, response, next)
 }
@@ -224,8 +232,6 @@ const resetPassword = async (request, response) => {
 		})
 	}
 }
-
-
 
 export default {
 	testingAuthenticatedRoute,
