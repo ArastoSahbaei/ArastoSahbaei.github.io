@@ -10,7 +10,12 @@ export const DropdownProfile = () => {
 	const [, setAuthenticatedUser] = useContext(UserContext)
 
 	const logout = () => {
-		setAuthenticatedUser({ authenticated: false, id: undefined, username: undefined })
+		setAuthenticatedUser({
+			authenticated: false,
+			id: undefined,
+			username: undefined,
+			shoppingCart: [{ products: [] }]
+		})
 		localStorage.removeItem(LocalStorage.authenticationToken)
 		history.push(RoutingPath.homeView)
 	}

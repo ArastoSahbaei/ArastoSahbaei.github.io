@@ -15,7 +15,7 @@ export const ShoppingBag = (props: { setIsShoppingBagOpen: (handler: boolean) =>
 				src={shoppingbag}
 				alt=''
 			/>
-			<span onClick={() => console.log(authenticatedUser)}>{authenticatedUser?.shoppingCart[0]?.products?.length}</span>
+			<span>{authenticatedUser?.shoppingCart[0]?.products?.length}</span>
 		</>
 	)
 }
