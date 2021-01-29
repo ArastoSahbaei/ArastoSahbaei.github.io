@@ -23,14 +23,14 @@ export const DisplayProducts = () => {
 	const addToCart = async (productId: string) => {
 		try {
 			console.log(authenticatedUser?.shoppingCart[0]?.products)
-			const array = ['6013e00f344d55140c25b33a', '6013e00f344d55140c25b33a', '6013e00f344d55140c25b33a', '6013e00f344d55140c25b33a']
+			const array = [...authenticatedUser?.shoppingCart[0]?.products, productId]
 			const { data } = await APIService.updateCart({
 				cartId: '6013dffd344d55140c25b334',
 				products: array
 			})
 			setIsShoppingBagOpen(true)
 			console.log(JSON.stringify(data))
-			setAuthenticatedUser({ ...authenticatedUser, shoppingCart: [{ ...authenticatedUser.shoppingCart[0], products: ['newItem', 'LOL'] }] })
+			setAuthenticatedUser({ ...authenticatedUser, shoppingCart: [{ ...authenticatedUser.shoppingCart[0], products: array }] })
 
 		} catch (error) {
 			console.log(error)
