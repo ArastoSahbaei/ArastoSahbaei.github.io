@@ -15,13 +15,14 @@ export const ShoppingBagToggler = (props: { isShoppingBagOpen: boolean, setIsSho
 		setIsShoppingBagOpen(false)
 	}
 
-	const removeProductFromCart = async () => {
-		const updatedCart: any[] = []
+
+	const removeProductFromCart = async (array: any[], index: number) => {
+		const newArray = [...array.slice(0, index), ...array.slice(index + 1)]
 		await APIService.updateCart({
 			cartId: authenticatedUser.shoppingCart[0]._id,
-			products: updatedCart
+			products: newArray
 		})
-		setAuthenticatedUser({ ...authenticatedUser, shoppingCart: [{ ...authenticatedUser.shoppingCart[0], products: updatedCart }] })
+		setAuthenticatedUser({ ...authenticatedUser, shoppingCart: [{ ...authenticatedUser.shoppingCart[0], products: newArray }] })
 	}
 
 	return (
@@ -30,12 +31,12 @@ export const ShoppingBagToggler = (props: { isShoppingBagOpen: boolean, setIsSho
 			<ul>
 				{authenticatedUser?.shoppingCart[0]?.products?.map((product: any, index: number) =>
 					<div key={index}>
-						<li onClick={() => removeProductFromCart()}> {product} </li>
+						<li onClick={() => removeProductFromCart(authenticatedUser?.shoppingCart[0]?.products, index)}> {product} </li>
 					</div>
 				)}
 			</ul>
 			<button onClick={() => checkout()}>Go to checkout</button>
-			<button onClick={() => console.log(authenticatedUser.shoppingCart[0].products)}>authenticatedUser</button>
 		</div>
 	)
 }
+
