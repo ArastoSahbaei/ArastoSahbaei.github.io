@@ -44,10 +44,10 @@ const login = async (request, response, next) => {
 				: response.status(StatusCode.FORBIDDEN).send(info.message)
 		} else {
 			request.logIn(users, () => {
-				UserModel.findOne({ username: request.body.username })
+				UserModel.findOne({ username: request.body.username }).populate('shoppingCart')
 					.then(user => {
 						const token = jwt.sign({ id: user._id }, 'jwtSecret.secret', { expiresIn: 60 * 60 })
-						console.log(user)
+						console.log("YOOO:" + user)
 						response.status(200).send({
 							shoppingCart: user.shoppingCart,
 							authenticated: true,
