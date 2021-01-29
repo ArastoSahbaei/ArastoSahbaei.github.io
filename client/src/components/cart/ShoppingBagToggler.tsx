@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 import RoutingPath from '../../routes/RoutingPath'
 import { useContext } from 'react'
 import { UserContext } from '../../shared/provider/UserProvider'
+import APIService from '../../shared/api/service/APIService'
 
 export const ShoppingBagToggler = (props: { isShoppingBagOpen: boolean, setIsShoppingBagOpen: (handler: boolean) => void }) => {
 	const history = useHistory()
@@ -14,8 +15,13 @@ export const ShoppingBagToggler = (props: { isShoppingBagOpen: boolean, setIsSho
 		setIsShoppingBagOpen(false)
 	}
 
-	const removeProductFromCart = () => {
-		console.log('')
+	const removeProductFromCart = async () => {
+		const updatedCart: any[] = []
+		await APIService.updateCart({
+			cartId: authenticatedUser.shoppingCart[0]._id,
+			products: updatedCart
+		})
+		setAuthenticatedUser({ ...authenticatedUser, shoppingCart: [{ ...authenticatedUser.shoppingCart[0], products: updatedCart }] })
 	}
 
 	return (
