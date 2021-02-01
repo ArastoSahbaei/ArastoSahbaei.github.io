@@ -17,16 +17,21 @@ export const ShoppingBagToggler = (props: { isShoppingBagOpen: boolean, setIsSho
 	}
 
 	const displayEmptyCart = () => {
-		return <img src={emptyCart} alt='' />
+		return <div>
+			<img src={emptyCart} alt='' className='emptyCartImg' />
+		</div>
 	}
 
 	const displayCartWithItems = () => {
-		return authenticatedUser?.shoppingCart[0]?.products?.map((product: string, index: number) =>
-			<ul key={index}>
-				<li onClick={() => removeProductFromCart(authenticatedUser?.shoppingCart[0]?.products, index)}> {product} </li>
-			</ul>
-		)
-
+		return <div>
+			{authenticatedUser?.shoppingCart[0]?.products?.map(
+				(product: string, index: number) =>
+					<ul key={index}>
+						<li onClick={() => removeProductFromCart(authenticatedUser?.shoppingCart[0]?.products, index)}> {product} </li>
+					</ul>
+			)}
+			<button onClick={() => checkout()}>Go to checkout</button>
+		</div>
 	}
 
 	const displayCart = () => {
@@ -48,7 +53,6 @@ export const ShoppingBagToggler = (props: { isShoppingBagOpen: boolean, setIsSho
 		<div className={isShoppingBagOpen ? 'cart-drawer open' : 'cart-drawer'}>
 			<h1 onClick={() => setIsShoppingBagOpen(false)}>Exit</h1>
 			{displayCart()}
-			<button onClick={() => checkout()}>Go to checkout</button>
 		</div>
 	)
 }
