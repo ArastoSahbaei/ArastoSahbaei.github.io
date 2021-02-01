@@ -6,7 +6,7 @@ import { UserContext } from '../../shared/provider/UserProvider'
 
 export const ShoppingBag = (props: { setIsShoppingBagOpen: (handler: boolean) => void }) => {
 	const { setIsShoppingBagOpen } = props
-	const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
+	const [authenticatedUser,] = useContext(UserContext)
 
 	return (
 		<>

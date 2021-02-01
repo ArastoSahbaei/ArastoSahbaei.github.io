@@ -22,11 +22,11 @@ export const Routes = (props: { children?: React.ReactChild }) => {
 	const { children } = props
 	const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
 
-	const authenticationRequired = (navigateToViewifAuthenticated: any) => {
+	const authenticationRequired = (navigateToViewifAuthenticated: React.FC) => {
 		return authenticatedUser.authenticated ? navigateToViewifAuthenticated : SignInView
 	}
 
-	const blockRouteIfAuthenticated = (navigateToViewIfAuthenticated: any) => {
+	const blockRouteIfAuthenticated = (navigateToViewIfAuthenticated: React.FC) => {
 		return authenticatedUser.authenticated ? HomeView : navigateToViewIfAuthenticated
 	}
 

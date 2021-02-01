@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import RoutingPath from '../../../routes/RoutingPath'
 import { useHistory } from 'react-router-dom'
 import Logotype from '../../../shared/images/logotypeTemplate.svg'
