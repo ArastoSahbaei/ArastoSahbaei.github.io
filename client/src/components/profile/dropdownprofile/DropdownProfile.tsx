@@ -27,6 +27,7 @@ export const DropdownProfile = () => {
 			<hr />
 			<span onClick={() => history.push(RoutingPath.userProfileView)}>Profile</span>
 			<span onClick={() => history.push(RoutingPath.userSettingsView)}>Settings</span>
+			<span onClick={() => history.push(RoutingPath.userSettingsView)}>Saved</span>
 			<span onClick={() => logout()}>Logout</span>
 			<hr />
 			<span>Theme: Dark mode</span>
