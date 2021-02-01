@@ -19,6 +19,9 @@ export const ShoppingBagToggler = (props: { isShoppingBagOpen: boolean, setIsSho
 	const displayEmptyCart = () => {
 		return <div>
 			<img src={emptyCart} alt='' className='emptyCartImg' />
+			<p>Your cart is empty.. <br /> Why not fill it with new designs?</p>
+			<button>Butik</button> <br />
+			<button>Inspiration</button>
 		</div>
 	}
 

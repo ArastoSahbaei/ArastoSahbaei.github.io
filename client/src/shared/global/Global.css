@@ -1,12 +1,20 @@
-body {
+body,
+html {
 	margin: 0;
 	padding: 0;
 	background-color: #f2fbf7;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 0.4s;
 }
 
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
 
-/* TODO: Change this later */
-span {
-	color: white;
-	font-weight: 1000;
+	100% {
+		opacity: 1;
+	}
 }
