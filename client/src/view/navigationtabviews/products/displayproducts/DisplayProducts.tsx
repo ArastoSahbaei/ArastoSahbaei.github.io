@@ -39,7 +39,7 @@ export const DisplayProducts = () => {
 	const displayData = () => {
 		return products.map((x: any) =>
 			<div className='displayProductWrapper' key={x?._id}>
-				<div onClick={() => history.push(RoutingPath.productDetailsView(x._id))}>
+				<div onClick={() => history.push(RoutingPath.productDetailsView(x._id), x)}>
 					<img src={'https://picsum.photos/200/200'} alt='' />
 					<p>{x?.title}</p>
 					<p>Brand Name</p>
@@ -51,6 +51,8 @@ export const DisplayProducts = () => {
 
 	return (
 		<div>
+			<button>FILTRERA</button>
+			<button>SORTERA</button>
 			{displayData()}
 		</div>
 	)
