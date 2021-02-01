@@ -4,17 +4,19 @@
 	padding: 0;
 }
 
-.liTabsWrapper {
+.liTabs {
 	display: inline;
 	cursor: pointer;
 	padding: 7%;
 	transition: 0.2s;
 	color: white;
 	font-family: 'Roboto', sans-serif;
-	font-weight: 600;
+	text-transform: uppercase;
+	transition: all .3s ease;
 }
 
-.liTabsWrapper:hover {
+.liTabs:hover {
 	transition: 0.3s;
 	font-size: 1.1rem;
+	font-weight: 600;
 }
