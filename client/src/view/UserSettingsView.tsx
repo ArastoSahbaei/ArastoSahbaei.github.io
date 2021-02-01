@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 export const UserSettingsView: React.FC = (): JSX.Element => {
-	const [data, setData] = useState({})
 
 	return (
 		<div>
@@ -9,7 +8,6 @@ export const UserSettingsView: React.FC = (): JSX.Element => {
 			<h1>Change password here:</h1>
 			<input placeholder='current password' /> <br />
 			<input placeholder='new password' /> <br />
-			<button onClick={() => console.log('')}>OK</button>
 		</div>
 	)
 }
