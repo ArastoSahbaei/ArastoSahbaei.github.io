@@ -8,6 +8,12 @@ export const ShoppingBag = (props: { setIsShoppingBagOpen: (handler: boolean) =>
 	const { setIsShoppingBagOpen } = props
 	const [authenticatedUser,] = useContext(UserContext)
 
+	const displayAmountOfItemsInCart = () => {
+		if (authenticatedUser?.shoppingCart[0]?.products?.length != 0) {
+			return <span>{authenticatedUser?.shoppingCart[0]?.products?.length}</span>
+		}
+	}
+
 	return (
 		<>
 			<img className="shoppingBagIcon"
@@ -15,7 +21,7 @@ export const ShoppingBag = (props: { setIsShoppingBagOpen: (handler: boolean) =>
 				src={shoppingbag}
 				alt=''
 			/>
-			<span>{authenticatedUser?.shoppingCart[0]?.products?.length}</span>
+			<span>{displayAmountOfItemsInCart()}</span>
 		</>
 	)
 }
