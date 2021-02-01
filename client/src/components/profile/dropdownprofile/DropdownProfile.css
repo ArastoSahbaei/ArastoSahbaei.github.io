@@ -10,6 +10,7 @@
 
 .profileWrapper:hover .profileDropdown {
 	display: block;
+	color: white;
 }
 
 .profileDropdown span {
