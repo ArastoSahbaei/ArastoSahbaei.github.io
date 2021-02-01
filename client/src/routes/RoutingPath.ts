@@ -10,7 +10,7 @@ const newsView = '/news'
 const productsView = '/product'
 const checkoutView = '/checkout'
 const admin = '/admin'
-const productDetailView = '/product/:id'
+const productDetailsView = (id?: string) => { return id ? `/product/${id}` : '/product/:id' }
 
 
 export default {
@@ -26,5 +26,5 @@ export default {
 	productsView,
 	checkoutView,
 	admin,
-	productDetailView
+	productDetailsView,
 }

@@ -4,6 +4,7 @@ import APIService from '../../../../shared/api/service/APIService'
 import { UserContext } from '../../../../shared/provider/UserProvider'
 import { ToggleCartContext } from '../../../../shared/provider/ToggleCartProvider'
 import { useHistory } from 'react-router-dom'
+import RoutingPath from '../../../../routes/RoutingPath'
 
 export const DisplayProducts = () => {
 	const history = useHistory()
@@ -37,11 +38,13 @@ export const DisplayProducts = () => {
 
 	const displayData = () => {
 		return products.map((x: any) =>
-			<div className='displayProductWrapper' key={x?._id} onClick={() => history.push}>
-				<img src={'https://picsum.photos/200/200'} alt='' />
-				<p>{x?.title}</p>
-				<p>Brand Name</p>
-				<p>{x?.price} kr</p>
+			<div className='displayProductWrapper' key={x?._id}>
+				<div onClick={() => history.push(RoutingPath.productDetailsView(x._id))}>
+					<img src={'https://picsum.photos/200/200'} alt='' />
+					<p>{x?.title}</p>
+					<p>Brand Name</p>
+					<p>{x?.price} kr</p>
+				</div>
 				<button onClick={() => addToCart(x?._id)}>Lägg till i varukorg</button>
 			</div>)
 	}

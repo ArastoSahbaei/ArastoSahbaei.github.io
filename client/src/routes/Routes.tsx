@@ -79,7 +79,7 @@ export const Routes = (props: { children?: React.ReactChild }) => {
 				<Route exact path={RoutingPath.brandsView} component={BrandsView} />
 				<Route exact path={RoutingPath.expertiseView} component={ExpertiseView} />
 				<Route exact path={RoutingPath.newsView} component={NewsView} />
-				<Route exact path={RoutingPath.productDetailView} component={ProductDetailView} />
+				<Route exact path={RoutingPath.productDetailsView()} component={ProductDetailView} />
 
 				{/* AdminView */}
 				<Route exact path={RoutingPath.admin} component={AdminView} />
