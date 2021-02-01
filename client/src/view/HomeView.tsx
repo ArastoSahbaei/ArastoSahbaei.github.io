@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import { Footer } from '../components/footer/Footer'
 import { UserContext } from '../shared/provider/UserProvider'
 
 export const HomeView: React.FC = (): JSX.Element => {
@@ -9,7 +10,9 @@ export const HomeView: React.FC = (): JSX.Element => {
 			<h1> 1. Populäraste produkter </h1>
 			<h1> 2. email sub </h1>
 			<h1> 3. footer </h1>
+			<h1> 4. customer reviews </h1>
 			<button onClick={() => console.log(authenticatedUser)}>authenticatedUser</button>
+			<Footer />
 		</div>
 	)
 }

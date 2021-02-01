@@ -32,7 +32,6 @@ export const DesktopNavigation: React.FC = (): JSX.Element => {
 				<DesktopNavigationTabs />
 			</div>
 			{displaySignInButtonOrUsernameDependingOnAuthentication()}
-			<button onClick={() => console.log(authenticatedUser)}>authenticatedUser</button>
 			<div className='navigationShoppingCart'>
 				<ShoppingBag setIsShoppingBagOpen={setIsShoppingBagOpen} />
 			</div>

@@ -3,8 +3,10 @@ import { useEffect, useState, useContext } from 'react'
 import APIService from '../../../../shared/api/service/APIService'
 import { UserContext } from '../../../../shared/provider/UserProvider'
 import { ToggleCartContext } from '../../../../shared/provider/ToggleCartProvider'
+import { useHistory } from 'react-router-dom'
 
 export const DisplayProducts = () => {
+	const history = useHistory()
 	const [products, setProducts] = useState<any>([])
 	const [, setIsShoppingBagOpen] = useContext(ToggleCartContext)
 	const [authenticatedUser, setAuthenticatedUser] = useContext<any>(UserContext)
@@ -35,7 +37,7 @@ export const DisplayProducts = () => {
 
 	const displayData = () => {
 		return products.map((x: any) =>
-			<div className='displayProductWrapper' key={x?._id}>
+			<div className='displayProductWrapper' key={x?._id} onClick={() => history.push}>
 				<img src={'https://picsum.photos/200/200'} alt='' />
 				<p>{x?.title}</p>
 				<p>Brand Name</p>

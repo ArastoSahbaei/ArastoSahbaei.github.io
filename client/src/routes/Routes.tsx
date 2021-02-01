@@ -17,6 +17,7 @@ import { ExpertiseView } from '../view/navigationtabviews/expertise/ExpertiseVie
 import { NewsView } from '../view/navigationtabviews/news/NewsView'
 import { AdminView } from '../view/admin/AdminView'
 import { CheckoutView } from '../view/CheckoutView'
+import { ProductDetailView } from '../view/navigationtabviews/products/productdetailview/ProductDetailView'
 
 export const Routes = (props: { children?: React.ReactChild }) => {
 	const { children } = props
@@ -78,6 +79,7 @@ export const Routes = (props: { children?: React.ReactChild }) => {
 				<Route exact path={RoutingPath.brandsView} component={BrandsView} />
 				<Route exact path={RoutingPath.expertiseView} component={ExpertiseView} />
 				<Route exact path={RoutingPath.newsView} component={NewsView} />
+				<Route exact path={RoutingPath.productDetailView} component={ProductDetailView} />
 
 				{/* AdminView */}
 				<Route exact path={RoutingPath.admin} component={AdminView} />

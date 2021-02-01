@@ -10,6 +10,7 @@ const newsView = '/news'
 const productsView = '/product'
 const checkoutView = '/checkout'
 const admin = '/admin'
+const productDetailView = '/product/:id'
 
 
 export default {
@@ -24,5 +25,6 @@ export default {
 	newsView,
 	productsView,
 	checkoutView,
-	admin
+	admin,
+	productDetailView
 }

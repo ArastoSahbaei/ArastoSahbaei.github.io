@@ -38,7 +38,7 @@ export const ShoppingBagToggler = (props: { isShoppingBagOpen: boolean, setIsSho
 	}
 
 	const displayCart = () => {
-		return authenticatedUser.shoppingCart[0].products.length === 0
+		return authenticatedUser?.shoppingCart[0]?.products.length === 0
 			? displayEmptyCart()
 			: displayCartWithItems()
 	}
@@ -46,7 +46,7 @@ export const ShoppingBagToggler = (props: { isShoppingBagOpen: boolean, setIsSho
 	const removeProductFromCart = async (array: [], index: number) => {
 		const newArray = [...array.slice(0, index), ...array.slice(index + 1)]
 		await APIService.updateCart({
-			cartId: authenticatedUser.shoppingCart[0]._id,
+			cartId: authenticatedUser.shoppingCart[0]?._id,
 			products: newArray
 		})
 		setAuthenticatedUser({ ...authenticatedUser, shoppingCart: [{ ...authenticatedUser.shoppingCart[0], products: newArray }] })
