@@ -5,7 +5,7 @@ import Logotype from '../../../shared/images/logotypeTemplate.svg'
 import { UserContext } from '../../../shared/provider/UserProvider'
 import { Profile } from '../../profile/Profile'
 import './DesktopNavigation.css'
-import { ShoppingBagToggler } from '../../cart/ShoppingBagToggler'
+import { Cart } from '../../cart/Cart'
 import { ShoppingBag } from '../../shoppingbag/ShoppingBag'
 import { BackDrop } from '../../backdrop/BackDrop'
 import { ToggleCartContext } from '../../../shared/provider/ToggleCartProvider'
@@ -35,7 +35,7 @@ export const DesktopNavigation: React.FC = (): JSX.Element => {
 			<div className='navigationShoppingCart'>
 				<ShoppingBag setIsShoppingBagOpen={setIsShoppingBagOpen} />
 			</div>
-			<ShoppingBagToggler isShoppingBagOpen={isShoppingBagOpen} setIsShoppingBagOpen={setIsShoppingBagOpen} />
+			<Cart isShoppingBagOpen={isShoppingBagOpen} setIsShoppingBagOpen={setIsShoppingBagOpen} />
 			{!isShoppingBagOpen || <BackDrop drawerHandler={setIsShoppingBagOpen} />}
 		</div>
 	)

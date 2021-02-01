@@ -1,4 +1,4 @@
-import './ShoppingBagToggler.css'
+import './Cart.css'
 import { useHistory } from 'react-router-dom'
 import RoutingPath from '../../routes/RoutingPath'
 import { useContext } from 'react'
@@ -6,7 +6,7 @@ import { UserContext } from '../../shared/provider/UserProvider'
 import APIService from '../../shared/api/service/APIService'
 import emptyCart from '../../shared/images/empty_cart.png'
 
-export const ShoppingBagToggler = (props: { isShoppingBagOpen: boolean, setIsShoppingBagOpen: (handler: boolean) => void }) => {
+export const Cart = (props: { isShoppingBagOpen: boolean, setIsShoppingBagOpen: (handler: boolean) => void }) => {
 	const history = useHistory()
 	const { isShoppingBagOpen, setIsShoppingBagOpen } = props
 	const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
