@@ -6,7 +6,7 @@ import { UserContext } from '../../../shared/provider/UserProvider'
 import { Profile } from '../../profile/Profile'
 import './DesktopNavigation.css'
 import { Cart } from '../../cart/Cart'
-import { ShoppingBag } from '../../shoppingbag/ShoppingBag'
+import { CartToggler } from './carttoggler/CartToggler'
 import { BackDrop } from '../../backdrop/BackDrop'
 import { ToggleCartContext } from '../../../shared/provider/ToggleCartProvider'
 import { DesktopNavigationTabs } from './desktopnavigatontabs/DesktopNavigationTabs'
@@ -33,7 +33,7 @@ export const DesktopNavigation: React.FC = (): JSX.Element => {
 			</div>
 			{displaySignInButtonOrUsernameDependingOnAuthentication()}
 			<div className='navigationShoppingCart'>
-				<ShoppingBag setIsShoppingBagOpen={setIsShoppingBagOpen} />
+				<CartToggler setIsShoppingBagOpen={setIsShoppingBagOpen} />
 			</div>
 			<Cart isShoppingBagOpen={isShoppingBagOpen} setIsShoppingBagOpen={setIsShoppingBagOpen} />
 			{!isShoppingBagOpen || <BackDrop drawerHandler={setIsShoppingBagOpen} />}

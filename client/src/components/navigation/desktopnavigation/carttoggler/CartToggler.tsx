@@ -1,10 +1,10 @@
-import shoppingbag from '../../shared/images/shoppingbag.svg'
+import shoppingbag from '../../../../shared/images/cart.svg'
 import { useContext } from 'react'
-import './ShoppingBag.css'
-import { UserContext } from '../../shared/provider/UserProvider'
+import './CartToggler.css'
+import { UserContext } from '../../../../shared/provider/UserProvider'
 
 
-export const ShoppingBag = (props: { setIsShoppingBagOpen: (handler: boolean) => void }) => {
+export const CartToggler = (props: { setIsShoppingBagOpen: (handler: boolean) => void }) => {
 	const { setIsShoppingBagOpen } = props
 	const [authenticatedUser,] = useContext(UserContext)
 
