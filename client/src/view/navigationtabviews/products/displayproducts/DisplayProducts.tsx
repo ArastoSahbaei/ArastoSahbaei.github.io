@@ -38,20 +38,20 @@ export const DisplayProducts = () => {
 	const displayData = () => {
 		return products.map((x: any) =>
 			<div className='displayProductWrapper' key={x?._id}>
-				<div onClick={() => history.push(RoutingPath.productDetailsView(x._id), x)}>
-					<img src={'https://picsum.photos/200/200'} alt='' />
+				<div className='displayProductSubWrapper' onClick={() => history.push(RoutingPath.productDetailsView(x._id), x)}>
+					<img className='productImg' src={'https://picsum.photos/200/200'} alt='' />
 					<p>{x?.title}</p>
 					<p>Brand Name</p>
 					<p>{x?.price} kr</p>
 				</div>
-				<button onClick={() => addToCart(x?._id)}>Lägg till i varukorg</button>
+				<button className='addToCartButton' onClick={() => addToCart(x?._id)}>Lägg till i varukorg</button>
 			</div>)
 	}
 
 	return (
-		<div>
-			<button>FILTRERA</button>
-			<button>SORTERA</button>
+		<div className='displayProductsContainer'>
+			{/* <button>FILTRERA</button>
+			<button>SORTERA</button> */}
 			{displayData()}
 		</div>
 	)
