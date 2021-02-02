@@ -25,7 +25,6 @@ export const DisplayProducts = () => {
 		try {
 			const updatedCart = [...authenticatedUser?.shoppingCart[0]?.products, productId]
 			await APIService.updateCart({
-				//TODO: Get user CartId when signing in (in authenticatedUser)
 				cartId: authenticatedUser.shoppingCart[0]._id,
 				products: updatedCart
 			})

@@ -6,7 +6,7 @@ export const CheckoutView = () => {
 
 	return (
 		<div>
-			<h1>This is the checkout view</h1>
+			<h1>DU HAR ÄNNU INTE LAGT NÅGRA VAROR I DIN VARUKORG</h1>
 		</div>
 	)
 }
