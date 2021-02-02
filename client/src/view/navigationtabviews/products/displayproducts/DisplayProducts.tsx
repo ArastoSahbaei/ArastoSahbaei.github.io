@@ -40,9 +40,9 @@ export const DisplayProducts = () => {
 			<div className='displayProductWrapper' key={x?._id}>
 				<div className='displayProductSubWrapper' onClick={() => history.push(RoutingPath.productDetailsView(x._id), x)}>
 					<img className='productImg' src={'https://picsum.photos/200/200'} alt='' />
-					<p>{x?.title}</p>
-					<p>Brand Name</p>
-					<p>{x?.price} kr</p>
+					<p className='pBrand'>Herbaman Co.</p>
+					<p className='pTitle'>{x?.title}</p>
+					<p className='pPrice'>{x?.price} kr</p>
 				</div>
 				<button className='addToCartButton' onClick={() => addToCart(x?._id)}>Lägg till i varukorg</button>
 			</div>)

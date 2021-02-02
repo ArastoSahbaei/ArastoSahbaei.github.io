@@ -16,13 +16,17 @@ export const Cart = (props: { isShoppingBagOpen: boolean, setIsShoppingBagOpen: 
 		setIsShoppingBagOpen(false)
 	}
 
+	const navigateToShop = () => {
+		history.push(RoutingPath.productsView)
+		props.setIsShoppingBagOpen(false)
+	}
+
 	const displayEmptyCart = () => {
 		return <div>
 			<img src={emptyCart} alt='' className='emptyCartImg' />
 			<p>Your cart is empty.. <br /> Why not fill it with new designs?</p>
-			<button>Butik</button> <br />
-			<button>Inspiration</button>
-		</div>
+			<button onClick={() => navigateToShop()}>Butik</button> <br />
+		</div >
 	}
 
 	const displayCartWithItems = () => {

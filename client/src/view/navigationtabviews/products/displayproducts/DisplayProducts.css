@@ -33,3 +33,17 @@
 .addToCartButton:hover {
 	cursor: pointer;
 }
+
+.pBrand,
+.pTitle {
+	color: #777;
+	line-height: 5px;
+	font-family: MuseoSans-500, arial;
+}
+
+.pPrice {
+	color: #333;
+	font-size: 20px;
+	line-height: 25px;
+	font-family: MuseoSans-500, arial;
+}
