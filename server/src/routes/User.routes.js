@@ -6,7 +6,7 @@ const routes = application => {
 	application.post('/user/login', UserController.login)
 	application.post('/user/register', UserController.registerNewUser)
 	application.get('/user', UserController.getAllUsers)
-	application.get('/user/:userId', UserController.getUserWithID)
+	application.get('/user/:userId', UserController.getUserByID)
 	application.get('/searchuser', UserController.getUserWithQuery)
 	application.put('/user/:userId', UserController.updateUser)
 	application.delete('/user/:userId', UserController.deleteUserWithID)

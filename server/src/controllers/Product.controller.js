@@ -36,6 +36,18 @@ const getAllProducts = async (request, response) => {
 	}
 }
 
+const getProductById = async (request, response) => {
+	try {
+		const databaseResponse = await ProductModel.findOne({ _id: request.params.productId })
+		response.status(StatusCode.OK).send(databaseResponse)
+	} catch (error) {
+		response.status(StatusCode.INTERNAL_SERVER_ERROR).send({
+			message: 'Error occured while trying to retrieve user with ID: ' + request.params.userId,
+			error: error.message
+		})
+	}
+}
+
 const updateProduct = async (request, response) => {
 	try {
 		if (!request.body) { return response.status(StatusCode.BAD_REQUEST).send({ message: 'Empty values were sent' }) }
@@ -70,5 +82,6 @@ export default {
 	createProduct,
 	getAllProducts,
 	updateProduct,
-	deleteProduct
+	deleteProduct,
+	getProductById
 }

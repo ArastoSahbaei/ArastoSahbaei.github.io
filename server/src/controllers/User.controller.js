@@ -95,9 +95,9 @@ const getAllUsers = async (request, response) => {
 	}
 }
 
-const getUserWithID = async (request, response) => {
+const getUserByID = async (request, response) => {
 	try {
-		const databaseResponse = await UserModel.findById(request.params.userId).populate('shoppingCart')
+		const databaseResponse = await UserModel.findOne({ _id: request.params.userId })
 		response.status(StatusCode.OK).send(databaseResponse)
 	} catch (error) {
 		response.status(StatusCode.INTERNAL_SERVER_ERROR).send({
@@ -124,7 +124,7 @@ const getUserWithQuery = async (request, response) => {
 const updateUser = async (request, response) => {
 	try {
 		if (!request.body) { return response.status(StatusCode.BAD_REQUEST).send({ message: 'Empty values were sent' }) }
-		const databaseResponse = await UserModel.findByIdAndUpdate(request.params.userId, {
+		const databaseResponse = await UserModel.find(request.params.userId, {
 			username: request.body.username,
 			password: request.body.password
 		}, { new: true })
@@ -238,7 +238,7 @@ export default {
 	login,
 	registerNewUser,
 	getAllUsers,
-	getUserWithID,
+	getUserByID,
 	getUserWithQuery,
 	updateUser,
 	deleteUserWithID,
