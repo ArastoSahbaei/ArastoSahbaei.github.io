@@ -31,10 +31,12 @@ export const Cart = (props: { isShoppingBagOpen: boolean, setIsShoppingBagOpen: 
 
 	const displayCartWithItems = () => {
 		return <div>
-			{authenticatedUser?.shoppingCart[0]?.products?.map(
-				(product: string, index: number) =>
+			{authenticatedUser?.shoppingCart?.products?.map(
+				(product: any, index: number) =>
 					<ul key={index}>
-						<li onClick={() => removeProductFromCart(authenticatedUser?.shoppingCart[0]?.products, index)}> {product} </li>
+						<li onClick={() => removeProductFromCart(authenticatedUser?.shoppingCart?.products, index)}> {product._id} </li>
+						<li>{product.title}</li>
+						<li>{product.productBrandName}</li>
 					</ul>
 			)}
 			<button onClick={() => checkout()}>Go to checkout</button>
@@ -42,7 +44,7 @@ export const Cart = (props: { isShoppingBagOpen: boolean, setIsShoppingBagOpen: 
 	}
 
 	const displayCart = () => {
-		return authenticatedUser?.shoppingCart[0]?.products.length === 0
+		return authenticatedUser?.shoppingCart[0]?.products?.length === 0
 			? displayEmptyCart()
 			: displayCartWithItems()
 	}

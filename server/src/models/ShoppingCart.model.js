@@ -2,7 +2,6 @@ import mongoose from 'mongoose'
 const { Schema } = mongoose
 
 const shoppingCart = Schema({
-	test: String,
 	user: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'user',

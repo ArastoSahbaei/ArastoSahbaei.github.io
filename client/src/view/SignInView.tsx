@@ -18,7 +18,15 @@ export const SignInView: React.FC = (): JSX.Element => {
 		try {
 			const { data } = await APIService.login(loginCredentials)
 			localStorage.setItem(LocalStorage.authenticationToken, data.token)
-			setAuthenticatedUser(data)
+			console.log(data)
+			setAuthenticatedUser({
+				_id: data.id,
+				username: data.username,
+				token: data.token,
+				authenticated: true,
+				shoppingCart: data.shoppingCart[0],
+				cartId: data.shoppingCart[0]._id
+			})
 			history.push(RoutingPath.homeView)
 		} catch (error) {
 			console.log(error)

@@ -50,7 +50,7 @@ export const Routes = (props: { children?: React.ReactChild }) => {
 				authenticated: true,
 				id: JWT.id,
 				username: response.data.username,
-				shoppingCart: response.data.shoppingCart
+				shoppingCart: response.data.shoppingCart[0]
 			})
 		} else {
 			setAuthenticatedUser({ authenticated: false, id: undefined, username: undefined })

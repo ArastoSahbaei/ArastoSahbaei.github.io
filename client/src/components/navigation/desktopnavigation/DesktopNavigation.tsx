@@ -37,6 +37,7 @@ export const DesktopNavigation: React.FC = (): JSX.Element => {
 			</div>
 			<Cart isShoppingBagOpen={isShoppingBagOpen} setIsShoppingBagOpen={setIsShoppingBagOpen} />
 			{!isShoppingBagOpen || <BackDrop drawerHandler={setIsShoppingBagOpen} />}
+			<button onClick={() => console.log(authenticatedUser)}>authenticatedUser</button>
 		</div>
 	)
 }

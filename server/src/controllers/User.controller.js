@@ -26,9 +26,8 @@ const testingAuthenticatedRoute = async (request, response) => {
 
 const updateCart = async (request, response) => {
 	try {
-		const databaseResponse = await ShoppingCartModel.findByIdAndUpdate(request.body.cartId,
-			{ products: request.body.products },
-			{ new: true })
+		const databaseResponse = await ShoppingCartModel.findByIdAndUpdate(request.body.cartId, { products: request.body.products },
+			{ new: true }).populate({ path: 'products' })
 		response.status(StatusCode.OK).send(databaseResponse)
 	} catch (error) {
 		response.status(StatusCode.INTERNAL_SERVER_ERROR).send({ message: error.message })
@@ -44,10 +43,9 @@ const login = async (request, response, next) => {
 				: response.status(StatusCode.FORBIDDEN).send(info.message)
 		} else {
 			request.logIn(users, () => {
-				UserModel.findOne({ username: request.body.username }).populate('shoppingCart')
+				UserModel.findOne({ username: request.body.username }).populate({ path: 'shoppingCart', populate: { path: 'products' } })
 					.then(user => {
 						const token = jwt.sign({ id: user._id }, 'jwtSecret.secret', { expiresIn: 60 * 60 })
-						console.log("YOOO:" + user)
 						response.status(200).send({
 							shoppingCart: user.shoppingCart,
 							authenticated: true,
@@ -94,10 +92,9 @@ const getAllUsers = async (request, response) => {
 		response.status(StatusCode.INTERNAL_SERVER_ERROR).send({ message: error.message })
 	}
 }
-
 const getUserByID = async (request, response) => {
 	try {
-		const databaseResponse = await UserModel.findOne({ _id: request.params.userId })
+		const databaseResponse = await (await UserModel.findOne({ _id: request.params.userId }).populate({ path: 'shoppingCart', populate: { path: 'products' } }))
 		response.status(StatusCode.OK).send(databaseResponse)
 	} catch (error) {
 		response.status(StatusCode.INTERNAL_SERVER_ERROR).send({

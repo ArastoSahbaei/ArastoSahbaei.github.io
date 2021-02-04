@@ -7,10 +7,10 @@ const defaultValues = {
 	username: undefined,
 	token: undefined,
 	authenticated: false,
+	cartId: undefined,
 	shoppingCart: [
 		{ products: [] }
 	],
-	cartId: ''
 }
 
 export const UserProvider = (props: { children?: React.ReactChild }) => {

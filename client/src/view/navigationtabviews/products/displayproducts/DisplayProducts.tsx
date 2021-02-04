@@ -23,13 +23,13 @@ export const DisplayProducts = () => {
 
 	const addToCart = async (productId: string) => {
 		try {
-			const updatedCart = [...authenticatedUser?.shoppingCart[0]?.products, productId]
-			await APIService.updateCart({
-				cartId: authenticatedUser.shoppingCart[0]._id,
+			const updatedCart = [...authenticatedUser?.shoppingCart?.products, productId]
+			const { data } = await APIService.updateCart({
+				cartId: authenticatedUser.shoppingCart._id,
 				products: updatedCart
 			})
 			setIsShoppingBagOpen(true)
-			setAuthenticatedUser({ ...authenticatedUser, shoppingCart: [{ ...authenticatedUser.shoppingCart[0], products: updatedCart }] })
+			setAuthenticatedUser({ ...authenticatedUser, shoppingCart: { ...authenticatedUser.shoppingCart, products: data.products } })
 		} catch (error) {
 			console.log(error)
 		}
@@ -44,7 +44,7 @@ export const DisplayProducts = () => {
 					<p className='pTitle'>{x?.title}</p>
 					<p className='pPrice'>{x?.price} kr</p>
 				</div>
-				<button className='addToCartButton' onClick={() => addToCart(x?._id)}>Lägg till i varukorg</button>
+				<button className='addToCartButton' onClick={() => addToCart(x._id)}>Lägg till i varukorg</button>
 			</div>)
 	}
 

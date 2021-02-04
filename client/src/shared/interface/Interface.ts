@@ -20,7 +20,7 @@ export interface authenticatedUser {
 	username: string | undefined,
 	token: string | undefined,
 	authenticated: boolean,
-	cartId: string
+	cartId: string | undefined
 }
 
 export interface newPasswordWithEmailToken {
