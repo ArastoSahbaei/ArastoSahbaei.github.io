@@ -11,7 +11,7 @@ export const Cart = (props: { isShoppingBagOpen: boolean, setIsShoppingBagOpen: 
 	const { isShoppingBagOpen, setIsShoppingBagOpen } = props
 	const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
 
-	const checkout = () => {
+	const navigateToCheckout = () => {
 		history.push(RoutingPath.checkoutView)
 		setIsShoppingBagOpen(false)
 	}
@@ -33,13 +33,14 @@ export const Cart = (props: { isShoppingBagOpen: boolean, setIsShoppingBagOpen: 
 		return <div>
 			{authenticatedUser?.shoppingCart?.products?.map(
 				(product: any, index: number) =>
-					<ul key={index}>
-						<li onClick={() => removeProductFromCart(authenticatedUser?.shoppingCart?.products, index)}> {product._id} </li>
+					<ul key={index} onClick={() => removeProductFromCart(authenticatedUser?.shoppingCart?.products, index)}>
+						<li> {product._id} </li>
 						<li>{product.title}</li>
 						<li>{product.productBrandName}</li>
+						<hr />
 					</ul>
 			)}
-			<button onClick={() => checkout()}>Go to checkout</button>
+			<button onClick={() => navigateToCheckout()}>Go to checkout</button>
 		</div>
 	}
 
@@ -51,11 +52,12 @@ export const Cart = (props: { isShoppingBagOpen: boolean, setIsShoppingBagOpen: 
 
 	const removeProductFromCart = async (array: [], index: number) => {
 		const newArray = [...array.slice(0, index), ...array.slice(index + 1)]
+
 		await APIService.updateCart({
-			cartId: authenticatedUser.shoppingCart[0]?._id,
+			cartId: authenticatedUser?.shoppingCart?._id,
 			products: newArray
 		})
-		setAuthenticatedUser({ ...authenticatedUser, shoppingCart: [{ ...authenticatedUser.shoppingCart[0], products: newArray }] })
+		setAuthenticatedUser({ ...authenticatedUser, shoppingCart: { ...authenticatedUser.shoppingCart, products: newArray } })
 	}
 
 	return (
