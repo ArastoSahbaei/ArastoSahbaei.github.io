@@ -9,7 +9,7 @@ export const CartToggler = (props: { setIsShoppingBagOpen: (handler: boolean) =>
 	const [authenticatedUser,] = useContext(UserContext)
 
 	const displayAmountOfItemsInCart = () => {
-		if (authenticatedUser?.shoppingCart[0]?.products?.length != 0) {
+		if (authenticatedUser?.shoppingCart?.products?.length != 0) {
 			return <span>{authenticatedUser?.shoppingCart?.products?.length}</span>
 		}
 	}
