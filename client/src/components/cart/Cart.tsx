@@ -26,7 +26,7 @@ export const Cart = (props: { isShoppingBagOpen: boolean, setIsShoppingBagOpen: 
 			<img src={emptyCart} alt='' className='emptyCartImg' />
 			<p>Your cart is empty.. <br /> Why not fill it with new designs?</p>
 			<button onClick={() => navigateToShop()}>Butik</button> <br />
-		</div >
+		</div>
 	}
 
 	const displayCartWithItems = () => {
@@ -40,12 +40,13 @@ export const Cart = (props: { isShoppingBagOpen: boolean, setIsShoppingBagOpen: 
 						<hr />
 					</ul>
 			)}
-			<button onClick={() => navigateToCheckout()}>Go to checkout</button>
+			<button onClick={() => setIsShoppingBagOpen(false)}>fortsätt handla</button>
+			<button onClick={() => navigateToCheckout()}>Gå vidare till kassan</button>
 		</div>
 	}
 
 	const displayCart = () => {
-		return authenticatedUser?.shoppingCart[0]?.products?.length === 0
+		return authenticatedUser?.shoppingCart?.products?.length === 0
 			? displayEmptyCart()
 			: displayCartWithItems()
 	}
