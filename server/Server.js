@@ -12,6 +12,7 @@ import ProductRoutes from './src/routes/Product.routes.js'
 import ProductCategoryRoutes from './src/routes/ProductCategory.routes.js'
 import ProductBrandRoutes from './src/routes/ProductBrand.routes.js'
 import ShoppingCartRoutes from './src/routes/ShoppingCart.routes.js'
+import NewsLetterSubscriptionRoutes from './src/routes/NewsLetterSubscription.routes.js'
 import passportConfig from './configurations/passport-config.js'
 
 const application = express()
@@ -30,6 +31,7 @@ ProductRoutes.routes(application)
 ProductCategoryRoutes.routes(application)
 ProductBrandRoutes.routes(application)
 ShoppingCartRoutes.routes(application)
+NewsLetterSubscriptionRoutes.routes(application)
 application.use(Middlewares.notFound)
 application.use(Middlewares.errorHandler)
 

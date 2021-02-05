@@ -7,6 +7,8 @@ import bcrypt from 'bcrypt'
 import dotenv from 'dotenv'
 import Configurations from '../../configurations/Configurations.js'
 import ShoppingCartModel from '../models/ShoppingCart.model.js'
+import NewsLetterSubscriptionModel from '../models/NewsLetterSubscription.model.js'
+
 dotenv.config()
 
 const testingAuthenticatedRoute = async (request, response) => {
@@ -76,8 +78,15 @@ const registerNewUser = async (request, response, next) => {
 				user: user._id,
 				products: request.body.products
 			})
+			const newsLetterSubscription = await new NewsLetterSubscriptionModel({
+				email: request.body.email,
+				user: user._id,
+				recieveNewsLetters: request.body.recieveNewsLetters
+			})
 			await shoppingCart.save()
 			await user.shoppingCart.push(shoppingCart)
+			await newsLetterSubscription.save()
+			await user.newsLetterSubscription.push(newsLetterSubscription)
 			await user.save()
 			response.status(StatusCode.CREATED).send(user)
 		}
@@ -86,7 +95,9 @@ const registerNewUser = async (request, response, next) => {
 
 const getAllUsers = async (request, response) => {
 	try {
-		const databaseResponse = await UserModel.find().populate('shoppingCart')
+		const databaseResponse = await UserModel.find()
+			.populate('shoppingCart')
+			.populate('newsLetterSubscription')
 		response.status(StatusCode.OK).send(databaseResponse)
 	} catch (error) {
 		response.status(StatusCode.INTERNAL_SERVER_ERROR).send({ message: error.message })
@@ -94,7 +105,9 @@ const getAllUsers = async (request, response) => {
 }
 const getUserByID = async (request, response) => {
 	try {
-		const databaseResponse = await (await UserModel.findOne({ _id: request.params.userId }).populate({ path: 'shoppingCart', populate: { path: 'products' } }))
+		const databaseResponse = await (await UserModel.findOne({ _id: request.params.userId })
+			.populate('newsLetterSubscription')
+			.populate({ path: 'shoppingCart', populate: { path: 'products' } }))
 		response.status(StatusCode.OK).send(databaseResponse)
 	} catch (error) {
 		response.status(StatusCode.INTERNAL_SERVER_ERROR).send({

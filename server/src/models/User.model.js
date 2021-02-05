@@ -43,7 +43,11 @@ const userSchema = Schema({
 		ref: 'shoppingcart',
 		required: true
 	}],
-
+	newsLetterSubscription: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'newslettersubscription',
+		required: true
+	}]
 
 }, { timestamps: true, strict: true })
 

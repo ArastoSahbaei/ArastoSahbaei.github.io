@@ -4,7 +4,7 @@ const { Schema } = mongoose
 const productSchema = Schema({
 	title: {
 		type: String,
-		unique: true, //Not working?
+		unique: true, //TODO: Not working?
 		require: true,
 	},
 	price: {

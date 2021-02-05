@@ -13,7 +13,8 @@ export interface loginCredentials {
 
 export interface registerNewUser {
 	username: string,
-	password: string
+	password: string,
+	recieveNewsLetters: boolean
 }
 
 export interface authenticatedUser {

@@ -9,7 +9,7 @@ import LocalStorage from '../shared/cache/LocalStorage'
 export const SignInView: React.FC = (): JSX.Element => {
 	const history = useHistory()
 	const [, setAuthenticatedUser] = useContext(UserContext)
-	const [registerUser, setRegisterUser] = useState<registerNewUser>({ username: '', password: '' })
+	const [registerUser, setRegisterUser] = useState<registerNewUser>({ username: '', password: '', recieveNewsLetters: true })
 	const [loginCredentials, setLoginCredentials] = useState<loginCredentials>({ username: '', password: '' })
 	const [forgotPasswordEmail, setForgotPasswordEmail] = useState<email>({ email: '' })
 
@@ -63,19 +63,24 @@ export const SignInView: React.FC = (): JSX.Element => {
 				<button onClick={(event) => signIn(event)}>Sign in</button>
 			</form>
 
-			<h1>Forgot your password?</h1>
-			<input placeholder="Enter your email" onChange={(event) => setForgotPasswordEmail({ email: event.target.value })} />
-			<button onClick={() => sendRecoveryEmail()}>Send recovery link</button>
-
 			<hr />
 
 			<h1>Register</h1>
 			<form>
 				<input placeholder="username" onChange={(event) => setRegisterUser({ ...registerUser, username: event.target.value })} /> <br />
-				<input placeholder="password" onChange={(event) => setRegisterUser({ ...registerUser, password: event.target.value })} />
+				<input placeholder="password" onChange={(event) => setRegisterUser({ ...registerUser, password: event.target.value })} /> <br />
+				Recieve newsletter?
+				<input checked={registerUser.recieveNewsLetters}
+					type="checkbox"
+					onChange={() => setRegisterUser({ ...registerUser, recieveNewsLetters: !registerUser.recieveNewsLetters })} /> <br />
 				<button onClick={(event) => register(event)}>Register</button>
 			</form>
 
+			<hr />
+
+			<h1>Forgot your password?</h1>
+			<input placeholder="Enter your email" onChange={(event) => setForgotPasswordEmail({ email: event.target.value })} />
+			<button onClick={() => sendRecoveryEmail()}>Send recovery link</button>
 		</div>
 	)
 }
