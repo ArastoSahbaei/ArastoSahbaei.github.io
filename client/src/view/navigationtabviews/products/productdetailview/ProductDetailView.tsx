@@ -12,13 +12,13 @@ export const ProductDetailView = () => {
 
 	const addToCart = async (productId: string) => {
 		try {
-			const updatedCart = [...authenticatedUser?.shoppingCart[0]?.products, productId]
-			await APIService.updateCart({
-				cartId: authenticatedUser.shoppingCart[0]._id,
+			const updatedCart = [...authenticatedUser?.shoppingCart?.products, productId]
+			const { data } = await APIService.updateCart({
+				cartId: authenticatedUser.shoppingCart._id,
 				products: updatedCart
 			})
 			setIsShoppingBagOpen(true)
-			setAuthenticatedUser({ ...authenticatedUser, shoppingCart: [{ ...authenticatedUser.shoppingCart[0], products: updatedCart }] })
+			setAuthenticatedUser({ ...authenticatedUser, shoppingCart: { ...authenticatedUser.shoppingCart, products: data.products } })
 		} catch (error) {
 			console.log(error)
 		}
