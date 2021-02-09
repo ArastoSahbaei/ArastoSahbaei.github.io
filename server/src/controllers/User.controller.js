@@ -45,7 +45,9 @@ const login = async (request, response, next) => {
 				: response.status(StatusCode.FORBIDDEN).send(info.message)
 		} else {
 			request.logIn(users, () => {
-				UserModel.findOne({ username: request.body.username }).populate({ path: 'shoppingCart', populate: { path: 'products' } })
+				UserModel.findOne({ username: request.body.username })
+					.populate('newsLetterSubscription')
+					.populate({ path: 'shoppingCart', populate: { path: 'products' } })
 					.then(user => {
 						const token = jwt.sign({ id: user._id }, 'jwtSecret.secret', { expiresIn: 60 * 60 })
 						response.status(200).send({
@@ -53,7 +55,8 @@ const login = async (request, response, next) => {
 							authenticated: true,
 							token,
 							username: user.username,
-							id: user._id
+							id: user._id,
+							newsLetterSubscription: user.newsLetterSubscription
 						})
 					})
 			})

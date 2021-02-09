@@ -21,11 +21,12 @@ export const SignInView: React.FC = (): JSX.Element => {
 			console.log(data)
 			setAuthenticatedUser({
 				_id: data.id,
-				username: data.username,
 				token: data.token,
 				authenticated: true,
+				username: data.username,
 				shoppingCart: data.shoppingCart[0],
-				cartId: data.shoppingCart[0]._id
+				cartId: data.shoppingCart[0]._id,
+				newsLetterSubscription: data.newsLetterSubscription[0]
 			})
 			history.push(RoutingPath.homeView)
 		} catch (error) {

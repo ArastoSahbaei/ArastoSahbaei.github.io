@@ -11,6 +11,9 @@ const defaultValues = {
 	shoppingCart: [
 		{ products: [] }
 	],
+	newsLetterSubscription: {
+		recieveNewsLetters: false,
+	}
 }
 
 export const UserProvider = (props: { children?: React.ReactChild }) => {
