@@ -3,6 +3,7 @@ import NewsLetterSubscription from '../controllers/NewsLetterSubscription.contro
 const routes = application => {
 	application.post('/newsletter/subscribe', NewsLetterSubscription.addNewsLetterSubscription)
 	application.get('/newsletter', NewsLetterSubscription.getAllNewsLetterSubscriptions)
+	application.put('/newsletter/unsubscribe/:newsLetterId', NewsLetterSubscription.unsubscribeNewsLetter)
 }
 
 export default { routes }

@@ -25,7 +25,20 @@ const getAllNewsLetterSubscriptions = async (request, response) => {
 	}
 }
 
+const unsubscribeNewsLetter = async (request, response) => {
+	try {
+		const databaseResponse = await NewsLetterSubscriptionModel.findByIdAndUpdate(request.params.newsLetterId, {
+			recieveNewsLetters: false
+		}, { new: true })
+		console.log(request.params.newsLetterId)
+		response.status(StatusCode.OK).send(databaseResponse)
+	} catch (error) {
+		response.status(StatusCode.INTERNAL_SERVER_ERROR).send({ message: error.message })
+	}
+}
+
 export default {
 	addNewsLetterSubscription,
 	getAllNewsLetterSubscriptions,
+	unsubscribeNewsLetter
 }
