@@ -34,14 +34,18 @@ export const Cart = (props: { isShoppingBagOpen: boolean, setIsShoppingBagOpen: 
 			{authenticatedUser?.shoppingCart?.products?.map(
 				(product: any, index: number) =>
 					<ul key={index} onClick={() => removeProductFromCart(authenticatedUser?.shoppingCart?.products, index)}>
-						<li> {product._id} </li>
 						<li>{product.title}</li>
-						<li>{product.productBrandName}</li>
+						<li>{product.price} :-</li>
 						<hr />
 					</ul>
 			)}
-			<button onClick={() => setIsShoppingBagOpen(false)}>fortsätt handla</button>
-			<button onClick={() => navigateToCheckout()}>Gå vidare till kassan</button>
+			<div className='cartDiv'>
+				<p>100 dagars ångerrätt med gratis retur</p>
+				<p>frakt: 0kr</p>
+				<p>Total summa: {Math.random()}</p>
+				<button onClick={() => setIsShoppingBagOpen(false)}>fortsätt handla</button>
+				<button onClick={() => navigateToCheckout()}>Gå vidare till kassan</button>
+			</div>
 		</div>
 	}
 
@@ -63,8 +67,10 @@ export const Cart = (props: { isShoppingBagOpen: boolean, setIsShoppingBagOpen: 
 
 	return (
 		<div className={isShoppingBagOpen ? 'cart-drawer open' : 'cart-drawer'}>
-			<h1 onClick={() => setIsShoppingBagOpen(false)}>Exit</h1>
+			<span>5 föremål i varukorgen</span>
+			<span onClick={() => setIsShoppingBagOpen(false)}>X</span>
 			{displayCart()}
+
 		</div>
 	)
 }

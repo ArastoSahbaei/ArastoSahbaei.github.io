@@ -9,6 +9,10 @@ html {
 	animation-duration: 0.4s;
 }
 
+ul {
+	list-style-type: none;
+}
+
 @keyframes fadeInOpacity {
 	0% {
 		opacity: 0;
