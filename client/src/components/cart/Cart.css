@@ -41,8 +41,7 @@
 	padding: 5%;
 	transition: 0.2s;
 	cursor: pointer;
-	float: right;
-	margin-right: 4%;
+	margin-left: 80%;
 }
 
 .cartExitImg:hover {
@@ -67,9 +66,28 @@
 	padding: 0 0 0 16px;
 }
 
-.displayCartWrapper {}
+.displayCartWrapper {
+	height: 100%;
+	/* padding: 0 15px; */
+	overflow-y: auto;
+}
 
 .cartUL {
 	border-bottom: solid 1px white;
 	padding: 1%;
+}
+
+.cartTrashImg {
+	width: 14px;
+	height: 16px;
+	aspect-ratio: auto 14/16;
+	cursor: pointer;
+	transition: 0.3s;
+	float: right;
+	margin-right: 30px;
+}
+
+.cartTrashImg:hover {
+	transform: rotate(140deg);
+	transition: 0.3s;
 }

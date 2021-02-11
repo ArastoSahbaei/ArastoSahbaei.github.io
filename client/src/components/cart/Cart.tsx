@@ -7,6 +7,7 @@ import APIService from '../../shared/api/service/APIService'
 import emptyCart from '../../shared/images/empty_cart.png'
 import cartExit from '../../shared/images/cart-exit.svg'
 import freeReturn from '../../shared/images/free-return.svg'
+import cartTrash from '../../shared/images/cart-trash.svg'
 
 export const Cart = (props: { isShoppingBagOpen: boolean, setIsShoppingBagOpen: (handler: boolean) => void }) => {
 	const history = useHistory()
@@ -36,9 +37,17 @@ export const Cart = (props: { isShoppingBagOpen: boolean, setIsShoppingBagOpen: 
 			<span>{authenticatedUser?.shoppingCart?.products?.length} föremål i varukorgen</span>
 			{authenticatedUser?.shoppingCart?.products?.map(
 				(product: any, index: number) =>
-					<ul className='cartUL' key={index} onClick={() => removeProductFromCart(authenticatedUser?.shoppingCart?.products, index)}>
-						<img src={'https://picsum.photos/200/200'} alt='' style={{ width: 100 }} />
+					<ul className='cartUL'
+						key={index}>
+						<img className='cartProductImg'
+							src={'https://picsum.photos/200/200'}
+							alt=''
+							style={{ width: 100 }} />
 						<li>{product.title}</li>
+						<img className='cartTrashImg'
+							src={cartTrash}
+							alt={''}
+							onClick={() => removeProductFromCart(authenticatedUser?.shoppingCart?.products, index)} />
 						<li>{product.price} :-</li>
 					</ul>
 			)}
