@@ -33,3 +33,43 @@
 	width: 100%;
 	display: grid;
 }
+
+.cartExitImg {
+	width: 15px;
+	height: 15px;
+	aspect-ratio: auto 15/15;
+	padding: 5%;
+	transition: 0.2s;
+	cursor: pointer;
+	float: right;
+	margin-right: 4%;
+}
+
+.cartExitImg:hover {
+	width: 18px;
+	height: 18px;
+	transition: 0.4s;
+	transform: rotate(90deg)
+}
+
+.freeReturnImg {
+	width: 42px;
+	aspect-ratio: auto 42/41;
+	height: 31px;
+}
+
+.freeReturnDiv {
+	display: inline-block;
+}
+
+.freeReturnText {
+	font-size: 15px;
+	padding: 0 0 0 16px;
+}
+
+.displayCartWrapper {}
+
+.cartUL {
+	border-bottom: solid 1px white;
+	padding: 1%;
+}

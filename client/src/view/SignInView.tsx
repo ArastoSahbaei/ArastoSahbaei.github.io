@@ -9,7 +9,7 @@ import LocalStorage from '../shared/cache/LocalStorage'
 export const SignInView: React.FC = (): JSX.Element => {
 	const history = useHistory()
 	const [, setAuthenticatedUser] = useContext(UserContext)
-	const [registerUser, setRegisterUser] = useState<registerNewUser>({ username: '', password: '', recieveNewsLetters: true })
+	const [registerUser, setRegisterUser] = useState<registerNewUser>({ username: '', password: '', email: '', recieveNewsLetters: true })
 	const [loginCredentials, setLoginCredentials] = useState<loginCredentials>({ username: '', password: '' })
 	const [forgotPasswordEmail, setForgotPasswordEmail] = useState<email>({ email: '' })
 
@@ -69,6 +69,7 @@ export const SignInView: React.FC = (): JSX.Element => {
 			<h1>Register</h1>
 			<form>
 				<input placeholder="username" onChange={(event) => setRegisterUser({ ...registerUser, username: event.target.value })} /> <br />
+				<input placeholder="email" onChange={(event) => setRegisterUser({ ...registerUser, email: event.target.value })} /> <br />
 				<input placeholder="password" onChange={(event) => setRegisterUser({ ...registerUser, password: event.target.value })} /> <br />
 				Recieve newsletter?
 				<input checked={registerUser.recieveNewsLetters}

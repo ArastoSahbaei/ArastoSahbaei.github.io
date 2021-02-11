@@ -14,6 +14,7 @@ export interface loginCredentials {
 export interface registerNewUser {
 	username: string,
 	password: string,
+	email: string
 	recieveNewsLetters: boolean
 }
 

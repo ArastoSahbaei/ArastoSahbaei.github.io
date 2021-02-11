@@ -5,6 +5,8 @@ import { useContext } from 'react'
 import { UserContext } from '../../shared/provider/UserProvider'
 import APIService from '../../shared/api/service/APIService'
 import emptyCart from '../../shared/images/empty_cart.png'
+import cartExit from '../../shared/images/cart-exit.svg'
+import freeReturn from '../../shared/images/free-return.svg'
 
 export const Cart = (props: { isShoppingBagOpen: boolean, setIsShoppingBagOpen: (handler: boolean) => void }) => {
 	const history = useHistory()
@@ -30,23 +32,27 @@ export const Cart = (props: { isShoppingBagOpen: boolean, setIsShoppingBagOpen: 
 	}
 
 	const displayCartWithItems = () => {
-		return <div>
+		return <div className='displayCartWrapper'>
+			<span>{authenticatedUser?.shoppingCart?.products?.length} föremål i varukorgen</span>
 			{authenticatedUser?.shoppingCart?.products?.map(
 				(product: any, index: number) =>
-					<ul key={index} onClick={() => removeProductFromCart(authenticatedUser?.shoppingCart?.products, index)}>
+					<ul className='cartUL' key={index} onClick={() => removeProductFromCart(authenticatedUser?.shoppingCart?.products, index)}>
+						<img src={'https://picsum.photos/200/200'} alt='' style={{ width: 100 }} />
 						<li>{product.title}</li>
 						<li>{product.price} :-</li>
-						<hr />
 					</ul>
 			)}
 			<div className='cartDiv'>
-				<p>100 dagars ångerrätt med gratis retur</p>
+				<div className='freeReturnDiv'>
+					<img className='freeReturnImg' src={freeReturn} alt={''} />
+					<span className='freeReturnText'>100 dagar ångerrätt med gratis retur</span>
+				</div>
 				<p>frakt: 0kr</p>
 				<p>Total summa: {Math.random()}</p>
 				<button onClick={() => setIsShoppingBagOpen(false)}>fortsätt handla</button>
 				<button onClick={() => navigateToCheckout()}>Gå vidare till kassan</button>
 			</div>
-		</div>
+		</div >
 	}
 
 	const displayCart = () => {
@@ -67,10 +73,8 @@ export const Cart = (props: { isShoppingBagOpen: boolean, setIsShoppingBagOpen: 
 
 	return (
 		<div className={isShoppingBagOpen ? 'cart-drawer open' : 'cart-drawer'}>
-			<span>5 föremål i varukorgen</span>
-			<span onClick={() => setIsShoppingBagOpen(false)}>X</span>
+			<img className='cartExitImg' src={cartExit} alt={''} onClick={() => setIsShoppingBagOpen(false)} />
 			{displayCart()}
-
 		</div>
 	)
 }
