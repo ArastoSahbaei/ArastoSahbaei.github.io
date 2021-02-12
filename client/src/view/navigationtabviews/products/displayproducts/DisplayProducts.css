@@ -1,7 +1,7 @@
 .displayProductsContainer {
 	display: grid;
-	grid-gap: 5%;
-	width: 50%;
+	grid-gap: 4%;
+	width: 90%;
 	margin: 0 auto;
 	grid-template-columns: repeat(4, 1fr);
 }
@@ -36,14 +36,16 @@
 
 .pBrand,
 .pTitle {
-	color: #777;
+	color: #313942;
 	line-height: 5px;
 	font-family: MuseoSans-500, arial;
+	font-size: 0.875rem;
+	font-weight: 600;
 }
 
 .pPrice {
-	color: #333;
-	font-size: 20px;
+	color: #313942;
+	font-size: 0.875rem;
 	line-height: 25px;
 	font-family: MuseoSans-500, arial;
 }

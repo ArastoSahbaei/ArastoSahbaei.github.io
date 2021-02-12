@@ -1,0 +1,20 @@
+.catergoryFilterWrapper {
+	display: flex;
+	justify-content: space-around;
+	list-style-type: none;
+	width: 97%;
+
+}
+
+.categoryFilterLI {
+	border: 0.0625rem solid #b5d5d1;
+	border-radius: 1.25rem;
+	padding: 0.7%;
+	font-weight: 500;
+	font-size: 0.975rem;
+	color: #566962;
+}
+
+.categoryFilterLI:hover {
+	cursor: pointer;
+}
