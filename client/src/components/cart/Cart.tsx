@@ -37,6 +37,12 @@ export const Cart = (props: { isShoppingBagOpen: boolean, setIsShoppingBagOpen: 
 		</div>
 	}
 
+	const getTotalPrice = () => {
+		let totalPrice = 0
+		authenticatedUser?.shoppingCart?.products?.map((x: any) => totalPrice = totalPrice + x.price)
+		return totalPrice
+	}
+
 	const displayCartWithItems = () => {
 		return <div className='displayCartWrapper'>
 			<span>{authenticatedUser?.shoppingCart?.products?.length} föremål i varukorgen</span>
@@ -63,7 +69,7 @@ export const Cart = (props: { isShoppingBagOpen: boolean, setIsShoppingBagOpen: 
 					<span className='freeReturnText'>100 dagar ångerrätt med gratis retur</span>
 				</div>
 				<p>frakt: 0kr</p>
-				<p>Total summa: {Math.random()}</p>
+				<p>Total summa: {getTotalPrice()}</p>
 				<button onClick={() => setIsShoppingBagOpen(false)}>fortsätt handla</button>
 				<button onClick={() => navigateToCheckout()}>Gå vidare till kassan</button>
 			</div>
