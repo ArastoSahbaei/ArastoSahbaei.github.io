@@ -24,6 +24,11 @@ export const Cart = (props: { isShoppingBagOpen: boolean, setIsShoppingBagOpen: 
 		props.setIsShoppingBagOpen(false)
 	}
 
+	const navigateToProductDetail = (details: any) => {
+		history.push(RoutingPath.productDetailsView(details._id), details)
+		props.setIsShoppingBagOpen(false)
+	}
+
 	const displayEmptyCart = () => {
 		return <div>
 			<img src={emptyCart} alt='' className='emptyCartImg' />
@@ -40,6 +45,7 @@ export const Cart = (props: { isShoppingBagOpen: boolean, setIsShoppingBagOpen: 
 					<ul className='cartUL'
 						key={index}>
 						<img className='cartProductImg'
+							onClick={() => navigateToProductDetail(product)}
 							src={'https://picsum.photos/200/200'}
 							alt=''
 							style={{ width: 100 }} />

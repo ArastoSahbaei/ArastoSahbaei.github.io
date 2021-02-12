@@ -8,9 +8,9 @@ const defaultValues = {
 	token: undefined,
 	authenticated: false,
 	cartId: undefined,
-	shoppingCart: [
+	shoppingCart:
 		{ products: [] }
-	],
+	,
 	newsLetterSubscription: {
 		recieveNewsLetters: false,
 	}
