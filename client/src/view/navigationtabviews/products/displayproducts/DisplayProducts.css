@@ -19,7 +19,6 @@
 .productImg {
 	width: 100%;
 	box-shadow: 1px 0px 7px rgba(0, 0, 0, 0.5);
-
 }
 
 .productImg:hover {
@@ -27,7 +26,12 @@
 }
 
 .addToCartButton {
-	width: 100%;
+	background-color: #4084b5;
+	text-align: center;
+	padding: 1.5%;
+	color: white;
+	font-size: 0.75rem;
+	font-weight: 600;
 }
 
 .addToCartButton:hover {
@@ -46,6 +50,4 @@
 .pPrice {
 	color: #313942;
 	font-size: 0.875rem;
-	line-height: 25px;
-	font-family: MuseoSans-500, arial;
 }

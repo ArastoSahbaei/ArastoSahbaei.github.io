@@ -44,7 +44,7 @@ export const DisplayProducts = () => {
 					<p className='pTitle'>{x?.title}</p>
 					<p className='pPrice'>{x?.price} kr</p>
 				</div>
-				<button className='addToCartButton' onClick={() => addToCart(x._id)}>Lägg till i varukorg</button>
+				<div className='addToCartButton' onClick={() => addToCart(x._id)}>Addera till varukorgen</div>
 			</div>)
 	}
 
