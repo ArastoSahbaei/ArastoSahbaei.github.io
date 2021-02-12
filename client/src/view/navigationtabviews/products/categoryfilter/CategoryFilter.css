@@ -1,9 +1,8 @@
 .catergoryFilterWrapper {
 	display: flex;
-	justify-content: space-around;
 	list-style-type: none;
-	width: 97%;
-
+	align-items: center;
+	justify-content: center;
 }
 
 .categoryFilterLI {
@@ -13,6 +12,7 @@
 	font-weight: 500;
 	font-size: 0.975rem;
 	color: #566962;
+	margin: 1%;
 }
 
 .categoryFilterLI:hover {
