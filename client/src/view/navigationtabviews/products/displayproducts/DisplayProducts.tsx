@@ -5,6 +5,7 @@ import { UserContext } from '../../../../shared/provider/UserProvider'
 import { ToggleCartContext } from '../../../../shared/provider/ToggleCartProvider'
 import { useHistory } from 'react-router-dom'
 import RoutingPath from '../../../../routes/RoutingPath'
+import heartImg from '../../../../shared/images/heart.svg'
 
 export const DisplayProducts = () => {
 	const history = useHistory()
@@ -41,6 +42,7 @@ export const DisplayProducts = () => {
 				<div className='displayProductSubWrapper' onClick={() => history.push(RoutingPath.productDetailsView(x._id), x)}>
 					<img className='productImg' src={'https://picsum.photos/200/200'} alt='' />
 					<p className='pBrand'>Herbaman Co.</p>
+					<img className='heartFavourite' src={heartImg} alt={''} />
 					<p className='pTitle'>{x?.title}</p>
 					<p className='pPrice'>{x?.price} kr</p>
 				</div>

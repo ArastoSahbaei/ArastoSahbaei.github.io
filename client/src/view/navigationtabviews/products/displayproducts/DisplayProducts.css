@@ -51,3 +51,11 @@
 	color: #313942;
 	font-size: 0.875rem;
 }
+
+.heartFavourite {
+	width: 24px;
+	float: right;
+	color: red;
+	margin-right: 10px;
+	z-index: 10;
+}
