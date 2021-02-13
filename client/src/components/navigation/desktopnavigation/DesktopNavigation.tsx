@@ -10,6 +10,8 @@ import { CartToggler } from './carttoggler/CartToggler'
 import { BackDrop } from '../../backdrop/BackDrop'
 import { ToggleCartContext } from '../../../shared/provider/ToggleCartProvider'
 import { DesktopNavigationTabs } from './desktopnavigatontabs/DesktopNavigationTabs'
+import heartImg from '../../../shared/images/heart.svg'
+import AuthenticatedPath from '../../../routes/AuthenticatedPath'
 
 export const DesktopNavigation: React.FC = (): JSX.Element => {
 	const history = useHistory()
@@ -32,6 +34,7 @@ export const DesktopNavigation: React.FC = (): JSX.Element => {
 				<DesktopNavigationTabs />
 			</div>
 			{displaySignInButtonOrUsernameDependingOnAuthentication()}
+			<img className='navHeart' src={heartImg} alt={''} onClick={() => history.push(AuthenticatedPath.favouriteProductsView)} />
 			<div className='navigationShoppingCart'>
 				<CartToggler setIsShoppingBagOpen={setIsShoppingBagOpen} />
 			</div>

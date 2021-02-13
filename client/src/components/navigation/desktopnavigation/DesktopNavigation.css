@@ -5,7 +5,7 @@
 }
 
 .navigationProfile {
-	grid-column: 17/18;
+	grid-column: 16/17;
 	grid-row: 1/1;
 	align-self: center;
 	justify-self: center;
@@ -19,7 +19,7 @@
 }
 
 .signInButton {
-	grid-column: 17/18;
+	grid-column: 16/17;
 	grid-row: 1/1;
 	align-self: center;
 	justify-self: center;
@@ -41,4 +41,14 @@
 	grid-row: 1/1;
 	align-self: center;
 	justify-self: center;
+}
+
+.navHeart {
+	width: 35px;
+	height: 35px;
+	grid-column: 17/18;
+	grid-row: 1/1;
+	align-self: center;
+	justify-self: center;
+	cursor: pointer;
 }

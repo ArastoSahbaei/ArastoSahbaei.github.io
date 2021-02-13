@@ -18,6 +18,8 @@ import { NewsView } from '../view/navigationtabviews/news/NewsView'
 import { AdminView } from '../view/admin/AdminView'
 import { CheckoutView } from '../view/CheckoutView'
 import { ProductDetailView } from '../view/navigationtabviews/products/productdetailview/ProductDetailView'
+import AuthenticatedPath from './AuthenticatedPath'
+import { favouriteProductsView } from '../view/userviews/favouriteProductsView'
 
 export const Routes = (props: { children?: React.ReactChild }) => {
 	const { children } = props
@@ -74,8 +76,6 @@ export const Routes = (props: { children?: React.ReactChild }) => {
 			{children}
 			<Switch>
 				<Route exact path={RoutingPath.signInView} component={blockRouteIfAuthenticated(SignInView)} />
-				<Route exact path={RoutingPath.userSettingsView} component={authenticationRequired(UserSettingsView)} />
-				<Route exact path={RoutingPath.userProfileView} component={authenticationRequired(UserProfileView)} />
 				<Route exact path={RoutingPath.forgotPasswordView} component={ResetPasswordView} />
 				<Route exact path={RoutingPath.checkoutView} component={CheckoutView} />
 
@@ -86,6 +86,11 @@ export const Routes = (props: { children?: React.ReactChild }) => {
 				<Route exact path={RoutingPath.expertiseView} component={ExpertiseView} />
 				<Route exact path={RoutingPath.newsView} component={NewsView} />
 				<Route exact path={RoutingPath.productDetailsView()} component={ProductDetailView} />
+
+				{/* Authenticated Paths */}
+				<Route exact path={AuthenticatedPath.favouriteProductsView} component={authenticationRequired(favouriteProductsView)} />
+				<Route exact path={RoutingPath.userSettingsView} component={authenticationRequired(UserSettingsView)} />
+				<Route exact path={RoutingPath.userProfileView} component={authenticationRequired(UserProfileView)} />
 
 				{/* AdminView */}
 				<Route exact path={RoutingPath.admin} component={AdminView} />
