@@ -27,7 +27,7 @@ export const Footer = () => {
 			</ol>
 
 			<ol className="OLAbout">
-				<li className="OLAboutTitle">HAMPA.io</li>
+				<li className="OLAboutTitle">WEBSITENAME.io</li>
 				<NavLink to="/checkout">
 					<li className="aboutLI"><span>Om Oss</span></li>
 				</NavLink>

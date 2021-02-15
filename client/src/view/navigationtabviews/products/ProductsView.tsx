@@ -7,7 +7,7 @@ export const ProductsView = () => {
 	return (
 		<div>
 			<div className='productViewTitleWrapper'>
-				<p className='productViewTitle'>Hampa.io</p>
+				<p className='productViewTitle'>WEBSITENAME.io</p>
 				<p className='productViewSubTitle'>
 					Explore our curated collection of homewares made in Australia and Japan. <br />
 				From candles and pottery to organic towels and Japanese pairing knives, <br />
