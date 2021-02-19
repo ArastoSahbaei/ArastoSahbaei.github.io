@@ -36,13 +36,17 @@ export const DisplayProducts = () => {
 		}
 	}
 
+	const addProductToFavourite = () => {
+		alert('ok')
+	}
+
 	const displayData = () => {
 		return products.map((x: any) =>
 			<div className='displayProductWrapper' key={x?._id}>
-				<div className='displayProductSubWrapper' onClick={() => history.push(RoutingPath.productDetailsView(x._id), x)}>
-					<img className='productImg' src={'https://picsum.photos/200/200'} alt='' />
+				<div className='displayProductSubWrapper'>
+					<img className='productImg' src={'https://picsum.photos/200/200'} alt='' onClick={() => history.push(RoutingPath.productDetailsView(x._id), x)} />
 					<p className='pBrand'>Herbaman Co.</p>
-					<img className='heartFavourite' src={heartImg} alt={''} />
+					<img className='addToFavourite' src={heartImg} alt={''} onClick={() => addProductToFavourite()} />
 					<p className='pTitle'>{x?.title}</p>
 					<p className='pPrice'>{x?.price} kr</p>
 				</div>

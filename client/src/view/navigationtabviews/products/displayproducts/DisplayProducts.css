@@ -12,9 +12,7 @@
 
 .displayProductSubWrapper {}
 
-.displayProductSubWrapper:hover {
-	cursor: pointer;
-}
+.displayProductSubWrapper:hover {}
 
 .productImg {
 	width: 100%;
@@ -23,6 +21,7 @@
 
 .productImg:hover {
 	opacity: 0.5;
+	cursor: pointer;
 }
 
 .addToCartButton {
@@ -52,10 +51,12 @@
 	font-size: 0.875rem;
 }
 
-.heartFavourite {
+.addToFavourite {
 	width: 24px;
 	float: right;
-	color: red;
 	margin-right: 10px;
-	z-index: 10;
+	z-index: 1;
+	cursor: pointer;
 }
+
+.addToFavourite:hover {}
