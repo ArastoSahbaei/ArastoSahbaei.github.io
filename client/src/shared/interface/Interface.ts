@@ -23,7 +23,8 @@ export interface authenticatedUser {
 	token: string | undefined,
 	authenticated: boolean,
 	cartId: string | undefined
-	newsLetterSubscription: newsLetterSubscription
+	newsLetterSubscription: newsLetterSubscription,
+	favouriteProducts: [] | Array<string>
 }
 
 export interface newsLetterSubscription {
@@ -64,4 +65,9 @@ export interface productBrandInterface {
 export interface updateCartInterface {
 	cartId: string,
 	products: Array<string>
+}
+
+export interface iUpdateFavouriteProducts {
+	userId: string,
+	favouriteProducts: Array<string> | []
 }

@@ -52,9 +52,10 @@ export const Routes = (props: { children?: React.ReactChild }) => {
 				id: JWT.id,
 				authenticated: true,
 				username: response.data.username,
-				shoppingCart: response.data.shoppingCart[0],
-				cartId: response.data.shoppingCart[0]._id,
-				newsLetterSubscription: response.data.newsLetterSubscription[0]
+				shoppingCart: response.data?.shoppingCart[0],
+				cartId: response.data?.shoppingCart[0]?._id,
+				newsLetterSubscription: response.data?.newsLetterSubscription[0],
+				favouriteProducts: response.data?.favouriteProducts
 			})
 		} else {
 			setAuthenticatedUser({

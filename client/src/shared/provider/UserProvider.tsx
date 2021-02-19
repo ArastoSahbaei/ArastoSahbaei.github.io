@@ -13,7 +13,8 @@ const defaultValues = {
 	,
 	newsLetterSubscription: {
 		recieveNewsLetters: false,
-	}
+	},
+	favouriteProducts: []
 }
 
 export const UserProvider = (props: { children?: React.ReactChild }) => {

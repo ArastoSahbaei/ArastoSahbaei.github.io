@@ -35,6 +35,7 @@ export const DesktopNavigation: React.FC = (): JSX.Element => {
 			</div>
 			{displaySignInButtonOrUsernameDependingOnAuthentication()}
 			<img className='navHeart' src={heartImg} alt={''} onClick={() => history.push(AuthenticatedPath.favouriteProductsView)} />
+			<span>{authenticatedUser.favouriteProducts?.length}</span>
 			<div className='navigationShoppingCart'>
 				<CartToggler setIsShoppingBagOpen={setIsShoppingBagOpen} />
 			</div>

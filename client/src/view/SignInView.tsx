@@ -26,7 +26,8 @@ export const SignInView: React.FC = (): JSX.Element => {
 				username: data.username,
 				shoppingCart: data.shoppingCart[0],
 				cartId: data.shoppingCart[0]._id,
-				newsLetterSubscription: data.newsLetterSubscription[0]
+				newsLetterSubscription: data.newsLetterSubscription[0],
+				favouriteProducts: data.favouriteProducts
 			})
 			history.push(RoutingPath.homeView)
 		} catch (error) {
@@ -38,6 +39,7 @@ export const SignInView: React.FC = (): JSX.Element => {
 		event.preventDefault()
 		try {
 			await APIService.registerNewUser(registerUser)
+			//TODO: If registration is successfull -> login the user and tell em to verify their email
 			alert('Sucessfully created your account!')
 		} catch (error) {
 			console.log(error)

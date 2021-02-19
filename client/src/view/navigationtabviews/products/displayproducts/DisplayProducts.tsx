@@ -6,6 +6,7 @@ import { ToggleCartContext } from '../../../../shared/provider/ToggleCartProvide
 import { useHistory } from 'react-router-dom'
 import RoutingPath from '../../../../routes/RoutingPath'
 import heartImg from '../../../../shared/images/heart.svg'
+import likedHeartImg from '../../../../shared/images/filledHeart.svg'
 
 export const DisplayProducts = () => {
 	const history = useHistory()
@@ -36,9 +37,25 @@ export const DisplayProducts = () => {
 		}
 	}
 
-	const addProductToFavourite = () => {
-		alert('ok')
+	const updateProductToFavourite = async (productId: any) => {
+		const isProductAlreadyInFavouriteList = authenticatedUser.favouriteProducts?.includes(productId)
+		if (isProductAlreadyInFavouriteList) {
+			const removedFavouriteItem = authenticatedUser.favouriteProducts.filter((e: any) => e !== productId)
+			setAuthenticatedUser({ ...authenticatedUser, favouriteProducts: removedFavouriteItem })
+			await APIService.updateFavouriteProducts({ userId: authenticatedUser.id, favouriteProducts: removedFavouriteItem })
+		} else {
+			const addedfavouriteItem = authenticatedUser.favouriteProducts.concat([productId])
+			setAuthenticatedUser({ ...authenticatedUser, favouriteProducts: addedfavouriteItem })
+			await APIService.updateFavouriteProducts({ userId: authenticatedUser.id, favouriteProducts: addedfavouriteItem })
+		}
 	}
+
+	const displayColoredHeartIfProductIsLiked = (productId: string) => {
+		return authenticatedUser.favouriteProducts?.includes(productId)
+			? <img className='addToFavourite' src={likedHeartImg} alt={''} onClick={() => updateProductToFavourite(productId)} />
+			: <img className='addToFavourite' src={heartImg} alt={''} onClick={() => updateProductToFavourite(productId)} />
+	}
+
 
 	const displayData = () => {
 		return products.map((x: any) =>
@@ -46,7 +63,7 @@ export const DisplayProducts = () => {
 				<div className='displayProductSubWrapper'>
 					<img className='productImg' src={'https://picsum.photos/200/200'} alt='' onClick={() => history.push(RoutingPath.productDetailsView(x._id), x)} />
 					<p className='pBrand'>Herbaman Co.</p>
-					<img className='addToFavourite' src={heartImg} alt={''} onClick={() => addProductToFavourite()} />
+					{displayColoredHeartIfProductIsLiked(x._id)}
 					<p className='pTitle'>{x?.title}</p>
 					<p className='pPrice'>{x?.price} kr</p>
 				</div>

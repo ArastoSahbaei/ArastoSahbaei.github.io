@@ -28,11 +28,28 @@ const testingAuthenticatedRoute = async (request, response) => {
 
 const updateCart = async (request, response) => {
 	try {
-		const databaseResponse = await ShoppingCartModel.findByIdAndUpdate(request.body.cartId, { products: request.body.products },
+		const databaseResponse = await ShoppingCartModel.findByIdAndUpdate(request.body.cartId, {
+			products: request.body.products
+		},
 			{ new: true }).populate({ path: 'products' })
 		response.status(StatusCode.OK).send(databaseResponse)
 	} catch (error) {
 		response.status(StatusCode.INTERNAL_SERVER_ERROR).send({ message: error.message })
+	}
+}
+
+const updateFavouriteProducts = async (request, response) => {
+	try {
+		if (!request.body) { return response.status(StatusCode.BAD_REQUEST).send({ message: 'Empty values were sent' }) }
+		const databaseResponse = await UserModel.findByIdAndUpdate(request.body.userId, {
+			favouriteProducts: request.body.favouriteProducts,
+		}, { new: true })
+		response.status(StatusCode.OK).send(databaseResponse)
+	} catch (error) {
+		response.status(StatusCode.INTERNAL_SERVER_ERROR).send({
+			message: 'Error occured while trying to update values of the user with ID: ' + request.body.userId,
+			error: error.message
+		})
 	}
 }
 
@@ -56,7 +73,8 @@ const login = async (request, response, next) => {
 							token,
 							username: user.username,
 							id: user._id,
-							newsLetterSubscription: user.newsLetterSubscription
+							newsLetterSubscription: user.newsLetterSubscription,
+							favouriteProducts: user.favouriteProducts
 						})
 					})
 			})
@@ -76,6 +94,7 @@ const registerNewUser = async (request, response, next) => {
 				username: request.body.username,
 				password: hashedPassword,
 				name: request.body.name,
+				favouriteProducts: ['1', '2', '3']
 			})
 			const shoppingCart = await new ShoppingCartModel({
 				user: user._id,
@@ -258,5 +277,6 @@ export default {
 	updatePassword,
 	forgotPassword,
 	resetPassword,
-	updateCart
+	updateCart,
+	updateFavouriteProducts
 }
