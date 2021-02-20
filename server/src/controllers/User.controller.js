@@ -129,6 +129,7 @@ const getUserByID = async (request, response) => {
 	try {
 		const databaseResponse = await (await UserModel.findOne({ _id: request.params.userId })
 			.populate('newsLetterSubscription')
+			.populate('favouriteProducts')
 			.populate({ path: 'shoppingCart', populate: { path: 'products' } }))
 		response.status(StatusCode.OK).send(databaseResponse)
 	} catch (error) {

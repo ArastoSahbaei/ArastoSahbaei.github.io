@@ -48,7 +48,10 @@ const userSchema = Schema({
 		ref: 'newslettersubscription',
 		required: true
 	}],
-	favouriteProducts: []
+	favouriteProducts: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'product',
+	}]
 
 }, { timestamps: true, strict: true })
 
