@@ -10,11 +10,21 @@
 
 .profileWrapper:hover .profileDropdown {
 	display: block;
-	color: white;
 }
 
 .profileDropdown span {
-	display: block;
+	display: inline-block;
 	cursor: pointer;
 	padding: 10px;
+	color: white;
+}
+
+.dropDownProfileRowWrapper {
+	width: 100%;
+}
+
+.profileDropDownRowImg {
+	width: 24px;
+	height: 24px;
+	vertical-align: middle;
 }

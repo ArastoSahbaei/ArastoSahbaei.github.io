@@ -1,9 +1,10 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import './DropdownProfile.css'
 import { useHistory } from 'react-router-dom'
 import RoutingPath from '../../../routes/RoutingPath'
 import { UserContext } from '../../../shared/provider/UserProvider'
 import LocalStorage from '../../../shared/cache/LocalStorage'
+import heartImg from '../../../shared/images/like.svg'
 
 export const DropdownProfile = () => {
 	const history = useHistory()
@@ -25,16 +26,43 @@ export const DropdownProfile = () => {
 			<span>Arasto Sahbaei</span> <br />
 			<span>arasto.sahbaei@gmail.com</span>
 			<hr />
-			<span onClick={() => history.push(RoutingPath.userProfileView)}>Profile</span>
-			<span onClick={() => history.push(RoutingPath.userSettingsView)}>Settings</span>
-			<span onClick={() => history.push(RoutingPath.userSettingsView)}>Saved</span>
-			<span onClick={() => logout()}>Logout</span>
+			<div className='dropDownProfileRowWrapper'>
+				<img className='profileDropDownRowImg' src={heartImg} alt={''} />
+				<span onClick={() => history.push(RoutingPath.userProfileView)}>Profil</span>
+			</div>
+			<div className='dropDownProfileRowWrapper'>
+				<img className='profileDropDownRowImg' src={heartImg} alt={''} />
+				<span onClick={() => history.push(RoutingPath.userSettingsView)}>Inställningar</span>
+			</div>
+			<div className='dropDownProfileRowWrapper'>
+				<img className='profileDropDownRowImg' src={heartImg} alt={''} />
+				<span onClick={() => history.push(RoutingPath.userSettingsView)}>Sparade Produkter</span>
+			</div>
+			<div className='dropDownProfileRowWrapper'>
+				<img className='profileDropDownRowImg' src={heartImg} alt={''} />
+				<span onClick={() => logout()}>Logga ut</span>
+			</div>
 			<hr />
-			<span>Theme: Dark mode</span>
-			<span>Language: EN</span>
-			<span>Location: Unknown</span>
-			<span>GDPR</span>
-			<span>Report a issue/bug</span>
+			<div className='dropDownProfileRowWrapper'>
+				<img className='profileDropDownRowImg' src={heartImg} alt={''} />
+				<span onClick={() => history.push(RoutingPath.userSettingsView)}>Språk: Svenska</span>
+			</div>
+			<div className='dropDownProfileRowWrapper'>
+				<img className='profileDropDownRowImg' src={heartImg} alt={''} />
+				<span onClick={() => history.push(RoutingPath.userSettingsView)}>Plats: Sverige</span>
+			</div>
+			<div className='dropDownProfileRowWrapper'>
+				<img className='profileDropDownRowImg' src={heartImg} alt={''} />
+				<span onClick={() => history.push(RoutingPath.userSettingsView)}>Data & GDPR</span>
+			</div>
+			<div className='dropDownProfileRowWrapper'>
+				<img className='profileDropDownRowImg' src={heartImg} alt={''} />
+				<span onClick={() => history.push(RoutingPath.userSettingsView)}>Hjälp</span>
+			</div>
+			<div className='dropDownProfileRowWrapper'>
+				<img className='profileDropDownRowImg' src={heartImg} alt={''} />
+				<span onClick={() => history.push(RoutingPath.userSettingsView)}>Skicka Feedback</span>
+			</div>
 		</div>
 	)
 }
