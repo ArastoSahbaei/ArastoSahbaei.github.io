@@ -61,8 +61,10 @@ export const DisplayProducts = () => {
 	const displayData = () => {
 		return products.map((item: any) =>
 			<div className='displayProductWrapper' key={item?._id}>
-				<div className='displayProductSubWrapper'>
-					<img className='productImg' src={'https://picsum.photos/200/200'} alt='' onClick={() => history.push(RoutingPath.productDetailsView(item._id), item)} />
+				<div>
+					<div className='productImgWrapper'>
+						<img className='productImg' src={'https://picsum.photos/200/200'} alt='' onClick={() => history.push(RoutingPath.productDetailsView(item._id), item)} />
+					</div>
 					<p className='pBrand'>Herbaman Co.</p>
 					{displayColoredHeartIfProductIsLiked(item._id)}
 					<p className='pTitle'>{item?.title}</p>

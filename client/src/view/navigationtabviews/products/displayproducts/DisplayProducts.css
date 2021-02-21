@@ -10,18 +10,19 @@
 	grid-template-columns: repeat(12, 1fr);
 }
 
-.displayProductSubWrapper {}
-
-.displayProductSubWrapper:hover {}
+.productImgWrapper {
+	overflow: hidden;
+}
 
 .productImg {
 	width: 100%;
 	box-shadow: 1px 0px 7px rgba(0, 0, 0, 0.5);
+	transition: transform .75s, visibility .75s ease-in;
 }
 
 .productImg:hover {
-	opacity: 0.5;
 	cursor: pointer;
+	transform: scale(1.2);
 }
 
 .addToCartButton {
