@@ -58,7 +58,6 @@ export const DisplayProducts = () => {
 			: <img className='addToFavourite' src={heartImg} alt={''} onClick={() => updateProductToFavourite(productId)} />
 	}
 
-
 	const displayData = () => {
 		return products.map((item: any) =>
 			<div className='displayProductWrapper' key={item?._id}>

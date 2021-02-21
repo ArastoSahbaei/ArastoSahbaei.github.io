@@ -14,8 +14,8 @@ export const favouriteProductsView = () => {
 
 	return (
 		<div>
-			<h1 onClick={() => console.log(authenticatedUser.favouriteProducts)}>Display the products that user has liked</h1>
-			<p>Vad händer om man tar bort en produkt som en user har i likedProducts?</p>
+			<h1 onClick={() => console.log(authenticatedUser.favouriteProducts)}>MY FAVOURITES</h1>
+			<p>Här finner du produkter som du har lagt till i mina favoriter. Lägg till artiklar i mina favoriter genom att klicka på  för tillhörande produkt.</p>
 			{displayFavouriteProducts()}
 		</div>
 	)
