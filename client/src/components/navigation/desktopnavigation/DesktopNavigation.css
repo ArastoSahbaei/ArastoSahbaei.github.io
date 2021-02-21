@@ -43,12 +43,16 @@
 	justify-self: center;
 }
 
-.navHeart {
-	width: 35px;
-	height: 35px;
+.navHeartWrapper {
 	grid-column: 17/18;
 	grid-row: 1/1;
 	align-self: center;
 	justify-self: center;
+	cursor: pointer;
+}
+
+.navHeart {
+	width: 35px;
+	height: 35px;
 	cursor: pointer;
 }

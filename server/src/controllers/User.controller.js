@@ -43,7 +43,7 @@ const updateFavouriteProducts = async (request, response) => {
 		if (!request.body) { return response.status(StatusCode.BAD_REQUEST).send({ message: 'Empty values were sent' }) }
 		const databaseResponse = await UserModel.findByIdAndUpdate(request.body.userId, {
 			favouriteProducts: request.body.favouriteProducts,
-		}, { new: true })
+		}, { new: true }).populate('favouriteProducts')
 		response.status(StatusCode.OK).send(databaseResponse)
 	} catch (error) {
 		response.status(StatusCode.INTERNAL_SERVER_ERROR).send({

@@ -15,7 +15,7 @@ export const CategoryFilter = () => {
 		fetchData()
 	}, [])
 
-	productCategories.map((x: any, i: number) => x.productCategoryName)
+	productCategories.map((x: any) => x.productCategoryName)
 
 	return (
 		<ul className='catergoryFilterWrapper'>

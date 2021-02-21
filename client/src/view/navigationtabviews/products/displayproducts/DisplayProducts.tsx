@@ -37,37 +37,39 @@ export const DisplayProducts = () => {
 		}
 	}
 
-	const updateProductToFavourite = async (productId: any) => {
-		const isProductAlreadyInFavouriteList = authenticatedUser.favouriteProducts?.includes(productId)
+	const updateProductToFavourite = async (productId: string) => {
+		const isProductAlreadyInFavouriteList = authenticatedUser.favouriteProducts?.some((item: any) => item._id === productId)
 		if (isProductAlreadyInFavouriteList) {
-			const removedFavouriteItem = authenticatedUser.favouriteProducts.filter((e: any) => e !== productId)
+			const removedFavouriteItem = authenticatedUser.favouriteProducts.filter((item: any) => item._id !== productId)
 			setAuthenticatedUser({ ...authenticatedUser, favouriteProducts: removedFavouriteItem })
 			await APIService.updateFavouriteProducts({ userId: authenticatedUser.id, favouriteProducts: removedFavouriteItem })
 		} else {
-			const addedfavouriteItem = authenticatedUser.favouriteProducts.concat([productId])
-			setAuthenticatedUser({ ...authenticatedUser, favouriteProducts: addedfavouriteItem })
-			await APIService.updateFavouriteProducts({ userId: authenticatedUser.id, favouriteProducts: addedfavouriteItem })
+			const addedfavouriteItem = authenticatedUser.favouriteProducts.concat([productId]) //TODO: Fix this line!
+			const { data } = await APIService.updateFavouriteProducts({ userId: authenticatedUser.id, favouriteProducts: addedfavouriteItem })
+			setAuthenticatedUser({ ...authenticatedUser, favouriteProducts: data.favouriteProducts })
 		}
 	}
 
 	const displayColoredHeartIfProductIsLiked = (productId: string) => {
-		return authenticatedUser.favouriteProducts?.includes(productId)
+		const found = authenticatedUser.favouriteProducts?.some((item: any) => item._id === productId)
+		console.log(found)
+		return authenticatedUser.favouriteProducts?.some((item: any) => item._id === productId)
 			? <img className='addToFavourite' src={likedHeartImg} alt={''} onClick={() => updateProductToFavourite(productId)} />
 			: <img className='addToFavourite' src={heartImg} alt={''} onClick={() => updateProductToFavourite(productId)} />
 	}
 
 
 	const displayData = () => {
-		return products.map((x: any) =>
-			<div className='displayProductWrapper' key={x?._id}>
+		return products.map((item: any) =>
+			<div className='displayProductWrapper' key={item?._id}>
 				<div className='displayProductSubWrapper'>
-					<img className='productImg' src={'https://picsum.photos/200/200'} alt='' onClick={() => history.push(RoutingPath.productDetailsView(x._id), x)} />
+					<img className='productImg' src={'https://picsum.photos/200/200'} alt='' onClick={() => history.push(RoutingPath.productDetailsView(item._id), item)} />
 					<p className='pBrand'>Herbaman Co.</p>
-					{displayColoredHeartIfProductIsLiked(x._id)}
-					<p className='pTitle'>{x?.title}</p>
-					<p className='pPrice'>{x?.price} kr</p>
+					{displayColoredHeartIfProductIsLiked(item._id)}
+					<p className='pTitle'>{item?.title}</p>
+					<p className='pPrice'>{item?.price} kr</p>
 				</div>
-				<div className='addToCartButton' onClick={() => addToCart(x._id)}>Addera till varukorgen</div>
+				<div className='addToCartButton' onClick={() => addToCart(item._id)}>Addera till varukorgen</div>
 			</div>)
 	}
 
