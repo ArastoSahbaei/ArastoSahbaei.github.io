@@ -56,3 +56,18 @@
 	height: 35px;
 	cursor: pointer;
 }
+
+.navHeartCounter {
+	position: absolute;
+	width: 18px;
+	height: 18px;
+	border-radius: 9px;
+	background: #ff3c00;
+	color: #fff;
+	line-height: 18px;
+	text-align: center;
+	font-size: 13px;
+	white-space: nowrap;
+	overflow: hidden;
+	margin-left: 4px;
+}

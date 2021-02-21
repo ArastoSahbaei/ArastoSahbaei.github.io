@@ -24,6 +24,12 @@ export const DesktopNavigation: React.FC = (): JSX.Element => {
 			: <span className='signInButton' onClick={() => history.push(RoutingPath.signInView)}> Sign in </span>
 	}
 
+	const displayAmountOfFavouriteProducts = () => {
+		if (authenticatedUser?.favouriteProducts?.length != 0) {
+			return <span className='navHeartCounter'>{authenticatedUser.favouriteProducts?.length}</span>
+		}
+	}
+
 	return (
 		<div className='desktopNavigationWrapper'>
 			<img className='navigationLogotype'
@@ -36,7 +42,7 @@ export const DesktopNavigation: React.FC = (): JSX.Element => {
 			{displaySignInButtonOrUsernameDependingOnAuthentication()}
 			<div className='navHeartWrapper'>
 				<img className='navHeart' src={heartImg} alt={''} onClick={() => history.push(AuthenticatedPath.favouriteProductsView)} />
-				<span>{authenticatedUser.favouriteProducts?.length}</span>
+				{displayAmountOfFavouriteProducts()}
 			</div>
 			<div className='navigationShoppingCart'>
 				<CartToggler setIsShoppingBagOpen={setIsShoppingBagOpen} />
