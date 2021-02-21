@@ -64,6 +64,7 @@ const login = async (request, response, next) => {
 			request.logIn(users, () => {
 				UserModel.findOne({ username: request.body.username })
 					.populate('newsLetterSubscription')
+					.populate('favouriteProducts')
 					.populate({ path: 'shoppingCart', populate: { path: 'products' } })
 					.then(user => {
 						const token = jwt.sign({ id: user._id }, 'jwtSecret.secret', { expiresIn: 60 * 60 })

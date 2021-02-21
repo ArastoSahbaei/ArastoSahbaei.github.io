@@ -3,7 +3,7 @@ import { authenticatedUser } from '../interface/Interface'
 
 export const UserContext = createContext<any>(null)
 const defaultValues = {
-	_id: undefined,
+	id: undefined,
 	username: undefined,
 	token: undefined,
 	authenticated: false,

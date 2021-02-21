@@ -20,8 +20,8 @@ export const SignInView: React.FC = (): JSX.Element => {
 			localStorage.setItem(LocalStorage.authenticationToken, data.token)
 			console.log(data)
 			setAuthenticatedUser({
-				_id: data.id,
 				token: data.token,
+				id: data.id,
 				authenticated: true,
 				username: data.username,
 				shoppingCart: data.shoppingCart[0],
