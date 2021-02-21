@@ -69,7 +69,7 @@ export const DisplayProducts = () => {
 					<p className='pTitle'>{item?.title}</p>
 					<p className='pPrice'>{item?.price} kr</p>
 				</div>
-				<div className='addToCartButton' onClick={() => addToCart(item._id)}>Addera till varukorgen</div>
+				<div className='addToCartButton' onClick={() => addToCart(item._id)}>Addera till varukorg</div>
 			</div>)
 	}
 
