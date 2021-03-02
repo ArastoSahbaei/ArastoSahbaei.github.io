@@ -1,0 +1,22 @@
+.ulTabsWrapper {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.liTabs {
+	display: inline;
+	cursor: pointer;
+	padding: 7%;
+	transition: 0.2s;
+	color: white;
+	font-family: 'Roboto', sans-serif;
+	text-transform: uppercase;
+	transition: all .3s ease;
+}
+
+.liTabs:hover {
+	transition: 0.3s;
+	font-size: 1.1rem;
+	font-weight: 600;
+}

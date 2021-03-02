@@ -1,0 +1,63 @@
+.displayProductsContainer {
+	display: grid;
+	grid-gap: 4%;
+	width: 90%;
+	margin: 0 auto;
+	grid-template-columns: repeat(4, 1fr);
+}
+
+.displayProductWrapper {
+	grid-template-columns: repeat(12, 1fr);
+}
+
+.productImgWrapper {
+	overflow: hidden;
+}
+
+.productImg {
+	width: 100%;
+	box-shadow: 1px 0px 7px rgba(0, 0, 0, 0.5);
+	transition: transform .75s, visibility .75s ease-in;
+}
+
+.productImg:hover {
+	cursor: pointer;
+	transform: scale(1.2);
+}
+
+.addToCartButton {
+	background-color: #4084b5;
+	text-align: center;
+	padding: 1.5%;
+	color: white;
+	font-size: 0.75rem;
+	font-weight: 600;
+}
+
+.addToCartButton:hover {
+	cursor: pointer;
+}
+
+.pBrand,
+.pTitle {
+	color: #313942;
+	line-height: 5px;
+	font-family: MuseoSans-500, arial;
+	font-size: 0.875rem;
+	font-weight: 600;
+}
+
+.pPrice {
+	color: #313942;
+	font-size: 0.875rem;
+}
+
+.addToFavourite {
+	width: 24px;
+	float: right;
+	margin-right: 10px;
+	z-index: 1;
+	cursor: pointer;
+}
+
+.addToFavourite:hover {}
