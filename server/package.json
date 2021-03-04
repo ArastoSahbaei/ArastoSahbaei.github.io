@@ -6,7 +6,8 @@
 	"type": "module",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"dev": "npx nodemon Server.js"
+		"dev": "npx nodemon Server.js",
+		"deploy": "cd ../; git subtree push --prefix server heroku master"
 	},
 	"keywords": [
 		"RestAPI",
