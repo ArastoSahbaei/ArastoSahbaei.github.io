@@ -4,22 +4,42 @@ import nodemailer from 'nodemailer'
 import StatusCode from './StatusCode.js'
 
 dotenv.config()
-const { DATABASE_URL, PORT, EMAIL, CLIENT_ID, CLIENT_SECRET, REFRESH_TOKEN } = process.env
+const {
+	DEV_DATABASE_URL,
+	PROD_DATABASE_URL,
+	PORT,
+	EMAIL,
+	CLIENT_ID,
+	CLIENT_SECRET,
+	REFRESH_TOKEN,
+	ENVIROMENT
+} = process.env
 
 const connectToDatabase = async () => {
+	const DATABASE_URL = ENVIROMENT === 'DEVELOPMENT' ? DEV_DATABASE_URL : PROD_DATABASE_URL
 	try {
 		await mongoose.connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
-		console.log('SUCESSFULLY CONNECTED TO DATABASE..')
+		console.log('✔️  SUCESSFULLY CONNECTED TO DATABASE..')
 	} catch (error) {
-		console.log('ERROR OCCURED WHILE TRYING TO CONNECT TO THE DATABASE..')
+		console.log('❌  ERROR OCCURED WHILE TRYING TO CONNECT TO THE DATABASE..')
 		process.exit()
 	}
 }
 
 const connectToPort = async (app) => {
-	app.listen(PORT, () => {
-		console.log(`SERVER IS RUNNING ON PORT: ${PORT}`)
-	})
+	try {
+		await app.listen(PORT || 3001, () => {
+			console.log(`✔️  SERVER IS RUNNING ON PORT: ${PORT || 3001}`)
+		})
+	} catch (error) {
+		console.log('❌  ERROR OCCURED WHILE TRYING TO CONNECT TO THE PORT..')
+	}
+}
+
+const buildFrontendInProduction = () => {
+	if (process.env.ENVIROMENT === "PRODUCTION") {
+		application.use(express.static('client/build'))
+	}
 }
 
 const sendEmail = async (databaseResponse, token) => {
@@ -64,5 +84,6 @@ const sendEmail = async (databaseResponse, token) => {
 export default {
 	connectToDatabase,
 	connectToPort,
-	sendEmail
+	sendEmail,
+	buildFrontendInProduction
 }
